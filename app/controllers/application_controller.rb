@@ -38,13 +38,13 @@ end
 
 def require_logged_in
   unless current_user
-    render json: { message: 'Must be logged in!' }, status: :unauthorized 
+    render json: { errors: ['Must be logged in!'] }, status: :unauthorized 
   end
 end
 
 def require_logged_out
   if login?
-    render json: { message: 'Must be logged out!' }, status: :unauthorized 
+    render json: { errors: ['Must be logged out!'] }, status: :unauthorized 
   end
 end
 
