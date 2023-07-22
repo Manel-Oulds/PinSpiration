@@ -1,3 +1,45 @@
 .profile-dropdown {
     position: absolute;
+    margin: 10px;
   }
+
+.navbar{
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.nav-right{
+  display: flex;
+  justify-content: space-around;
+}
+.navbar img{
+  padding: 10px 10px;
+  width:10px;
+  height: 10px;
+
+}
+
+.login{
+  margin-right:10px ;
+  padding: 10px 10px;
+  text-decoration: none;
+  border: 1px solid red;
+  border-radius: 40px;
+  background-color: red;
+  font-size: 16px;
+  color: white;
+
+}
+
+.signup{
+  padding: 10px 10px;
+  text-decoration: none;
+  border: 1px solid lightgray;
+  border-radius: 40px;
+  background-color: lightgray;
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+
+}

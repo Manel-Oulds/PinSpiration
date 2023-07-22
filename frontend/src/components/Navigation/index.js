@@ -12,22 +12,23 @@ function Navigation() {
     sessionLinks = <ProfileButton user={sessionUser} />;
   } else {
     sessionLinks = (
-      <>
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
-      </>
+      
+      <div className="nav-right">
+            <NavLink to="/login" className="login">Log in</NavLink>
+            <NavLink to="/signup" className="signup">Sign up</NavLink>
+      </div>
+   
+      
     );
   }
 
   return (
-    <ul>
-      <li>
+    <div className="navbar">
         <NavLink exact to="/">
-          Home
+          <img src="" alt="PinSpiration" />
         </NavLink>
         {sessionLinks}
-      </li>
-    </ul>
+    </div>
   );
 }
 
