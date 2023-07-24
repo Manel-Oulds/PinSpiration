@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: PinSpiration_production
-  username: PinSpiration
-  password: <%= ENV["PINSPIRATION_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
