@@ -37,6 +37,7 @@ function LoginFormPage() {
       sessionActions.login({ credential: "Demo-lition", password: "password" })
     );
   };
+
   return (
     <div className="login-div">
       <img src="Frame_new.svg" alt="Logo" className="logo" />
