@@ -1,0 +1,35 @@
+
+
+#modal {
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  background-color: rgba(255, 194, 204, 0.5);
+}
+
+#modal-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  
+}
+
+#modal-content { 
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 500px;
+  height: 600px;
+  border-radius: 25px;
+ 
+}
+

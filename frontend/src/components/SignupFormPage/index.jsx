@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import "./SignupForm.css"
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -34,51 +35,64 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error) => (
-          <li key={error}>{error}</li>
-        ))}
-      </ul>
-      <label>
-        Email
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Username
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Birthdate
-        <input
-          type="date"
-          value={birthdate}
-          onChange={(e) => setBirthdate(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
+    <div className="signup-div">
+      <img src="Frame_new.svg" alt="Logo" className="logo"/>
+      <div className="title">Welcome to PinSpiration </div>
+      <form onSubmit={handleSubmit}>
+        <ul className="errors">
+          {errors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
+        <div className="email">
+          <label>
+          <div>Email</div>
+          <div><input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            placeholder="Email"
+          /></div>
+        </label></div>
+        <div className="username"><label>
+          <div>Username</div>
+          <div><input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            placeholder="Username"
+          /></div>
+          
+        </label></div>
+        <div className="birthdate">
+          <label>
+          <div>Birthdate</div>
+          <div><input
+            type="date"
+            value={birthdate}
+            onChange={(e) => setBirthdate(e.target.value)}
+            required
+            placeholder="Birthdate"
+          /></div>
+        </label></div>
+        
+        <div className="password"><label>
+          <div>Password</div>
+          <div><input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            placeholder="Password"
+          /></div>
+        </label></div>
+        
 
-      <button type="submit">Sign Up</button>
-    </form>
+        <button className="submit" type="submit">Sign Up</button>
+      </form>
+    </div>
   );
 }
 

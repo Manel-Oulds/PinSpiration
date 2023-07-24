@@ -10,7 +10,6 @@ function App() {
   return (
      <>
      <SplashPage/>
-    
        <Switch>
         <Route path="/login">
           <LoginFormPage />
