@@ -11,25 +11,22 @@ function Navigation() {
 
   let sessionLinks;
   if (sessionUser) {
-    sessionLinks = <ProfileButton user={sessionUser} />;
+      sessionLinks = <ProfileButton user={sessionUser} />;
   } else {
     sessionLinks = (
-      
       <div className="nav-right">
-            <LoginFormModal className="login"/>
-            <SignupFormModal className="signup"/>
+        <LoginFormModal className="login" />
+        <SignupFormModal className="signup" />
       </div>
-   
-      
     );
   }
 
   return (
     <div className="navbar">
-        <NavLink exact to="/">
-          <img src="Frame_new.svg" alt="PinSpiration" />
-        </NavLink>
-        {sessionLinks}
+      <NavLink exact to="/">
+        <img src="Frame_new.svg" alt="PinSpiration" />
+      </NavLink>
+      {sessionLinks}
     </div>
   );
 }

@@ -1,12 +1,11 @@
 import Navigation from '../Navigation';
-import AnimationsSplash from './AnimationsSplash';
-import { useState } from "react";
+import AnimationImages from './AnimationImages';
 
 export default function SplashPage(){
      return(
         <>
             <Navigation/>
-            <AnimationsSplash/>
+            <AnimationImages/>
         </>
      )
 }
