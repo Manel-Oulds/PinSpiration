@@ -32,10 +32,13 @@ function LoginFormPage() {
     );
   };
 
+  const handleDemo = (e) =>{
+    return dispatch(sessionActions.login({ credential:"user", password:"password" }))
+  }
   return (
     <div className="login-div">
      
-        <img src="Frame_new.svg" alt="Logo" className="logo"/>
+      <img src="Frame_new.svg" alt="Logo" className="logo"/>
       
       <div className="title">Welcome to PinSpiration</div>
       <form onSubmit={handleSubmit}>
@@ -71,9 +74,10 @@ function LoginFormPage() {
           </label>
         </div>
 
-        
           <button className="submit" type="submit">Log in</button>
-       
+          <div className="or"> or </div>
+          <button className="demo" onClick={handleDemo}>Demo user</button>
+
       </form>
     </div>
   );

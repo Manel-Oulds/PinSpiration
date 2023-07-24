@@ -1,7 +1,7 @@
 .animations {
   position: relative;
   width: 100%;
-  height: 80vh;
+  height: 82vh;
   overflow: hidden;
 }
 
@@ -10,12 +10,16 @@
   bottom: 0;
   width: 100%;
   height: 100px;
-  background-image: linear-gradien rgb(228, 185, 192, 0.7);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgb(244, 201, 208, 1) 100%
+  );
 }
 
 .titles {
   position: absolute;
-  top: 10%;
+  top: 8%;
   left: 50%;
   font-size: 70px;
   font-weight: bold;
@@ -188,9 +192,7 @@
 }
 
 .animated-images {
- 
   width: 100%;
-  height: 60vh;
   top: 95px;
   display: flex;
   flex-direction: column;

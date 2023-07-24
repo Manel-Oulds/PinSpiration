@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: auto;
 }
 input{
     width:300px;
@@ -40,6 +41,27 @@ input{
     
 }
 
+.demo{
+    position: relative;
+    padding: 15px;
+    left:50;
+    right:0;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    border-radius: 25px;
+    background-color: blue;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 15px;
+    color: white;
+    margin-top: 10px
+
+}
+
+.or{
+   text-align: center;
+}
+
 .title{
     margin: 10px,10px;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
@@ -55,6 +77,9 @@ input{
     
 }
 .errors{
+    color: red;
     display: flex;
+    flex-direction: row;
     align-items: center;
+    size: 8px;
 }
