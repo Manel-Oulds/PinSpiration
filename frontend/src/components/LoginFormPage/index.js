@@ -32,14 +32,15 @@ function LoginFormPage() {
     );
   };
 
-  const handleDemo = (e) =>{
-    return dispatch(sessionActions.login({ credential:"user", password:"password" }))
-  }
+  const handleDemo = (e) => {
+    return dispatch(
+      sessionActions.login({ credential: "Demo-lition", password: "password" })
+    );
+  };
   return (
     <div className="login-div">
-     
-      <img src="Frame_new.svg" alt="Logo" className="logo"/>
-      
+      <img src="Frame_new.svg" alt="Logo" className="logo" />
+
       <div className="title">Welcome to PinSpiration</div>
       <form onSubmit={handleSubmit}>
         <ul className="errors">
@@ -50,34 +51,41 @@ function LoginFormPage() {
         <div className="username">
           <label>
             <div>Username or Email</div>
-            <div><input
-              type="text"
-              value={credential}
-              onChange={(e) => setCredential(e.target.value)}
-              placeholder="Username or Email"
-              required
-            /></div>
+            <div>
+              <input
+                type="text"
+                value={credential}
+                onChange={(e) => setCredential(e.target.value)}
+                placeholder="Username or Email"
+                required
+              />
+            </div>
           </label>
         </div>
 
         <div className="password">
           <label>
             <div> Password</div>
-            
-            <div><input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              placeholder="Password"
-            /></div> 
+
+            <div>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                placeholder="Password"
+              />
+            </div>
           </label>
         </div>
 
-          <button className="submit" type="submit">Log in</button>
-          <div className="or"> or </div>
-          <button className="demo" onClick={handleDemo}>Demo user</button>
-
+        <button className="submit" type="submit">
+          Log in
+        </button>
+        <div className="or"> or </div>
+        <button className="demo" onClick={handleDemo}>
+          Demo user
+        </button>
       </form>
     </div>
   );
