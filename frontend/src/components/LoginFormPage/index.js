@@ -10,14 +10,17 @@ function LoginFormPage() {
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [showLoad, setShowLoad] = useState(false);
 
   if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
+    setShowLoad(true);
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
+        setShowLoad(false);
         let data;
         try {
           // .clone() essentially allows you to read the response body twice
@@ -25,6 +28,7 @@ function LoginFormPage() {
         } catch {
           data = await res.text(); // Will hit this case if the server is down
         }
+
         if (data?.errors) setErrors(data.errors);
         else if (data) setErrors([data]);
         else setErrors([res.statusText]);
@@ -33,6 +37,7 @@ function LoginFormPage() {
   };
 
   const handleDemo = (e) => {
+    setShowLoad(true);
     return dispatch(
       sessionActions.login({ credential: "Demo-lition", password: "password" })
     );
@@ -87,6 +92,9 @@ function LoginFormPage() {
         <button className="demo" onClick={handleDemo}>
           Demo user
         </button>
+        <div className="loading">
+          {showLoad && <i className="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i>}
+        </div>
       </form>
     </div>
   );

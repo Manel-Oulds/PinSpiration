@@ -83,3 +83,8 @@ input{
     align-items: center;
     size: 8px;
 }
+
+.loading{
+    margin-top: 20px;
+    text-align: center;
+}
