@@ -11,7 +11,7 @@ function LoginFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [showLoad, setShowLoad] = useState(false);
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailPattern =/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   let err = false;
 
   if (sessionUser) return <Redirect to="/" />;
@@ -36,6 +36,8 @@ function LoginFormPage() {
         else setErrors([res.statusText]);
       }
     );
+
+    
   };
 
   const handleDemo = (e) => {
@@ -70,14 +72,10 @@ function LoginFormPage() {
             </div>
           </label>
         </div>
-        {!emailPattern.test(credential) &&
-          credential.length > 0 &&
-          (err = true) && (
-            <p>
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              Hmm...that doesn't look like an email address.
-            </p>
-          )}
+        {!(emailPattern.test(credential))  && (credential.length > 0)&&(err = true) &&
+        
+         <p><i class="fa-solid fa-triangle-exclamation"></i>
+         Hmm...that doesn't look like an email address.</p>}
 
         <div className="password">
           <label>
@@ -94,19 +92,11 @@ function LoginFormPage() {
             </div>
           </label>
         </div>
-        {password.length < 6 && password.length > 0 && (err = true) && (
-          <p>
-            <i class="fa-solid fa-triangle-exclamation"></i>The password you
-            entered is too short.
-          </p>
-        )}
+        {(password.length < 6 && password.length > 0) && (err = true) &&
+         <p><i class="fa-solid fa-triangle-exclamation"></i>The password you entered is incorrect.</p>}
 
-        <button
-          className="submit"
-          type="submit"
-          disabled={err}
-          style={{ backgroundColor: err ? "gray" : "red" }}
-        >
+        <button className="submit" type="submit" disabled={err} 
+        style={{ backgroundColor: err ? 'gray' : 'red'}}>
           Log in
         </button>
         <div className="or"> or </div>
@@ -114,9 +104,7 @@ function LoginFormPage() {
           Demo user
         </button>
         <div className="loading">
-          {showLoad && (
-            <i className="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i>
-          )}
+          {showLoad && <i className="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i>}
         </div>
       </form>
     </div>

@@ -1,6 +1,7 @@
 class Api::UsersController < ApplicationController
   wrap_parameters include: User.attribute_names + ['password']
-  # before_action :require_logged_out, only: [:create]
+  before_action :require_logged_out, only: [:create]
+  before_action :require_logged_in, only: [:update]
 
   def create
     @user = User.new(user_params)
@@ -11,6 +12,17 @@ class Api::UsersController < ApplicationController
       render json: {errors: @user.errors.full_messages }, status: :unprocessable_entity 
     end
   end
+
+  def update
+    @user = User.find_by(params[:id])
+    if @user.update(user_params)
+      render 'api/users/show'
+    else
+      render json: {errors: @user.errors.full_messages }, status: :unprocessable_entity 
+    end
+  end
+
+  
 
   private 
   def user_params

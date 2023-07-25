@@ -1,6 +1,5 @@
 import csrfFetch from "./csrf";
 
-
 const storeCSRFToken = (response) => {
   const csrfToken = response.headers.get("X-CSRF-Token");
   if (csrfToken) sessionStorage.setItem("X-CSRF-Token", csrfToken);
@@ -45,6 +44,19 @@ export const signup =
   async (dispatch) => {
     const response = await csrfFetch("/api/users", {
       method: "POST",
+      body: JSON.stringify({ email, username, birthdate, password }),
+    });
+    const data = await response.json();
+    storeCurrentUser(data.user);
+    dispatch(setCurrentUser(data.user));
+    return response;
+  };
+
+export const update =
+  ({ email, username, birthdate, password }) =>
+  async (dispatch) => {
+    const response = await csrfFetch("/api/users", {
+      method: "PATCH",
       body: JSON.stringify({ email, username, birthdate, password }),
     });
     const data = await response.json();

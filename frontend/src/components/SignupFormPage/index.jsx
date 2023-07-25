@@ -105,9 +105,8 @@ function SignupFormPage() {
             </div>
           </label>
         </div>
-        {currentDate.getFullYear() - new Date(birthdate).getFullYear() < 12 && (err = true)  && (
-          <p>Oops! Please use a valid age to sign up.</p>
-        )}
+        {currentDate.getFullYear() - new Date(birthdate).getFullYear() < 12 &&
+          (err = true) && <p>Oops! Please use a valid age to sign up.</p>}
 
         <div className="password">
           <label>
@@ -123,15 +122,21 @@ function SignupFormPage() {
             </div>
           </label>
         </div>
-        {password.length < 6 && password.length > 0 && (err = true)  && (
+        {password.length < 6 && password.length > 0 && (err = true) && (
           <p>
             <i class="fa-solid fa-triangle-exclamation"></i>The password you
-            entered is incorrect.
+            entered is too short.
           </p>
         )}
 
-        <button className="submit" type="submit" disabled ={err} style={{
-          backgroundColor: err ? 'gray' : 'red'}}>
+        <button
+          className="submit"
+          type="submit"
+          disabled={err}
+          style={{
+            backgroundColor: err ? "gray" : "red",
+          }}
+        >
           Sign Up
         </button>
         <div className="loading">

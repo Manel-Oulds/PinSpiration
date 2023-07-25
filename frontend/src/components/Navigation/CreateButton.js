@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 
-function ProfileButton({ user }) {
+function CreateButton() {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
@@ -23,22 +23,18 @@ function ProfileButton({ user }) {
     setShowMenu((prevShowMenu) => !prevShowMenu);
   };
 
-  const logout = (e) => {
-    e.preventDefault();
-    dispatch(sessionActions.logout());
+  const createpin = (e) => {
   };
 
   return (
     <div ref={menuRef}>
       <button onClick={toggleMenu}>
-        <i class="fa-solid fa-chevron-down"></i>
+        Create <i class="fa-solid fa-chevron-down"></i>
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
           <li>
-            <button onClick={logout}>Log Out</button>
+            <button onClick={createpin}>Create Pin</button>
           </li>
         </ul>
       )}
@@ -46,4 +42,4 @@ function ProfileButton({ user }) {
   );
 }
 
-export default ProfileButton;
+export default CreateButton;
