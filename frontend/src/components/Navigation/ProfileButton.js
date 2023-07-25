@@ -31,7 +31,7 @@ function ProfileButton({ user }) {
   return (
     <div ref={menuRef}>
       <button onClick={toggleMenu}>
-        <i class="fa-solid fa-chevron-down"></i>
+        <i className="fa-solid fa-chevron-down"></i>
       </button>
       {showMenu && (
         <ul className="profile-dropdown">

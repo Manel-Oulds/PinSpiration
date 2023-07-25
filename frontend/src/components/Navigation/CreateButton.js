@@ -29,7 +29,7 @@ function CreateButton() {
   return (
     <div ref={menuRef}>
       <button onClick={toggleMenu}>
-        Create <i class="fa-solid fa-chevron-down"></i>
+        Create <i className="fa-solid fa-chevron-down"></i>
       </button>
       {showMenu && (
         <ul className="profile-dropdown">

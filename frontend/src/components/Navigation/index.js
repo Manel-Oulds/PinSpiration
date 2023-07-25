@@ -18,11 +18,12 @@ function Navigation() {
         <button className="explore-btn"> Explore </button>
         <CreateButton />
         <input type="text" className="search-bar" placeholder=" 🔍 Search"/>
-        <button className="notification-btn"><i class="fa-solid fa-bell"></i></button>
-        <button className="message-btn"><i class="fa-regular fa-comment-dots"></i></button>
+        <button className="notification-btn"><i className="fa-solid fa-bell"></i></button>
+        <button className="message-btn"><i className="fa-regular fa-comment-dots"></i></button>
         <button className="profile-btn">{sessionUser.username[0]}</button>
         <ProfileButton user={sessionUser} />
       </div>
+
     );
   } else {
     sessionLinks = (
