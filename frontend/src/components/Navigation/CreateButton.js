@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
+import "./CreateButton.css"
 
 function CreateButton() {
   const dispatch = useDispatch();
@@ -28,11 +29,11 @@ function CreateButton() {
 
   return (
     <div ref={menuRef}>
-      <button onClick={toggleMenu}>
+      <button onClick={toggleMenu} className="dropdown">
         Create <i className="fa-solid fa-chevron-down"></i>
       </button>
       {showMenu && (
-        <ul className="profile-dropdown">
+        <ul className="create-dropdown">
           <li>
             <button onClick={createpin}>Create Pin</button>
           </li>

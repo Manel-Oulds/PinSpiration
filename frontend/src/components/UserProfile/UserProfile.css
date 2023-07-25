@@ -1,0 +1,49 @@
+.info-picture{
+    margin-top:50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;  
+    
+}
+
+.informations{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-picture{
+    height: 150px;
+    width: 150px;
+    border-radius: 180px;
+    border:none;
+    background-color: rgb(69, 83, 108);
+    font-size: 100px;
+    color: white;
+}
+
+
+.user-name, .input-email{
+    font-size: 45px;
+    border: none;
+    margin-top: 10px;
+    background-color: white;
+    position: relative;
+    text-align: center;
+}
+
+.input-email{
+    font-size: 15px;
+    color:lightgray;
+}
+
+.edit{
+    margin-top: 10px;
+    padding: 10px 10px;
+    border:none;
+    border-radius: 25px;
+    background-color: lightgray;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    
+}

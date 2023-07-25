@@ -12,6 +12,7 @@ const storeCurrentUser = (user) => {
 
 const SET_CURRENT_USER = "session/setCurrentUser";
 const REMOVE_CURRENT_USER = "session/removeCurrentUser";
+const UPDATE_CURRENT_USER = "updateCurrentUser";
 
 const setCurrentUser = (user) => {
   return {
@@ -53,11 +54,11 @@ export const signup =
   };
 
 export const update =
-  ({ email, username, birthdate, password }) =>
+  (user) =>
   async (dispatch) => {
-    const response = await csrfFetch("/api/users", {
+    const response = await csrfFetch(`/api/users/${user.id}`, {
       method: "PATCH",
-      body: JSON.stringify({ email, username, birthdate, password }),
+      body: JSON.stringify(user),
     });
     const data = await response.json();
     storeCurrentUser(data.user);
@@ -95,6 +96,8 @@ const sessionReducer = (state = initialState, action) => {
       return { ...state, user: action.payload };
     case REMOVE_CURRENT_USER:
       return { ...state, user: null };
+    case UPDATE_CURRENT_USER:
+      return {...state, user: action.payload }
     default:
       return state;
   }
