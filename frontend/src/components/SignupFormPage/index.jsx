@@ -13,6 +13,9 @@ function SignupFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [showLoad, setShowLoad] = useState(false);
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const currentDate = new Date();
+  let err = false;
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -62,6 +65,12 @@ function SignupFormPage() {
             </div>
           </label>
         </div>
+        {!emailPattern.test(email) && email.length > 0 && (err = true) && (
+          <p>
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            Hmm...that doesn't look like an email address.
+          </p>
+        )}
         <div className="username">
           <label>
             <div>Username</div>
@@ -76,6 +85,12 @@ function SignupFormPage() {
             </div>
           </label>
         </div>
+        {emailPattern.test(username) && username.length > 0 && (err = true) && (
+          <p>
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            Hmm...Username can't be an email.
+          </p>
+        )}
         <div className="birthdate">
           <label>
             <div>Birthdate</div>
@@ -90,6 +105,9 @@ function SignupFormPage() {
             </div>
           </label>
         </div>
+        {currentDate.getFullYear() - new Date(birthdate).getFullYear() < 12 && (err = true)  && (
+          <p>Oops! Please use a valid age to sign up.</p>
+        )}
 
         <div className="password">
           <label>
@@ -105,8 +123,15 @@ function SignupFormPage() {
             </div>
           </label>
         </div>
+        {password.length < 6 && password.length > 0 && (err = true)  && (
+          <p>
+            <i class="fa-solid fa-triangle-exclamation"></i>The password you
+            entered is incorrect.
+          </p>
+        )}
 
-        <button className="submit" type="submit">
+        <button className="submit" type="submit" disabled ={err} style={{
+          backgroundColor: err ? 'gray' : 'red'}}>
           Sign Up
         </button>
         <div className="loading">

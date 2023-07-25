@@ -22,7 +22,7 @@ class User < ApplicationRecord
 
   validates :email,:username, presence: true, uniqueness:true
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "Invalid email format" },length: { in: 3..255 }
-  validates :username, length: { in: 3..30 },format: { without: URI::MailTo::EMAIL_REGEXP, message:  "can't be an email" }
+  validates :username, length: { in: 3..30 },format: { without: URI::MailTo::EMAIL_REGEXP, message:  "Username can't be an email" }
   validates :session_token, presence: true, uniqueness: true
   validates :password, length: { in: 6..255 }, allow_nil: true
   validates :birthdate, presence:true

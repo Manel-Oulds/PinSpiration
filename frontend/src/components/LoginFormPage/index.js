@@ -11,6 +11,8 @@ function LoginFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [showLoad, setShowLoad] = useState(false);
+  const emailPattern =/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  let err = false;
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -34,6 +36,8 @@ function LoginFormPage() {
         else setErrors([res.statusText]);
       }
     );
+
+    
   };
 
   const handleDemo = (e) => {
@@ -56,18 +60,22 @@ function LoginFormPage() {
         </ul>
         <div className="username">
           <label>
-            <div>Username or Email</div>
+            <div>Email</div>
             <div>
               <input
                 type="text"
                 value={credential}
                 onChange={(e) => setCredential(e.target.value)}
-                placeholder="Username or Email"
+                placeholder="Email"
                 required
               />
             </div>
           </label>
         </div>
+        {!(emailPattern.test(credential))  && (credential.length > 0)&&(err = true) &&
+        
+         <p><i class="fa-solid fa-triangle-exclamation"></i>
+         Hmm...that doesn't look like an email address.</p>}
 
         <div className="password">
           <label>
@@ -84,8 +92,11 @@ function LoginFormPage() {
             </div>
           </label>
         </div>
+        {(password.length < 6 && password.length > 0) && (err = true) &&
+         <p><i class="fa-solid fa-triangle-exclamation"></i>The password you entered is incorrect.</p>}
 
-        <button className="submit" type="submit">
+        <button className="submit" type="submit" disabled={err} 
+        style={{ backgroundColor: err ? 'gray' : 'red'}}>
           Log in
         </button>
         <div className="or"> or </div>

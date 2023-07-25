@@ -1,90 +1,92 @@
-.login-div{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: auto;
+.login-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
 }
-input{
-    width:300px;
-    height: 35px;
-    border-radius: 15px;
-    border: 2px solid lightgray;
+input {
+  width: 300px;
+  height: 35px;
+  border-radius: 15px;
+  border: 2px solid lightgray;
 }
-.username{
-    padding: 5px;
+.username {
+  padding: 5px;
 
-    div{
-        padding: 10px;
-    }
-    
-    
-}
-.password{
-    padding: 5px;
-}
-
-.submit{
-    position: relative;
-    padding: 15px;
-    left:50;
-    right:0;
-    bottom: 0;
-    top: 0;
-    width: 100%;
-    border-radius: 25px;
-    background-color: red;
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 15px;
-    color: white;
-    margin-top: 10px
-    
-}
-
-.demo{
-    position: relative;
-    padding: 15px;
-    left:50;
-    right:0;
-    bottom: 0;
-    top: 0;
-    width: 100%;
-    border-radius: 25px;
-    background-color: blue;
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 15px;
-    color: white;
-    margin-top: 10px
-
-}
-
-.or{
-   text-align: center;
-}
-
-.title{
-    margin: 10px,10px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 600px;
-    font-size: 32px;
-}
-
-.logo{
+  div {
     padding: 10px;
-    margin: 10px;
-    height: 100px;
-    width:400px;
-    
+  }
 }
-.errors{
-    color: red;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    size: 8px;
+.password {
+  padding: 5px;
 }
 
-.loading{
-    margin-top: 20px;
-    text-align: center;
+.submit {
+  position: relative;
+  padding: 15px;
+  left: 50;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 100%;
+  border-radius: 25px;
+  background-color: red;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 15px;
+  color: white;
+  margin-top: 10px;
+}
+
+.demo {
+  position: relative;
+  padding: 15px;
+  left: 50;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 100%;
+  border-radius: 25px;
+  background-color: blue;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 15px;
+  color: white;
+  margin-top: 10px;
+}
+
+.or {
+  text-align: center;
+}
+
+.title {
+  margin: 10px, 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 600px;
+  font-size: 32px;
+}
+
+.logo {
+  padding: 10px;
+  margin: 10px;
+  height: 100px;
+  width: 400px;
+}
+.errors {
+  color: red;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  size: 8px;
+}
+
+.loading {
+  margin-top: 20px;
+  text-align: center;
+}
+
+p {
+    margin: 0;
+  font-size: 12px;
+  color: red;
+  text-align: center;
 }
