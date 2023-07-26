@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./UpdateForm.css";
 
@@ -14,6 +14,7 @@ function UpdateFormPage() {
   const [showLoad, setShowLoad] = useState(false);
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const currentDate = new Date();
+  const history = useHistory();
   let err = false;
 
   const isLoggedIn = !!sessionUser;
@@ -22,31 +23,39 @@ function UpdateFormPage() {
     setShowLoad(true);
     e.preventDefault();
     setErrors([]);
-    return dispatch(
-      sessionActions.update({ username, birthdate, password })
-    ).catch(async (res) => {
-      let data;
-      setShowLoad(false);
-      try {
-        // .clone() essentially allows you to read the response body twice
-        data = await res.clone().json();
-      } catch {
-        data = await res.text(); // Will hit this case if the server is down
-      }
-      if (!data?.errors) showLoad(true);
-      if (data?.errors) setErrors(data.errors);
-      else if (data) setErrors([data]);
-      else setErrors([res.statusText]);
-    });
+    return dispatch(sessionActions.update({ username, birthdate, password }))
+      .then((data) => {
+        if (!data?.errors) {
+          // Redirect after successful update
+          history.push(`/${username}`);
+        }
+        setShowLoad(false);
+      })
+      .catch(async (res) => {
+        let data;
+        setShowLoad(false);
+        try {
+          // .clone() essentially allows you to read the response body twice
+          data = await res.clone().json();
+        } catch {
+          data = await res.text(); // Will hit this case if the server is down
+        }
+        if (!data?.errors) showLoad(true);
+        if (data?.errors) setErrors(data.errors);
+        else if (data) setErrors([data]);
+        else setErrors([res.statusText]);
+      });
   };
 
   return (
     <>
       {isLoggedIn && (
-        <div className="signup-div">
+        <div className="update-div">
           <img src="Frame_new.svg" alt="Logo" className="logo" />
           <div className="title1">Welcome to PinSpiration </div>
-          <div className="title2">People visiting your profile will see the following info </div>
+          <div className="title2">
+            People visiting your profile will see the following info{" "}
+          </div>
 
           <form onSubmit={handleSubmit}>
             <ul className="errors">
@@ -109,7 +118,7 @@ function UpdateFormPage() {
                 </div>
               </label>
             </div>
-            {password.length < 6 && password.length > 0 && (err = true) && (
+            {password.length < 6 && password.length >= 0 && (err = true) && (
               <p>
                 <i className="fa-solid fa-triangle-exclamation"></i>The password
                 you entered is too short.
