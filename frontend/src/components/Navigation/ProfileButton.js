@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function ProfileButton({ user }) {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
+  const history = useHistory();
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -28,6 +29,7 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    history.push("/");
   };
 
   return (
@@ -40,7 +42,12 @@ function ProfileButton({ user }) {
           <li>
             <div className="infos">
               <div className="pic">
-                <input type="text" className="input-username" value={`${sessionUser.username[0]}`} disabled/>
+                <input
+                  type="text"
+                  className="input-username"
+                  value={`${sessionUser.username[0]}`}
+                  disabled
+                />
               </div>
               <div className="use">
                 <NavLink className="nav-prof" to={`/${sessionUser.username}`}>
@@ -53,7 +60,10 @@ function ProfileButton({ user }) {
             </div>
           </li>
           <li>
-            <NavLink className="nav-prof" to='edit'> Edit Profile</NavLink>
+            <NavLink className="nav-prof" to="edit">
+              {" "}
+              Edit Profile
+            </NavLink>
           </li>
           <li>
             <button onClick={logout}>Log out</button>
