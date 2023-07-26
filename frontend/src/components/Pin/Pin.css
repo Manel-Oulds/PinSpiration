@@ -1,0 +1,14 @@
+.pin {
+  border-radius: 20px;
+  margin: 5px;
+}
+
+.small {
+  grid-row-end: span 30;
+}
+.medium {
+  grid-row-end: span 50;
+}
+.large {
+  grid-row-end: span 70;
+}

@@ -2,8 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Navigation from "../Navigation";
 import AnimationImages from "./AnimationImages";
-import UpdateFormPage from "../UpdateProfile/UpdateProfile";
-import EditProfile from "../ProfilePage/ProfilePage";
+import PinsIndex from "../PinsIndex";
 
 export default function SplashPage() {
   const sessionUser = useSelector((state) => state.session.user);
@@ -12,6 +11,7 @@ export default function SplashPage() {
     <>
       <Navigation />
       {!isLoggedIn && <AnimationImages />}
+      {isLoggedIn && <PinsIndex />}
     </>
   );
 }
