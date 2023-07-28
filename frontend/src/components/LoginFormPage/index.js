@@ -74,7 +74,7 @@ function LoginFormPage() {
           credential.length > 0 &&
           (err = true) && (
             <p>
-              <i class="fa-solid fa-triangle-exclamation"></i>
+              <i className="fa-solid fa-triangle-exclamation"></i>
               Hmm...that doesn't look like an email address.
             </p>
           )}
@@ -96,7 +96,7 @@ function LoginFormPage() {
         </div>
         {password.length < 6 && password.length > 0 && (err = true) && (
           <p>
-            <i class="fa-solid fa-triangle-exclamation"></i>The password you
+            <i className="fa-solid fa-triangle-exclamation"></i>The password you
             entered is too short.
           </p>
         )}

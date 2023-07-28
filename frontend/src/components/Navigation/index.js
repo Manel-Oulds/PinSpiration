@@ -7,7 +7,6 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import CreateButton from "./CreateButton";
 
-
 function Navigation() {
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -19,7 +18,9 @@ function Navigation() {
           <NavLink exact to="/">
             <img src="Frame_new.svg" alt="PinSpiration" />
           </NavLink>
-          <NavLink to=""><button className="home-btn btn"> Home </button></NavLink>
+          <NavLink to="">
+            <button className="home-btn btn"> Home </button>
+          </NavLink>
           <button className="explore-btn btn"> Explore </button>
           <CreateButton className="create-btn" />
           <input type="text" className="search-bar" placeholder=" 🔍 Search" />
@@ -29,7 +30,11 @@ function Navigation() {
           <button className="message-btn btn ">
             <i className="fa-regular fa-comment-dots"></i>
           </button>
-          <NavLink to={`/${sessionUser.username}`}><button className="profile-btn btn ">{sessionUser.username[0]}</button></NavLink>
+          <NavLink to={`/users/${sessionUser.id}`}>
+            <button className="profile-btn btn ">
+              {sessionUser.username[0]}
+            </button>
+          </NavLink>
           <ProfileButton user={sessionUser} className="profile-btn" />
         </div>
       </>
@@ -42,23 +47,17 @@ function Navigation() {
             <img src="Frame_new.svg" alt="PinSpiration" />
             <img src="pinspiration.svg" className="pin" alt="PinSpiration" />
           </NavLink>
-        
-        <div className="nav-right">
-          <LoginFormModal className="login" />
-          <SignupFormModal className="signup" />
-        </div>
+
+          <div className="nav-right">
+            <LoginFormModal className="login" />
+            <SignupFormModal className="signup" />
+          </div>
         </div>
       </>
     );
   }
 
-  return (
-    <>
-    {sessionLinks}
-    </>
-      
-    
-  );
+  return <>{sessionLinks}</>;
 }
 
 export default Navigation;

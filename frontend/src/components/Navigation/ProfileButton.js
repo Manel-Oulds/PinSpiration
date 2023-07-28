@@ -50,10 +50,10 @@ function ProfileButton({ user }) {
                 />
               </div>
               <div className="use">
-                <NavLink className="nav-prof" to={`/${sessionUser.username}`}>
+                <NavLink className="nav-prof" to={`/users/${sessionUser.id}`}>
                   {sessionUser.username}
                 </NavLink>
-                <NavLink className="nav-prof" to={`/${sessionUser.username}`}>
+                <NavLink className="nav-prof" to={`/users/${sessionUser.id}`}>
                   {sessionUser.email}
                 </NavLink>
               </div>

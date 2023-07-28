@@ -1,0 +1,154 @@
+.pin-div {
+  width: 100%;
+  height: 100vh;
+}
+.create-pin {
+  align-items: center;
+  border-radius: 25px;
+  height: auto;
+  width: fit-content;
+  margin: auto;
+  width: 70%;
+}
+
+.information {
+  position: absolute;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: row;
+  border-radius: 25px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+  width: 70%;
+  height: 70%;
+}
+
+.file-pic {
+  border: none;
+  background-color: none;
+}
+
+.div-image {
+  border: 2px solid gray;
+  border-radius: 16px;
+  padding: 10px;
+  height: 90%;
+  margin: 5px 5px;
+  background-color: rgb(173, 158, 158);
+}
+
+.my-input {
+  font-size: 25px;
+  border: none;
+  background-color: lightgray;
+  border-bottom: 2px solid rgb(131, 120, 120);
+  width: 400px;
+}
+
+.image-pin {
+  height: 400px;
+  width: 250px;
+}
+
+.info-pin {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  justify-content: space-around;
+  width: 50%;
+  height: 80%;
+}
+.profile-infos {
+  display: flex;
+  align-items: center;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  padding: 5px;
+  font-family: "Times New Roman", Times, serif;
+  color: ;
+}
+
+.pin-btn {
+  width: fit-content;
+  height: fit-content;
+  padding: 5px 5px;
+  background-color: red;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 0 10px 10px 0;
+}
+
+.select-board {
+  width: fit-content;
+  height: fit-content;
+  padding: 5px 5px;
+  background-color: rgb(173, 158, 158);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 10px 0 0 10px;
+}
+
+.image-text {
+  text-align: center;
+  color: black;
+  font-size: 15px;
+  margin-top: 50%;
+}
+
+.btn-div {
+  display: flex;
+  justify-content: end;
+}
+
+.user-pins {
+  border-radius: 30px;
+  height: 300px;
+  width: 200px;
+  padding: 20px;
+}
+
+.clickable-pin{
+  position: relative;
+  width: auto;
+}
+
+.user-pins:hover {
+  background-color: rgba(161, 78, 78, 0.2);
+}
+
+.div-pins {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pin-item{
+  display: flex;
+}
+.title-pin{
+  font-size: 45px;
+  padding: 10px;
+}
+
+.desc-pin{
+  font-size: 25px;
+  padding: 10px;
+}
+
+.button-container {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 8px 16px;
+  margin: 4px;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 15px;
+  cursor: pointer;
+}

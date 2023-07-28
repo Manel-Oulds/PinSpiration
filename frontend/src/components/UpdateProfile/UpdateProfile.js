@@ -27,7 +27,7 @@ function UpdateFormPage() {
       .then((data) => {
         if (!data?.errors) {
           // Redirect after successful update
-          history.push(`/${username}`);
+          history.push(`/users/${sessionUser.id}`);
         }
         setShowLoad(false);
       })

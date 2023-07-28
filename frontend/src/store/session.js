@@ -14,14 +14,14 @@ const SET_CURRENT_USER = "session/setCurrentUser";
 const REMOVE_CURRENT_USER = "session/removeCurrentUser";
 const UPDATE_CURRENT_USER = "updateCurrentUser";
 
-const setCurrentUser = (user) => {
+export const setCurrentUser = (user) => {
   return {
     type: SET_CURRENT_USER,
     payload: user,
   };
 };
 
-const removeCurrentUser = () => {
+export const removeCurrentUser = () => {
   return {
     type: REMOVE_CURRENT_USER,
   };

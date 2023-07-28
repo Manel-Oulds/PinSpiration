@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect, useRef} from "react";
+import { Redirect, useHistory } from "react-router-dom";
+import { useDispatch} from "react-redux";
 import * as sessionActions from "../../store/session";
 import "./CreateButton.css"
 
@@ -7,7 +8,7 @@ function CreateButton() {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
-
+  const history = useHistory();
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -25,6 +26,7 @@ function CreateButton() {
   };
 
   const createpin = (e) => {
+    history.push("/pin/edit")
   };
 
   return (

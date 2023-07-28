@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import SplashPage from "./components/SplashPage/index.js";
 import EditProfile from "./components/ProfilePage/ProfilePage.js";
 import UserProfile from "./components/UserProfile/index.js";
+import Pin from "./components/PinForm/index.js";
 function App() {
   const sessionUser = useSelector((state) => state.session.user);
   return (
@@ -12,13 +13,17 @@ function App() {
         <Route exact path="/">
           <SplashPage />
         </Route>
+        <Route path="/pin/edit">
+          <Pin />
+        </Route>
         <Route path="/edit">
           <EditProfile />
         </Route>
         {
-          <Route path={`/${sessionUser?.username}`}>
+          <Route path={`/users/:userId`}>
             <UserProfile />
           </Route>
+
         }
       </Switch>
     </>

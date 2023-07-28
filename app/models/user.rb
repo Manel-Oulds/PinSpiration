@@ -27,8 +27,10 @@ class User < ApplicationRecord
   validates :password, length: { in: 6..255 }, allow_nil: true
   validates :birthdate, presence:true
   validate :birthdate_cannot_be_in_the_future 
- 
 
+  has_one_attached :picture
+  has_many :pins
+ 
   before_validation :ensure_session_token
 
   def self.find_by_credentials(credential, password)

@@ -8,6 +8,7 @@
   padding: 10px;
   display: flex;
   justify-content: space-between;
+  background-color: white;
 }
 .nav-right {
   display: flex;
