@@ -59,63 +59,58 @@
   height: 25px;
 }
 
-  .search-bar {
-    width: 850px;
-    height: 40px;
-    border-radius: 25px;
-    background-color: lightgray;
-  }
-  .btn{
-    border-radius: 20px;
-    height: 50px;
-    width: 65px;
-    border: none;
-    background: none;
-    padding: 5px;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
-    font-size: 16px;
-   
-  }
-  .nav-user img{
-    margin-top: 0;
-    height: 50px;
-    color: gray;
-  }
+.search-bar {
+  width: 850px;
+  height: 40px;
+  border-radius: 25px;
+  background-color: lightgray;
+}
+.btn {
+  border-radius: 20px;
+  height: 50px;
+  width: 65px;
+  border: none;
+  background: none;
+  padding: 5px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  font-size: 16px;
+}
+.nav-user img {
+  margin-top: 0;
+  height: 50px;
+  color: gray;
+}
 
-  .home-btn{
-    color: white;
-    background-color: black;
-    padding: 5px;
-  }
+.home-btn {
+  color: white;
+  background-color: black;
+  padding: 5px;
+}
 
-  .btn:hover{
-    cursor: pointer;
-    background-color: lightgray;
-  }
-  .profile-btn {
-    border: gray;
-    background-color: rgb(71, 69, 69);
-    border-radius: 40px;
-    color: white;
-    height: 35px;
-    width: 35px;
-    margin-top: 7px;
-    
-  }
+.btn:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+.profile-btn {
+  border: gray;
+  background-color: rgb(71, 69, 69);
+  border-radius: 40px;
+  color: white;
+  height: 35px;
+  width: 35px;
+  margin-top: 7px;
+}
 
- .notification-btn, .message-btn{
-  color:  rgb(71, 69, 69);
+.notification-btn,
+.message-btn {
+  color: rgb(71, 69, 69);
   height: 35px;
   width: 35px;
   border-radius: 40px;
   margin-top: 7px;
+}
 
- }
-
- 
-
-
-
-
-
+.nav-prof {
+  z-index: 1;
+}

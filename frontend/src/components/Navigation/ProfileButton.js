@@ -60,8 +60,7 @@ function ProfileButton({ user }) {
             </div>
           </li>
           <li>
-            <NavLink className="nav-prof" to="edit">
-              {" "}
+            <NavLink to="/edit" className="nav-prof">
               Edit Profile
             </NavLink>
           </li>

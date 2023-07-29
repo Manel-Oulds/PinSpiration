@@ -10,6 +10,7 @@ function UserProfile() {
   const { userId } = useParams();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.users[userId]);
+  const currentUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(userActions.fetchUser(userId));
@@ -38,9 +39,16 @@ function UserProfile() {
           value={`${user.email}`}
           disabled
         />
-        <NavLink to="/edit">
-          <button className="edit"> Edit Profile</button>
-        </NavLink>
+        {currentUser.id === user.id && (
+          <NavLink to="/edit">
+            <button className="edit"> Edit Profile</button>
+          </NavLink>
+        )}
+        {currentUser.id !== user.id && (
+          <NavLink to="/edit">
+            <button className="edit"> Follow</button>
+          </NavLink>
+        )}
       </div>
       <div>
         <PinShow user={user} />

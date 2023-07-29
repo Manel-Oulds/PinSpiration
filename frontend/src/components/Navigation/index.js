@@ -1,11 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./navigation.css";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import CreateButton from "./CreateButton";
+import * as pinActions from "../../store/pin";
 
 function Navigation() {
   const sessionUser = useSelector((state) => state.session.user);
@@ -19,7 +20,9 @@ function Navigation() {
             <img src="Frame_new.svg" alt="PinSpiration" />
           </NavLink>
           <NavLink to="">
-            <button className="home-btn btn"> Home </button>
+            <button className="home-btn btn">
+              Home
+            </button>
           </NavLink>
           <button className="explore-btn btn"> Explore </button>
           <CreateButton className="create-btn" />

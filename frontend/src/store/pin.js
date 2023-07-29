@@ -5,7 +5,6 @@ import * as userActions from "./session";
 
 const SET_PIN = "pins/setPin";
 const REMOVE_PIN = "pins/removePin";
-const UPDATE_PIN = "pins/updatePin";
 const GET_PIN = "pins/getPin";
 const GET_PINS = "pins/getPins";
 
@@ -37,6 +36,13 @@ const getPins = (pins) => {
   };
 };
 
+export const fetchAllPins = () => async (dispatch) =>{
+  const response = await csrfFetch(`/api/pins`);
+  const data = await response.json();
+  dispatch(getPins(data.pins));
+  return response;
+}
+
 export const fetchPins = (userId) => async (dispatch) => {
   const response = await csrfFetch(`/api/pins?user_id=${userId}`);
   const data = await response.json();
@@ -52,8 +58,8 @@ export const createPin = (formData) => async (dispatch, getState) => {
   const data = await response.json();
   const { user } = getState().session;
   const updatedUser = { ...user, pinIds: [...user.pinIds, data.pin.id] };
-  dispatch(setPin(data.pin)); // Store the new pin in the pinReducer
-  dispatch(userActions.setCurrentUser(updatedUser)); // Update the user object with the new pin ID
+  dispatch(setPin(data.pin));
+  dispatch(userActions.setCurrentUser(updatedUser));
   return response;
 };
 
@@ -71,7 +77,6 @@ export const updatePin = (pin) => async (dispatch) => {
   });
   const data = await response.json();
   dispatch(setPin(data.pin));
-  return response;
 };
 
 export const deletePin = (pinId) => async (dispatch) => {
@@ -79,7 +84,6 @@ export const deletePin = (pinId) => async (dispatch) => {
     method: "DELETE",
   });
   dispatch(removePin(pinId));
-  return response;
 };
 
 export default function pinReducer(state = {}, action) {
@@ -90,8 +94,6 @@ export default function pinReducer(state = {}, action) {
     case REMOVE_PIN:
       delete newState[action.payload];
       return { ...newState };
-    case UPDATE_PIN:
-      return { ...newState, pin: action.payload };
     case GET_PIN:
       return { ...state, [action.payload.id]: action.payload };
     case GET_PINS:

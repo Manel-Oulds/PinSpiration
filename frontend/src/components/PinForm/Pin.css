@@ -12,7 +12,7 @@
 }
 
 .information {
-  position: absolute;
+  position: relative;
   background-color: lightgray;
   display: flex;
   flex-direction: row;
@@ -21,7 +21,7 @@
   align-items: center;
   margin-top: 5%;
   width: 70%;
-  height: 70%;
+  height: 500px;
 }
 
 .file-pic {
@@ -39,17 +39,18 @@
 }
 
 .my-input {
-  font-size: 25px;
+  font-size: 20px;
   border: none;
   background-color: lightgray;
   border-bottom: 2px solid rgb(131, 120, 120);
-  width: 400px;
+  width: auto;
 }
 
-.image-pin {
+/* .image-pin {
+  position: relative;
   height: 400px;
-  width: 250px;
-}
+  width: 550px;
+} */
 
 .info-pin {
   padding: 10px;
@@ -58,7 +59,7 @@
   margin: 10px;
   justify-content: space-around;
   width: 50%;
-  height: 80%;
+  height: 100%;
 }
 .profile-infos {
   display: flex;
@@ -67,7 +68,6 @@
   border-radius: 15px;
   padding: 5px;
   font-family: "Times New Roman", Times, serif;
-  color: ;
 }
 
 .pin-btn {
@@ -102,12 +102,15 @@
 
 .user-pins {
   border-radius: 30px;
+  border: 1px solid rgb(103, 135, 135);
+  box-shadow: #d2bbbb;
   height: 300px;
   width: 200px;
   padding: 20px;
+  margin: 15px;
 }
 
-.clickable-pin{
+.clickable-pin {
   position: relative;
   width: auto;
 }
@@ -122,17 +125,25 @@
   flex-wrap: wrap;
 }
 
-.pin-item{
+.pin-item {
+  position:absolute;
+  height:100%;
+  width: 100%;
   display: flex;
+  justify-content: space-around;
 }
-.title-pin{
+.title-pin {
+  margin: 20px;
   font-size: 45px;
   padding: 10px;
 }
 
-.desc-pin{
+.descr-pin {
   font-size: 25px;
-  padding: 10px;
+  padding: 5px;
+  color: gray;
+  padding: 10px 10px;
+
 }
 
 .button-container {
@@ -141,6 +152,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
+  opacity: 0;
+}
+
+.clickable-pin:hover .button-container {
+  pointer-events: auto;
+  opacity: 1;
 }
 
 .edit-btn,
@@ -152,3 +169,226 @@
   border-radius: 15px;
   cursor: pointer;
 }
+
+.edit-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.container {
+  flex: 1;
+  display: grid;
+  width: 100%;
+  height: auto;
+  margin-top: 60px;
+  grid-template-columns: repeat(auto-fill, 250px);
+  grid-auto-rows: 10px;
+  justify-content: center;
+}
+
+.small {
+  margin: 15px;
+  width: 200px;
+  grid-row-end: span 26;
+}
+
+.medium {
+  margin: 15px;
+  width: 200px;
+  grid-row-end: span 35;
+}
+
+.large {
+  margin: 15px;
+  width: 200px;
+  grid-row-end: span 45;
+}
+
+.container img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  border: 4px solid rgb(244, 218, 222); /* Pink border, you can choose any cute color you like */
+  border-radius: 10px; /* Round the corners of the image */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.edit-pin {
+  background-color: rgb(245, 242, 242);
+  position: relative;
+  width: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.inf-pin {
+  /* position: absolute; */
+  margin-top: 15%;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-div,
+.board-div,
+.description-div {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+
+.image-pin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-right: 1px solid rgb(229, 216, 216);
+  box-shadow: #6c5757;
+
+
+}
+
+.user-pins {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.footer {
+  background-color: rgb(245, 242, 242);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-top: 2px solid lightgray;
+}
+
+.delete-btn,
+.cancel-save-div {
+  display: flex;
+  gap: 10px;
+}
+
+.cancel-save-div {
+  justify-self: flex-end;
+}
+
+.sel-board{
+  margin-left: 100px;
+  background-color: lightgray;
+  border-radius: 15px;
+  height: 45px;
+  width: 400px;
+}
+
+.input-title{
+  margin-left: 110px;
+  background-color: lightgray;
+  border-radius: 15px;
+  height: 45px;
+  width: 400px;
+} 
+
+.input-description{
+  margin-left: 60px;
+  background-color: lightgray;
+  border-radius: 15px;
+  height: 45px;
+  width: 400px;
+}
+
+.div-ed{
+  margin-left: 35%;
+  text-align: center;
+  font-size: 40px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: gray;
+}
+
+.label-style{
+  font-size: 15px;
+  margin-top: 10px;
+  size: 23px;
+}
+
+.my-div-edit{
+  position: absolute;
+  background-color: rgb(245, 242, 242);
+  width: 100%;
+  height: 85%;
+  border-radius: 15px;
+}
+
+.gray-btn{
+  background-color: gray;
+  height: 35px;
+  width: 70px;
+  border-radius: 15px;
+}
+.red-btn{
+  background-color: red;
+  height: 35px;
+  width: 70px;
+  border-radius: 15px;
+}
+
+.pin-informations{
+  width: 100%;
+  margin: 15px;
+}
+
+.created-by{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 40px;
+  justify-content: space-between;
+
+}
+
+.circle-username{
+  width: 60px;
+  height: 50px;
+  border-radius: 55px;
+  background-color: gray;
+  size: 55px;
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
+ 
+}
+.user-username{
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  color: gray;
+
+}
+
+.first{
+  display: flex;
+}
+.second{
+  margin: 8px;
+}
+.lightgray{
+  background-color: lightgray;
+}
+
+.comments{
+  margin-top: 50px;
+  justify-content: space-around;
+}
+
+.comments h1{
+  color: gray;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 25px;
+}
+.comments h2{
+  margin: 10px;
+  font-family: 'Times New Roman', Times, serif;
+
+}
+
+

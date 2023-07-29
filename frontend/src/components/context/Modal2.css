@@ -1,4 +1,4 @@
-#modal {
+#modal2 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +10,7 @@
   background-color: rgba(255, 194, 204, 0.5);
 }
 
-#modal-background {
+#modal-background2 {
   position: absolute;
   top: 0;
   right: 0;
@@ -18,7 +18,7 @@
   bottom: 0;
 }
 
-#modal-content {
+#modal-content2 {
   position: relative;
   display: flex;
   flex-direction: column;

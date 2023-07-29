@@ -61,6 +61,7 @@ function Pin() {
         else if (data) setErrors([data]);
         else setErrors([res.statusText]);
       });
+    // console.log(`hey ${dispatch(pinActions.fetchAllPins())}`);
   };
 
   const handleFile = ({ currentTarget }) => {
