@@ -46,11 +46,11 @@
   width: auto;
 }
 
-/* .image-pin {
-  position: relative;
-  height: 400px;
-  width: 550px;
-} */
+.image-pin img {
+  object-fit: content;
+  width: 100%;
+  height: 100%;
+}
 
 .info-pin {
   padding: 10px;
@@ -102,8 +102,7 @@
 
 .user-pins {
   border-radius: 30px;
-  border: 1px solid rgb(103, 135, 135);
-  box-shadow: #d2bbbb;
+  box-shadow: #6c5757;
   height: 300px;
   width: 200px;
   padding: 20px;
@@ -126,8 +125,8 @@
 }
 
 .pin-item {
-  position:absolute;
-  height:100%;
+  position: relative;
+  height: 100%;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -143,7 +142,6 @@
   padding: 5px;
   color: gray;
   padding: 10px 10px;
-
 }
 
 .button-container {
@@ -217,7 +215,7 @@
 .edit-pin {
   background-color: rgb(245, 242, 242);
   position: relative;
-  width: auto;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -225,8 +223,7 @@
 }
 
 .inf-pin {
-  /* position: absolute; */
-  margin-top: 15%;
+  margin-top: 7%;
   display: flex;
   flex-direction: column;
 }
@@ -235,24 +232,21 @@
 .board-div,
 .description-div {
   display: flex;
-  margin-bottom: 20px;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 20px;
+
 }
 
 
 .image-pin {
+
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
+  width: 50%; /* Set the width to 50% to make the image occupy the left side */
   border-right: 1px solid rgb(229, 216, 216);
-  box-shadow: #6c5757;
-
-
-}
-
-.user-pins {
-  max-width: 100%;
-  max-height: 100%;
 }
 
 .footer {
@@ -274,45 +268,47 @@
   justify-self: flex-end;
 }
 
-.sel-board{
-  margin-left: 100px;
+.sel-board {
+  /* margin-left: 100px; */
   background-color: lightgray;
   border-radius: 15px;
   height: 45px;
   width: 400px;
 }
 
-.input-title{
-  margin-left: 110px;
-  background-color: lightgray;
-  border-radius: 15px;
-  height: 45px;
-  width: 400px;
-} 
-
-.input-description{
-  margin-left: 60px;
+.input-title {
+  /* margin-left: 110px; */
   background-color: lightgray;
   border-radius: 15px;
   height: 45px;
   width: 400px;
 }
 
-.div-ed{
+.input-description {
+  /* margin-left: 60px; */
+  background-color: lightgray;
+  border-radius: 15px;
+  height: 45px;
+  width: 400px;
+}
+
+.div-ed {
   margin-left: 35%;
   text-align: center;
   font-size: 40px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   color: gray;
 }
 
-.label-style{
-  font-size: 15px;
+.label-style {
+  font-size: 25px;
   margin-top: 10px;
-  size: 23px;
+  size: 30px;
+  font-family: 'Times New Roman', Times, serif;
+  color: gray;
 }
 
-.my-div-edit{
+.my-div-edit {
   position: absolute;
   background-color: rgb(245, 242, 242);
   width: 100%;
@@ -320,75 +316,69 @@
   border-radius: 15px;
 }
 
-.gray-btn{
+.gray-btn {
   background-color: gray;
   height: 35px;
   width: 70px;
   border-radius: 15px;
 }
-.red-btn{
+.red-btn {
   background-color: red;
   height: 35px;
   width: 70px;
   border-radius: 15px;
 }
 
-.pin-informations{
+.pin-informations {
   width: 100%;
   margin: 15px;
 }
 
-.created-by{
+.created-by {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-top: 40px;
   justify-content: space-between;
-
 }
 
-.circle-username{
+.circle-username {
   width: 60px;
   height: 50px;
   border-radius: 55px;
   background-color: gray;
   size: 55px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   color: white;
- 
 }
-.user-username{
+.user-username {
   text-align: center;
   padding: 10px;
   text-decoration: none;
   color: gray;
-
 }
 
-.first{
+.first {
   display: flex;
 }
-.second{
+.second {
   margin: 8px;
 }
-.lightgray{
+.lightgray {
   background-color: lightgray;
 }
 
-.comments{
+.comments {
   margin-top: 50px;
   justify-content: space-around;
 }
 
-.comments h1{
+.comments h1 {
   color: gray;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: 25px;
 }
-.comments h2{
+.comments h2 {
   margin: 10px;
-  font-family: 'Times New Roman', Times, serif;
-
+  font-family: "Times New Roman", Times, serif;
 }
-
-

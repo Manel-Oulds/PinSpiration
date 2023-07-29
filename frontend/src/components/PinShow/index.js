@@ -4,6 +4,7 @@ import * as pinActions from "../../store/pin";
 import ShowPinItem from "../ShowPinItem";
 import Modal from "../context/Modal";
 import EditPin from "../EditPin";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 function PinShow({ user }) {
   const buttonContainerRef = useRef();
@@ -11,6 +12,9 @@ function PinShow({ user }) {
   const [selectedPin, setSelectedPin] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
+  const  currentUser = useSelector(state=>state.session.user)
+  console.log(currentUser.id);
+  console.log(user.id);
   const pins = useSelector((state) => {
     return user.pinIds.map((id) => {
       return state.pin[id];
@@ -47,7 +51,7 @@ function PinShow({ user }) {
   return (
     <div className="div-pins">
       {pins.map((pin) => {
-        if (!pin) return null; // Check if pin is null or undefined
+        if (!pin) return null;
         return (
           <div
             key={pin.id}
@@ -56,15 +60,22 @@ function PinShow({ user }) {
           >
             <img src={pin.imgUrl} className="user-pins" alt="Pin" />
             <div className="button-container" ref={buttonContainerRef}>
-              <button className="edit-btn" onClick={() => handleEditClick(pin)}>
-                <i className="fa-solid fa-pen-to-square fa-beat-fade"></i>
-              </button>
-              <button
-                className="delete-btn"
-                onClick={() => handleDelete(pin.id)}
-              >
-                <i className="fa-solid fa-trash fa-beat-fade"></i>
-              </button>
+              {currentUser.id === user.id && (
+                <button
+                  className="edit-btn"
+                  onClick={() => handleEditClick(pin)}
+                >
+                  <i className="fa-solid fa-pen-to-square fa-beat-fade"></i>
+                </button>
+              )}
+              {currentUser.id === user.id && (
+                <button
+                  className="delete-btn"
+                  onClick={() => handleDelete(pin.id)}
+                >
+                  <i className="fa-solid fa-trash fa-beat-fade"></i>
+                </button>
+              )}
             </div>
           </div>
         );
