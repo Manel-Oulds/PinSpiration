@@ -17,12 +17,13 @@ function Navigation() {
       <>
         <div className="nav-user">
           <NavLink exact to="/">
-            <img src="Frame_new.svg" alt="PinSpiration" />
+            <img
+              src={`${process.env.PUBLIC_URL}/Frame_new.svg`}
+              alt="PinSpiration"
+            />
           </NavLink>
           <NavLink to="">
-            <button className="home-btn btn">
-              Home
-            </button>
+            <button className="home-btn btn">Home</button>
           </NavLink>
           <button className="explore-btn btn"> Explore </button>
           <CreateButton className="create-btn" />
