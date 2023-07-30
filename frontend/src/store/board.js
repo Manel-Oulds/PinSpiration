@@ -50,39 +50,21 @@ export const fetchBoards = (userId) => async (dispatch) => {
   dispatch(getBoards(data.boards));
 };
 
-// export const createBoard =
-//   ({ title, userId }) =>
-//   async (dispatch, getState) => {
-//     const response = await csrfFetch("/api/boards", {
-//       method: "POST",
-//       body: JSON.stringify({ title, userId }),
-//     });
-//     const { user } = getState().session;
-//     const updatedUser = {
-//       ...user,
-//       boardIds: [...user.boardIds, data.board.id],
-//     };
-//     const data = await response.json();
-//     dispatch(setBoard(data.board));
-//     dispatch(userActions.setCurrentUser(updatedUser));
-//   };
-
-export const createBoard =
-  (board) =>
-  async (dispatch, getState) => {
-    const response = await csrfFetch("/api/boards", {
-      method: "POST",
-      body: JSON.stringify(board),
-    });
-    const data = await response.json();
-    const { user } = getState().session;
-    const updatedUser = {
-      ...user,
-      boardIds: [...user.boardIds, data.board.id],
-    };
-    dispatch(setBoard(data.board));
-    dispatch(userActions.setCurrentUser(updatedUser));
+export const createBoard = (board) => async (dispatch, getState) => {
+  const response = await csrfFetch("/api/boards", {
+    method: "POST",
+    body: JSON.stringify(board),
+  });
+  const data = await response.json();
+  const { user } = getState().session;
+  const updatedUser = {
+    ...user,
+    boardIds: [...user.boardIds, data.board.id],
   };
+  console.log(updatedUser);
+  dispatch(setBoard(data.board));
+  dispatch(userActions.setCurrentUser(updatedUser));
+};
 
 export const fetchBoard = (boardId) => async (dispatch) => {
   const response = await csrfFetch(`/api/boards/${boardId}`);

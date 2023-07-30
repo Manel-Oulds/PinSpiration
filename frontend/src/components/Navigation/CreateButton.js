@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Redirect, useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import * as sessionActions from "../../store/session";
+import { useDispatch, useSelector } from "react-redux";
+import * as boardActions from "../../store/board";
 import "./CreateButton.css";
-import BoardForm from "../BoardForm";
 
 function CreateButton() {
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
   const history = useHistory();
@@ -25,7 +25,9 @@ function CreateButton() {
   const toggleMenu = () => {
     setShowMenu((prevShowMenu) => !prevShowMenu);
   };
-
+  useEffect(() => {
+    dispatch(boardActions.fetchBoards(sessionUser.id));
+  }, []);
   const createpin = (e) => {
     history.push("/pin/edit");
   };

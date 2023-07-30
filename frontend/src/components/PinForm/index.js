@@ -1,8 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Pin.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import * as pinActions from "../../store/pin";
+import * as boardActions from "../../store/board";
 import Navigation from "../Navigation";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
@@ -16,9 +17,19 @@ function Pin() {
   const [showLoad, setShowLoad] = useState(false);
   const [errors, setErrors] = useState([]);
   const history = useHistory();
-  const [selectedBoard, setSelectedBoard] = useState("option1");
+  const [selectedBoard, setSelectedBoard] = useState("All Pins");
   const fileInputRef = useRef(null);
+  const userBoards = useSelector((state) => state.session.user.boardIds);
+  const boards = useSelector((state) => state.boards);
   let err = false;
+
+  //  useEffect(() => {
+  //   dispatch(boardActions.fetchBoards(sessionUser.id));
+  // }, [dispatch, sessionUser.id]);
+
+  useEffect(() => {
+    dispatch(boardActions.fetchBoards(sessionUser.id));
+  }, []);
 
   //Not working yet Its for the board selection
   const handleSelectChange = (event) => {
@@ -61,7 +72,6 @@ function Pin() {
         else if (data) setErrors([data]);
         else setErrors([res.statusText]);
       });
-    // console.log(`hey ${dispatch(pinActions.fetchAllPins())}`);
   };
 
   const handleFile = ({ currentTarget }) => {
@@ -114,11 +124,17 @@ function Pin() {
                   onChange={handleSelectChange}
                   className="select-board"
                 >
-                  <option value="option1" selected disabled>
-                    Select a board
+                  <option value="All Pins" selected>
+                    All Pins
                   </option>
-                  <option value="option2">Option 2</option>
-                  <option value="option3">Option 3</option>
+                  {userBoards.map((boardId) => {
+                    const board = boards[boardId];
+                    return (
+                      <option key={boardId} value={boardId}>
+                        {board.title}
+                      </option>
+                    );
+                  })}
                 </select>
                 <button className="pin-btn">Create Pin</button>
               </div>
