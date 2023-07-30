@@ -1,0 +1,46 @@
+.create-form{
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    justify-content: center;
+   
+}
+
+.form-content{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    margin: 20px;
+    border: 1px dashed;
+    border-radius: 20px;
+    padding: 20px 20px;
+    background-color: white;
+    width: fit-content;
+    margin: auto;
+    margin-top: 10%;
+
+}
+
+.titleInput{
+    width: 500px;
+}
+
+.save{
+    padding: 10px 10px;
+    width:100px;
+    border-radius: 20px;
+    margin: 10px;
+    margin-left: 70%;
+    color: black;
+
+}
+
+.red {
+    background-color: red;
+  }
+
+
+
+
+
+

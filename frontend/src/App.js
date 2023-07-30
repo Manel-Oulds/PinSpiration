@@ -5,6 +5,7 @@ import SplashPage from "./components/SplashPage/index.js";
 import EditProfile from "./components/ProfilePage/ProfilePage.js";
 import UserProfile from "./components/UserProfile/index.js";
 import Pin from "./components/PinForm/index.js";
+import BoardForm from "./components/BoardForm/index.js";
 function App() {
   const sessionUser = useSelector((state) => state.session.user);
   return (
@@ -23,7 +24,6 @@ function App() {
           <Route path={`/users/:userId`}>
             <UserProfile />
           </Route>
-
         }
       </Switch>
     </>

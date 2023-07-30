@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Redirect, useHistory } from "react-router-dom";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
-import "./CreateButton.css"
+import "./CreateButton.css";
+import BoardForm from "../BoardForm";
 
 function CreateButton() {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ function CreateButton() {
   };
 
   const createpin = (e) => {
-    history.push("/pin/edit")
+    history.push("/pin/edit");
   };
 
   return (

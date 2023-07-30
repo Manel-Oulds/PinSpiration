@@ -47,3 +47,20 @@
     font-size: 18px;
     
 }
+
+.plus-btn{
+    display: flex;
+    justify-content: end;
+   
+}
+
+.fa-plus{
+    border: none;
+    background-color: none;
+    border-radius: 25px;
+    margin-right: 25px;
+}
+
+.fa-plus:hover{
+    cursor: pointer;
+}

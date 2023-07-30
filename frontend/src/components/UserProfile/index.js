@@ -1,22 +1,33 @@
 import "./UserProfile.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Navigation from "../Navigation";
 import { useDispatch, useSelector } from "react-redux";
 import PinShow from "../PinShow";
 import * as userActions from "../../store/user";
+import Modal from "../context/Modal";
+import BoardForm from "../BoardForm";
 
 function UserProfile() {
   const { userId } = useParams();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.users[userId]);
   const currentUser = useSelector((state) => state.session.user);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     dispatch(userActions.fetchUser(userId));
   }, [userId]);
 
   if (!user) return null;
+
+  const handleCreateBoard = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   return (
     <>
@@ -50,9 +61,18 @@ function UserProfile() {
           </NavLink>
         )}
       </div>
+      <div className="plus-btn" onClick={() => handleCreateBoard()}>
+        <i class="fa-solid fa-plus fa-2xl"></i>
+      </div>
       <div>
         <PinShow user={user} />
       </div>
+
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <BoardForm onClose={handleCloseModal} />
+        </Modal>
+      )}
     </>
   );
 }

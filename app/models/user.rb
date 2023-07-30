@@ -30,6 +30,7 @@ class User < ApplicationRecord
 
   has_one_attached :picture
   has_many :pins
+  has_many :boards
  
   before_validation :ensure_session_token
 
