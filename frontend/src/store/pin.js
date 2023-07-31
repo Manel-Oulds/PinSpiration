@@ -2,6 +2,7 @@ import React from "react";
 import csrfFetch from "./csrf";
 import { useSelector } from "react-redux";
 import * as userActions from "./session";
+import { fetchAllBoardPins } from "./boardPins";
 
 const SET_PIN = "pins/setPin";
 const REMOVE_PIN = "pins/removePin";
@@ -36,12 +37,12 @@ const getPins = (pins) => {
   };
 };
 
-export const fetchAllPins = () => async (dispatch) =>{
+export const fetchAllPins = () => async (dispatch) => {
   const response = await csrfFetch(`/api/pins`);
   const data = await response.json();
   dispatch(getPins(data.pins));
   return response;
-}
+};
 
 export const fetchPins = (userId) => async (dispatch) => {
   const response = await csrfFetch(`/api/pins?user_id=${userId}`);
@@ -60,7 +61,7 @@ export const createPin = (formData) => async (dispatch, getState) => {
   const updatedUser = { ...user, pinIds: [...user.pinIds, data.pin.id] };
   dispatch(setPin(data.pin));
   dispatch(userActions.setCurrentUser(updatedUser));
-  return response;
+  return data.pin;
 };
 
 export const fetchPin = (pinId) => async (dispatch) => {
@@ -81,9 +82,10 @@ export const updatePin = (pin) => async (dispatch) => {
 
 export const deletePin = (pinId) => async (dispatch) => {
   const response = await csrfFetch(`/api/pins/${pinId}`, {
-    method: "DELETE",
+    method: "DELETE", 
   });
   dispatch(removePin(pinId));
+  dispatch(fetchAllBoardPins());
 };
 
 export default function pinReducer(state = {}, action) {

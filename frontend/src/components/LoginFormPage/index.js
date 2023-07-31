@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import "./LoginForm.css";
+import { fetchBoards } from "../../store/board";
+import { fetchAllBoardPins } from "../../store/boardPins";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -13,7 +16,10 @@ function LoginFormPage() {
   const [showLoad, setShowLoad] = useState(false);
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   let err = false;
-
+  useEffect(() => {
+    if(sessionUser) dispatch(fetchBoards(sessionUser.id));
+    dispatch(fetchAllBoardPins());
+  }, [dispatch]);
   if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {

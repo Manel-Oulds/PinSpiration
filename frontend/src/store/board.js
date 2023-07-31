@@ -3,7 +3,7 @@ import csrfFetch from "./csrf";
 import { useSelector } from "react-redux";
 import * as userActions from "./session";
 
-const SET_BOARD = "boards/setBoard";
+export const SET_BOARD = "boards/setBoard";
 const REMOVE_BOARD = "boards/removeBoard";
 const GET_BOARD = "boards/getBoard";
 const GET_BOARDS = "boards/getBoards";
@@ -56,14 +56,14 @@ export const createBoard = (board) => async (dispatch, getState) => {
     body: JSON.stringify(board),
   });
   const data = await response.json();
-  const { user } = getState().session;
-  const updatedUser = {
-    ...user,
-    boardIds: [...user.boardIds, data.board.id],
-  };
-  console.log(updatedUser);
+  // const { user } = getState().session;
+  // const updatedUser = {
+  //   ...user,
+  //   boardIds: [...user.boardIds, data.board.id],
+  // };
+  // console.log(updatedUser);
   dispatch(setBoard(data.board));
-  dispatch(userActions.setCurrentUser(updatedUser));
+  // dispatch(userActions.setCurrentUser(updatedUser));
 };
 
 export const fetchBoard = (boardId) => async (dispatch) => {

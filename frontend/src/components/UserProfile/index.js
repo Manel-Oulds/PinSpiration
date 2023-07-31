@@ -7,6 +7,10 @@ import PinShow from "../PinShow";
 import * as userActions from "../../store/user";
 import Modal from "../context/Modal";
 import BoardForm from "../BoardForm";
+import BoardShow from "../BoardShow";
+import { fetchAllBoards } from "../../store/board";
+import { fetchAllBoardPins } from "../../store/boardPins";
+import { fetchAllPins } from "../../store/pin";
 
 function UserProfile() {
   const { userId } = useParams();
@@ -14,10 +18,25 @@ function UserProfile() {
   const user = useSelector((state) => state.users[userId]);
   const currentUser = useSelector((state) => state.session.user);
   const [showModal, setShowModal] = useState(false);
+  const userBoards = useSelector((state) => state.users[userId]?.boardIds);
+  const boardPins = useSelector(state=>state.boardPins)
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(userActions.fetchUser(userId));
-  }, [userId]);
+    // Fetch user data and boards
+    const fetchUserAndBoards = async () => {
+      setLoading(true);
+      await dispatch(userActions.fetchUser(userId));
+      await dispatch(fetchAllBoards());
+      await dispatch(fetchAllBoardPins());
+      await dispatch(fetchAllPins());
+      setLoading(false); // Set loading to false after fetching is done
+    };
+
+    const res = dispatch(fetchAllBoardPins());
+
+    fetchUserAndBoards();
+  }, [userId, dispatch]);
 
   if (!user) return null;
 
@@ -28,6 +47,10 @@ function UserProfile() {
   const handleCloseModal = () => {
     setShowModal(false);
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -62,10 +85,14 @@ function UserProfile() {
         )}
       </div>
       <div className="plus-btn" onClick={() => handleCreateBoard()}>
-        <i class="fa-solid fa-plus fa-2xl"></i>
+        <i className="fa-solid fa-plus fa-2xl"></i>
       </div>
       <div>
         <PinShow user={user} />
+      </div>
+
+      <div>
+        <BoardShow user={user} />
       </div>
 
       {showModal && (

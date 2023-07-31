@@ -12,9 +12,7 @@ function PinShow({ user }) {
   const [selectedPin, setSelectedPin] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
-  const  currentUser = useSelector(state=>state.session.user)
-  console.log(currentUser.id);
-  console.log(user.id);
+  const currentUser = useSelector((state) => state.session.user);
   const pins = useSelector((state) => {
     return user.pinIds.map((id) => {
       return state.pin[id];
@@ -40,6 +38,7 @@ function PinShow({ user }) {
     setShowModal(false);
   };
   const handleDelete = (id) => {
+    console.log(`hey ${id}`);
     dispatch(pinActions.deletePin(id));
   };
 

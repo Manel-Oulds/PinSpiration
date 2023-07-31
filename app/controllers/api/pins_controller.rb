@@ -47,9 +47,9 @@ class Api::PinsController < ApplicationController
     end
 
     def destroy
-        @pin = Pin.find_by(id: params[:id])
+        @pin = Pin.find(params[:id])
         if @pin
-             @pin&.delete
+             @pin&.destroy
             
         else
             render json: {errors: @pin.errors.full_messages}, status: :unauthorized

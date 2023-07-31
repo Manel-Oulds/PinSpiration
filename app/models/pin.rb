@@ -21,14 +21,22 @@ class Pin < ApplicationRecord
     validates :title, presence:true
     validates :user_id, presence:true
 
+    before_destroy :destroy_with_board_pins
+
     belongs_to :user
     has_one_attached :image
     validate :ensure_photo
+    has_many :board_pins, dependent: :destroy
 
     def ensure_photo
         unless self.image.attached?
           errors.add(:image, "must be attached")
         end
+    end
+
+    def destroy_with_board_pins
+      # Remove associated board_pins records
+      board_pins.destroy_all
     end
 
 

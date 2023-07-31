@@ -1,4 +1,5 @@
 import csrfFetch from "./csrf";
+import { SET_BOARD } from "./board";
 
 const storeCSRFToken = (response) => {
   const csrfToken = response.headers.get("X-CSRF-Token");
@@ -53,18 +54,16 @@ export const signup =
     return response;
   };
 
-export const update =
-  (user) =>
-  async (dispatch) => {
-    const response = await csrfFetch(`/api/users/${user.id}`, {
-      method: "PATCH",
-      body: JSON.stringify(user),
-    });
-    const data = await response.json();
-    storeCurrentUser(data.user);
-    dispatch(setCurrentUser(data.user));
-    return response;
-  };
+export const update = (user) => async (dispatch) => {
+  const response = await csrfFetch(`/api/users/${user.id}`, {
+    method: "PATCH",
+    body: JSON.stringify(user),
+  });
+  const data = await response.json();
+  storeCurrentUser(data.user);
+  dispatch(setCurrentUser(data.user));
+  return response;
+};
 
 export const logout = () => async (dispatch) => {
   // const history = useHistory();
@@ -97,7 +96,13 @@ const sessionReducer = (state = initialState, action) => {
     case REMOVE_CURRENT_USER:
       return { ...state, user: null };
     case UPDATE_CURRENT_USER:
-      return {...state, user: action.payload }
+      return { ...state, user: action.payload };
+    case SET_BOARD:
+      // debugger;
+      const boardIds = [...state.user.boardIds, action.payload.id];
+      const usercopy = { ...state.user };
+      usercopy.boardIds = boardIds;
+      return { user: usercopy };
     default:
       return state;
   }
