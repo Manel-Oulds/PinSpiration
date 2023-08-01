@@ -32,7 +32,7 @@ class Api::BoardsController < ApplicationController
     def destroy
         @board = Board.find_by(id: params[:id])
         if @board
-             @board&.delete    
+             @board&.destroy 
         else
             render json: {errors: @board.errors.full_messages}, status: :unauthorized
         end

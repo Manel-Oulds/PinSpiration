@@ -82,10 +82,11 @@ export const updatePin = (pin) => async (dispatch) => {
 
 export const deletePin = (pinId) => async (dispatch) => {
   const response = await csrfFetch(`/api/pins/${pinId}`, {
-    method: "DELETE", 
+    method: "DELETE",
   });
   dispatch(removePin(pinId));
   dispatch(fetchAllBoardPins());
+  dispatch(fetchAllPins());
 };
 
 export default function pinReducer(state = {}, action) {

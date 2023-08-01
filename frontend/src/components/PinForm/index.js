@@ -105,8 +105,7 @@ function Pin() {
 
   if (loading) {
     return <div>Loading...</div>; // Render a loading message while fetching data
-  }
-  else{
+  } else {
     return (
       <div className="pin-div">
         <Navigation />
@@ -117,7 +116,7 @@ function Pin() {
                 <li key={error}>{error}</li>
               ))}
             </ul>
-  
+
             <div className="information">
               <div className="image-pin">
                 <div className="div-image" onClick={handleDivClick}>
@@ -145,9 +144,6 @@ function Pin() {
                     onChange={handleSelectChange}
                     className="select-board"
                   >
-                    <option value="All Pins" selected>
-                      All Pins
-                    </option>
                     {userBoards.map((boardId) => {
                       const board = boards[boardId];
                       return (
@@ -159,7 +155,7 @@ function Pin() {
                   </select>
                   <button className="pin-btn">Create Pin</button>
                 </div>
-  
+
                 <input
                   className="my-input pintitle"
                   type="text"
@@ -181,10 +177,16 @@ function Pin() {
                     disabled
                   />
                   <div className="use">
-                    <NavLink className="nav-prof" to={`/${sessionUser.username}`}>
+                    <NavLink
+                      className="nav-prof"
+                      to={`/${sessionUser.username}`}
+                    >
                       {sessionUser.username}
                     </NavLink>
-                    <NavLink className="nav-prof" to={`/${sessionUser.username}`}>
+                    <NavLink
+                      className="nav-prof"
+                      to={`/${sessionUser.username}`}
+                    >
                       {sessionUser.email}
                     </NavLink>
                   </div>
@@ -203,7 +205,6 @@ function Pin() {
       </div>
     );
   }
-  
 }
 
 export default Pin;

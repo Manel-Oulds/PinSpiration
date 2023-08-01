@@ -19,7 +19,7 @@ function UserProfile() {
   const currentUser = useSelector((state) => state.session.user);
   const [showModal, setShowModal] = useState(false);
   const userBoards = useSelector((state) => state.users[userId]?.boardIds);
-  const boardPins = useSelector(state=>state.boardPins)
+  const boardPins = useSelector((state) => state.boardPins);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -87,9 +87,9 @@ function UserProfile() {
       <div className="plus-btn" onClick={() => handleCreateBoard()}>
         <i className="fa-solid fa-plus fa-2xl"></i>
       </div>
-      <div>
+      {/* <div>
         <PinShow user={user} />
-      </div>
+      </div> */}
 
       <div>
         <BoardShow user={user} />

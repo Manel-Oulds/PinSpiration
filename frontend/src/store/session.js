@@ -1,5 +1,5 @@
 import csrfFetch from "./csrf";
-import { SET_BOARD } from "./board";
+import { SET_BOARD, createBoard } from "./board";
 
 const storeCSRFToken = (response) => {
   const csrfToken = response.headers.get("X-CSRF-Token");
@@ -50,9 +50,12 @@ export const signup =
     });
     const data = await response.json();
     storeCurrentUser(data.user);
-    dispatch(setCurrentUser(data.user));
+    await dispatch(setCurrentUser(data.user));
+    const {user_id} = data.user.id;
+    // dispatch(createBoard({title:"All Pins",user_id}));
     return response;
   };
+
 
 export const update = (user) => async (dispatch) => {
   const response = await csrfFetch(`/api/users/${user.id}`, {
