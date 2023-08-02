@@ -1,7 +1,8 @@
 .animations {
   position: relative;
+  top: 0;
   width: 100%;
-  height: 82vh;
+  height: 85vh;
   overflow: hidden;
 }
 
@@ -220,26 +221,18 @@
 
 .column1,
 .column7 {
-  
- 
 }
 
 .column2,
 .column6 {
- 
   margin-top: 100px;
-
 }
 .column3,
 .column5 {
- 
   margin-top: 200px;
-
 }
 .column4 {
-  
   margin-top: 250px;
-  
 }
 
 .animated-images img {
@@ -384,4 +377,36 @@
     opacity: 0;
     transform: translateX(-20%);
   }
+}
+
+.second_page {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../../public/background.webp"),
+    linear-gradient(rgba(85, 56, 56, 0.8), rgba(182, 132, 132, 0.8));
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.signup-title{
+  margin: 10px;
+}
+.signup-title h1{
+  color: rgb(43, 26, 26);
+  font-size: 100px;
+  margin-top: -100px;
+  margin-left: 80px;
+}
+
+.signup-form{
+  background-color: white;
+  height: 600px;
+  border-radius: 20px;
+  margin: 100px;
 }

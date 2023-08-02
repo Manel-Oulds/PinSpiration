@@ -95,29 +95,30 @@ function BoardShowIndex() {
     return (
       <>
         <Navigation />
-
         <h1
           className="title-selected-board"
           style={{
             fontSize: "50px",
             margin: "5%",
-            marginLeft: "45%"
+            marginLeft: "45%",
           }}
         >
           {board.title}
         </h1>
+        {boardPins ? boardPins.length : 0} Pin(s){" "}
         <div className="deleteboard" onClick={handleDeleteBoard}>
-          {(userId == currentUser && board.title !== "All Pins" ) && <i
-            className="fa-solid fa-trash fa-fade"
-            style={{ fontSize: "30px", marginLeft: "95%" }}
-          ></i>}
+          {userId == currentUser && board.title !== "All Pins" && (
+            <i
+              className="fa-solid fa-trash fa-fade"
+              style={{ fontSize: "30px", marginLeft: "95%" }}
+            ></i>
+          )}
         </div>
-
         <div className="div-pin">
           {boardPins?.map((pinId) => {
             const pin = pins[pinId];
             if (!pin) {
-              return <div>Loading...</div>;
+              return null;
             }
 
             const randomSize = getRandomSize();
@@ -129,7 +130,11 @@ function BoardShowIndex() {
                 onClick={handleImageClick(pin)}
                 className="clickable-pin"
               >
-                <img src={pin.imgUrl} className={`user-pins ${pinClassName}`} alt="Pin" />
+                <img
+                  src={pin.imgUrl}
+                  className={`user-pins ${pinClassName}`}
+                  alt="Pin"
+                />
                 <div className="button-container" ref={buttonContainerRef}>
                   {currentUser == userId && (
                     <button

@@ -4,7 +4,6 @@
 }
 
 .navbar {
-
   margin: 10px;
   padding: 10px;
   display: flex;
@@ -60,6 +59,7 @@
   display: flex;
   justify-content: space-between;
   height: 25px;
+  z-index: 1;
 }
 
 .search-bar {
@@ -118,6 +118,6 @@
   z-index: 1;
 }
 
-a{
+a {
   color: inherit;
 }

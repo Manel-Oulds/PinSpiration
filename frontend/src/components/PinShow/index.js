@@ -19,7 +19,6 @@ function PinShow({ user }) {
     });
   });
   const boardPins = useSelector((state) => state.boardpins);
-  
 
   useEffect(() => {
     dispatch(pinActions.fetchPins(user.id));
@@ -41,7 +40,6 @@ function PinShow({ user }) {
     return sizes[randomIndex];
   }
 
-
   const handleModalClose = () => {
     setShowModal(false);
   };
@@ -58,41 +56,44 @@ function PinShow({ user }) {
   return (
     <div className="div-pins">
       {pins.map((pin) => {
-         const randomSize = getRandomSize();
-         const pinClassName = `${randomSize}`;
+        const randomSize = getRandomSize();
+        const pinClassName = `${randomSize}`;
         if (!pin) return null;
         if (!Object.values(boardPins).flat().includes(pin.id)) {
-        return (
-          <div
-            key={pin.id}
-            onClick={handleImageClick(pin)}
-            className="clickable-pin"
-          >
-            <img src={pin.imgUrl} className={`user-pins ${pinClassName}`} alt="Pin" />
-            <div className="button-container" ref={buttonContainerRef}>
-              {currentUser.id === user.id && (
-                <button
-                  className="edit-btn"
-                  onClick={() => handleEditClick(pin)}
-                >
-                  <i className="fa-solid fa-pen-to-square fa-beat-fade"></i>
-                </button>
-              )}
-              {currentUser.id === user.id && (
-                <button
-                  className="delete-btn"
-                  onClick={() => handleDelete(pin.id)}
-                >
-                  <i className="fa-solid fa-trash fa-beat-fade"></i>
-                </button>
-              )}
+          return (
+            <div
+              key={pin.id}
+              onClick={handleImageClick(pin)}
+              className="clickable-pin"
+            >
+              <img
+                src={pin.imgUrl}
+                className={`user-pins ${pinClassName}`}
+                alt="Pin"
+              />
+              <div className="button-container" ref={buttonContainerRef}>
+                {currentUser.id === user.id && (
+                  <button
+                    className="edit-btn"
+                    onClick={() => handleEditClick(pin)}
+                  >
+                    <i className="fa-solid fa-pen-to-square fa-beat-fade"></i>
+                  </button>
+                )}
+                {currentUser.id === user.id && (
+                  <button
+                    className="delete-btn"
+                    onClick={() => handleDelete(pin.id)}
+                  >
+                    <i className="fa-solid fa-trash fa-beat-fade"></i>
+                  </button>
+                )}
+              </div>
             </div>
-          </div>
-        );
-              }
-              return null;
+          );
+        }
+        return null;
       })}
-    
 
       {showModal && selectedPin && (
         <Modal onClose={handleModalClose}>

@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import Navigation from "../Navigation";
 import AnimationImages from "./AnimationImages";
 import PinsIndex from "../PinsIndex";
+import "./signup"
+import Signup from "./signup";
 
 export default function SplashPage() {
   const sessionUser = useSelector((state) => state.session.user);
@@ -10,7 +12,11 @@ export default function SplashPage() {
   return (
     <>
       <Navigation />
-      {!isLoggedIn && <AnimationImages />}
+      {!isLoggedIn &&
+      <div>
+        <AnimationImages />
+        <Signup/>
+      </div> }
       {isLoggedIn && <PinsIndex />}
     </>
   );

@@ -185,35 +185,40 @@
   width: 100%;
   height: auto;
   margin-top: 60px;
-  grid-template-columns: repeat(auto-fill, 250px);
+  grid-template-columns: repeat(auto-fill, 320px);
   grid-auto-rows: 10px;
   justify-content: center;
+  align-items: center;
 }
 
-.container div{
+.container div {
   background-color: rgba(173, 158, 158, 0.5);
   transition: background-color 0.3s;
 }
-.container div:hover{
+.container div:hover .save-pin {
   background-color: rgba(161, 78, 78, 0.2);
+  opacity: 1;
 }
 
 .small {
-  margin: 15px;
-  width: 200px;
+  margin: 50px;
+  width: 250px;
   grid-row-end: span 26;
+  position: relative;
 }
 
 .medium {
-  margin: 15px;
-  width: 200px;
+  margin: 50px;
+  width: 250px;
   grid-row-end: span 35;
+  position: relative;
 }
 
 .large {
-  margin: 15px;
-  width: 200px;
+  margin: 50px;
+  width: 250px;
   grid-row-end: span 45;
+  position: relative;
 }
 
 .container img {
@@ -393,12 +398,12 @@
   font-family: "Times New Roman", Times, serif;
 }
 
-.title-save{
+.title-save {
   display: flex;
   justify-content: space-between;
 }
 
-.save-pin-btn{
+.save-pin-btn {
   width: fit-content;
   height: fit-content;
   background-color: red;
@@ -408,3 +413,16 @@
   border-radius: 30px;
 }
 
+.save-pin {
+  position: absolute;
+  top: 5px;
+  left: 200px;
+  border-radius: 20px;
+  padding: 6px;
+  opacity: 0;
+}
+
+.small:hover .save-pin {
+  opacity: 1;
+  background-color: red;
+}
