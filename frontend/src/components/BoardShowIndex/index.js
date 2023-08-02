@@ -107,7 +107,7 @@ function BoardShowIndex() {
           {board.title}
         </h1>
         <div className="deleteboard" onClick={handleDeleteBoard}>
-          {(userId == currentUser) && <i
+          {(userId == currentUser && board.title !== "All Pins" ) && <i
             className="fa-solid fa-trash fa-fade"
             style={{ fontSize: "30px", marginLeft: "95%" }}
           ></i>}

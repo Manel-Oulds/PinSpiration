@@ -20,7 +20,7 @@ function Pin() {
 
   const [errors, setErrors] = useState([]);
   const history = useHistory();
-  const [selectedBoard, setSelectedBoard] = useState("All Pins");
+
   const fileInputRef = useRef(null);
   const userBoards = useSelector((state) => state.session.user.boardIds);
   const boards = useSelector((state) => state.boards);
@@ -28,6 +28,10 @@ function Pin() {
 
   const pinBoardIds = useSelector((state) => state.boardPins);
   const boardIds = useSelector((state) => state.boards);
+  const allPinsBoardId = userBoards.find(
+    (boardId) => boards[boardId]?.title === "All Pins"
+  );
+  const [selectedBoard, setSelectedBoard] = useState(allPinsBoardId);
 
   const handleSelectChange = (event) => {
     setSelectedBoard(event.target.value);
@@ -141,14 +145,10 @@ function Pin() {
                     onChange={handleSelectChange}
                     className="select-board"
                   >
-                    <option value="option1" selected>
-                      Select a board
-                    </option>
-                    {console.log("hey there")}
-                    {console.log(userBoards)}
+                    <option value={allPinsBoardId}>All Pins</option>
                     {userBoards?.map((boardId) => {
                       const board = boards[boardId];
-                      if (board) {
+                      if (board && boardId !== allPinsBoardId) {
                         return (
                           <option key={boardId} value={boardId}>
                             {board.title}

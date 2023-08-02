@@ -5,23 +5,35 @@ import { useEffect } from "react";
 import * as userActions from "../../store/user";
 import { createPin } from "../../store/pin";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { addBoardPin } from "../../store/boardPins";
 
 export function ShowPinItem({ pin }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.users[pin.userId]);
+  const userBoardIds = useSelector((state) => state.session.user.boardIds);
+  const allBoards = useSelector((state) => state.boards);
+  const allPinId = userBoardIds.find(
+    (boardId) => allBoards[boardId]?.title === "All Pins"
+  );
 
   useEffect(() => {
     dispatch(userActions.fetchUser(pin.userId));
   }, [dispatch, pin.userId]);
 
   const currentUser = useSelector((state) => state.session.user);
+  console.log("userBoards");
+  console.log(userBoardIds);
+  console.log("all boards");
+  console.log(allBoards);
+  console.log(allBoards[allPinId]);
 
   const handleSavePin = () => {
     dispatch(
-      createPin({
-        imgUrl: pin.imgUrl,
-        title: pin.title,
-        description: pin.description,
+      addBoardPin({
+        board_pin: {
+          board_id: allPinId,
+          pin_id: pin.id,
+        },
       })
     );
   };
@@ -38,9 +50,7 @@ export function ShowPinItem({ pin }) {
       <div className="pin-informations">
         <div className="title-save">
           <h2 className="title-pin">{pin.title}</h2>
-          <button className="save-pin-btn"
-          //  onClick={handleSavePin}
-           >
+          <button className="save-pin-btn" onClick={handleSavePin}>
             save
           </button>
         </div>

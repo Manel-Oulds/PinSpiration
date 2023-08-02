@@ -96,31 +96,10 @@ function UserProfile() {
         <BoardShow user={user} />
       </div>
 
-      <div
-        classname=".unorganized_ideas"
-        style={{
-          display: "flex",
-          justifyContent: "start",
-          alignItems: "center",
-          marginTop: "60px",
-          marginLeft: "30px",
-        }}
-      >
-        {" "}
-        <label
-          style={{
-            color: "gray",
-            alignText: "center",
-            fontSize: "40px",
-          }}
-        >
-          {" "}
-          Unorganized Ideas{" "}
-        </label>
-      </div>
-      <div>
+      {/* <div>
         <PinShow user={user} />
-      </div>
+      </div> */}
+      
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <BoardForm onClose={handleCloseModal} />
