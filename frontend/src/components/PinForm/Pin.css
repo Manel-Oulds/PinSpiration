@@ -36,7 +36,11 @@
   padding: 10px;
   height: 90%;
   margin: 5px 5px;
-  background-color: rgb(173, 158, 158);
+  background-color: rgba(173, 158, 158, 0.5);
+  transition: background-color 0.3s;
+}
+.div-image:hover {
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .my-input {
@@ -76,7 +80,7 @@
   height: fit-content;
   padding: 5px 5px;
   background-color: red;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Times New Roman", Times, serif;
   border-radius: 0 10px 10px 0;
 }
 
@@ -85,7 +89,7 @@
   height: fit-content;
   padding: 5px 5px;
   background-color: rgb(173, 158, 158);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Times New Roman", Times, serif;
   border-radius: 10px 0 0 10px;
 }
 
@@ -186,6 +190,14 @@
   justify-content: center;
 }
 
+.container div{
+  background-color: rgba(173, 158, 158, 0.5);
+  transition: background-color 0.3s;
+}
+.container div:hover{
+  background-color: rgba(161, 78, 78, 0.2);
+}
+
 .small {
   margin: 15px;
   width: 200px;
@@ -205,7 +217,7 @@
 }
 
 .container img {
-  object-fit: contain;
+  object-fit: fill;
   width: 100%;
   height: 100%;
   border: 4px solid rgb(244, 218, 222); /* Pink border, you can choose any cute color you like */
@@ -236,12 +248,9 @@
   flex-direction: column;
   justify-content: space-around;
   margin: 20px;
-
 }
 
-
 .image-pin {
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -297,7 +306,7 @@
   margin-left: 35%;
   text-align: center;
   font-size: 40px;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: "Times New Roman", Times, serif;
   color: gray;
 }
 
@@ -305,7 +314,7 @@
   font-size: 25px;
   margin-top: 10px;
   size: 30px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   color: gray;
 }
 
@@ -383,3 +392,19 @@
   margin: 10px;
   font-family: "Times New Roman", Times, serif;
 }
+
+.title-save{
+  display: flex;
+  justify-content: space-between;
+}
+
+.save-pin-btn{
+  width: fit-content;
+  height: fit-content;
+  background-color: red;
+  padding: 10px;
+  margin: 5px;
+  top: 1%;
+  border-radius: 30px;
+}
+

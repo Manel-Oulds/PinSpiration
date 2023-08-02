@@ -35,7 +35,7 @@ export default function PinsIndex() {
 
       {Object.values(pins).map((pin) => (
         <div key={pin.id} className={getRandomSize()} onClick={() => handleClick(pin)}>
-          <img src={pin.imgUrl} alt={pin.title}  />
+          <img src={pin.imgUrl} alt={pin.title}  ></img>
         </div>
       ))}
     

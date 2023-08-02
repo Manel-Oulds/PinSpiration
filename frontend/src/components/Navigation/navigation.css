@@ -53,7 +53,9 @@
 }
 
 .nav-user {
-  margin: 10px;
+  position: sticky;
+  top: 0%;
+  margin-bottom: 10px;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -114,4 +116,8 @@
 
 .nav-prof {
   z-index: 1;
+}
+
+a{
+  color: inherit;
 }

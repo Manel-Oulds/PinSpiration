@@ -52,7 +52,7 @@ input{
     width: 100%;
     border-radius: 25px;
     background-color: red;
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-family: "Times New Roman", Times, serif;
     font-size: 15px;
     color: white;
     margin-top: 10px
@@ -61,7 +61,7 @@ input{
 
 .title{
     margin: 5px,5px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family:"Times New Roman", Times, serif;
     font-weight: 600px;
     font-size: 32px;
 }

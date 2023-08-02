@@ -3,15 +3,28 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import * as userActions from "../../store/user";
+import { createPin } from "../../store/pin";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 export function ShowPinItem({ pin }) {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.users[pin.userId]); // Access the user using pin.userId
+  const user = useSelector((state) => state.users[pin.userId]);
 
   useEffect(() => {
     dispatch(userActions.fetchUser(pin.userId));
   }, [dispatch, pin.userId]);
+
+  const currentUser = useSelector((state) => state.session.user);
+
+  const handleSavePin = () => {
+    dispatch(
+      createPin({
+        imgUrl: pin.imgUrl,
+        title: pin.title,
+        description: pin.description,
+      })
+    );
+  };
 
   if (!user) {
     return <div>Loading...</div>;
@@ -23,7 +36,15 @@ export function ShowPinItem({ pin }) {
         <img src={pin.imgUrl} className="user-pin" alt="Pin" />
       </div>
       <div className="pin-informations">
-        <h2 className="title-pin">{pin.title}</h2>
+        <div className="title-save">
+          <h2 className="title-pin">{pin.title}</h2>
+          <button className="save-pin-btn"
+          //  onClick={handleSavePin}
+           >
+            save
+          </button>
+        </div>
+
         <h1 className="descr-pin">{pin.description}</h1>
         <NavLink to={`/users/${user.id}`}>
           <div className="created-by">

@@ -18,6 +18,8 @@ function PinShow({ user }) {
       return state.pin[id];
     });
   });
+  const boardPins = useSelector((state) => state.boardpins);
+  
 
   useEffect(() => {
     dispatch(pinActions.fetchPins(user.id));
@@ -59,6 +61,7 @@ function PinShow({ user }) {
          const randomSize = getRandomSize();
          const pinClassName = `${randomSize}`;
         if (!pin) return null;
+        if (!Object.values(boardPins).flat().includes(pin.id)) {
         return (
           <div
             key={pin.id}
@@ -86,7 +89,10 @@ function PinShow({ user }) {
             </div>
           </div>
         );
+              }
+              return null;
       })}
+    
 
       {showModal && selectedPin && (
         <Modal onClose={handleModalClose}>
