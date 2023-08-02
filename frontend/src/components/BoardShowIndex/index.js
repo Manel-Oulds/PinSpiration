@@ -10,7 +10,7 @@ import * as pinActions from "../../store/pin";
 import Navigation from "../Navigation";
 import { deleteBoard, fetchAllBoards } from "../../store/board";
 import { fetchUser } from "../../store/user";
-import "./BoardShowIndex.css"
+import "./BoardShowIndex.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 function BoardShowIndex() {
@@ -31,30 +31,36 @@ function BoardShowIndex() {
   useEffect(() => {
     const fetchBoardData = async () => {
       setLoading(true);
-      await dispatch(fetchBoardPins(boardId));
+      await dispatch(fetchBoardPins(boardId)); // No board Id when removing the last pin
       await dispatch(fetchAllBoards());
       await dispatch(fetchAllBoardPins());
       await dispatch(pinActions.fetchAllPins());
       await dispatch(fetchUser(userId));
       setLoading(false);
     };
-    const fetchPins = async () => {
-      if (boardPins) {
-        boardPins.forEach((pinId) => {
-          const pin = pins[pinId];
-          if (!pin) {
-            dispatch(fetchPin(pinId));
-          }
-        });
-      }
-    };
+    // const fetchPins = async () => {
+    //   if (boardPins) {
+    //     boardPins.forEach((pinId) => {
+    //       const pin = pins[pinId];
+    //       if (pin) {
+    //         dispatch(fetchPin(pinId));
+    //       }
+    //     });
+    //   }
+    // };
 
-    async function fetchData() {
-      await fetchBoardData();
-      await fetchPins();
-    }
-    fetchData();
+    // async function fetchData() {
+    fetchBoardData();
+    // await fetchPins();
+    // }
+    // fetchData();
   }, [boardId, dispatch]);
+
+  function getRandomSize() {
+    const sizes = ["small", "medium", "large"];
+    const randomIndex = Math.floor(Math.random() * sizes.length);
+    return sizes[randomIndex];
+  }
 
   const handleImageClick = (pin) => (event) => {
     setSelectedPin(pin);
@@ -71,6 +77,7 @@ function BoardShowIndex() {
   };
   const handleDelete = (id) => {
     dispatch(pinActions.deletePin(id));
+    history.push(`/users/${currentUser}`);
   };
 
   const handleEditClick = (pin) => {
@@ -78,11 +85,9 @@ function BoardShowIndex() {
     setEditModal(true);
   };
 
-  const handleDeleteBoard = () => {dispatch(deleteBoard(boardId))
-    .then(history.push(`/users/${currentUser}`))
+  const handleDeleteBoard = () => {
+    dispatch(deleteBoard(boardId)).then(history.push(`/users/${currentUser}`));
   };
-
-
 
   if (loading) {
     return <div>Loading...</div>;
@@ -91,26 +96,32 @@ function BoardShowIndex() {
       <>
         <Navigation />
 
-        
-          <h1
-            className="title-selected-board"
-            style={{ fontSize: "50px", margin: "5%", marginLeft: "45%", color: "red" }}
-          >
-            {board.title}
-          </h1>
-          <div className="deleteboard" 
-        //   onClick={(handleDeleteBoard)}
-          ><i 
+        <h1
+          className="title-selected-board"
+          style={{
+            fontSize: "50px",
+            margin: "5%",
+            marginLeft: "45%"
+          }}
+        >
+          {board.title}
+        </h1>
+        <div className="deleteboard" onClick={handleDeleteBoard}>
+          {(userId == currentUser) && <i
             className="fa-solid fa-trash fa-fade"
             style={{ fontSize: "30px", marginLeft: "95%" }}
-          ></i></div>
-          
-          <div className="div-pin">
+          ></i>}
+        </div>
+
+        <div className="div-pin">
           {boardPins?.map((pinId) => {
             const pin = pins[pinId];
             if (!pin) {
               return <div>Loading...</div>;
             }
+
+            const randomSize = getRandomSize();
+            const pinClassName = `${randomSize}`;
 
             return (
               <div
@@ -118,7 +129,7 @@ function BoardShowIndex() {
                 onClick={handleImageClick(pin)}
                 className="clickable-pin"
               >
-                <img src={pin.imgUrl} className="user-pins" alt="Pin" />
+                <img src={pin.imgUrl} className={`user-pins ${pinClassName}`} alt="Pin" />
                 <div className="button-container" ref={buttonContainerRef}>
                   {currentUser == userId && (
                     <button

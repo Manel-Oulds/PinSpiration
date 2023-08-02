@@ -33,6 +33,12 @@ function PinShow({ user }) {
       setShowModal(true);
     }
   };
+  function getRandomSize() {
+    const sizes = ["small", "medium", "large"];
+    const randomIndex = Math.floor(Math.random() * sizes.length);
+    return sizes[randomIndex];
+  }
+
 
   const handleModalClose = () => {
     setShowModal(false);
@@ -50,6 +56,8 @@ function PinShow({ user }) {
   return (
     <div className="div-pins">
       {pins.map((pin) => {
+         const randomSize = getRandomSize();
+         const pinClassName = `${randomSize}`;
         if (!pin) return null;
         return (
           <div
@@ -57,7 +65,7 @@ function PinShow({ user }) {
             onClick={handleImageClick(pin)}
             className="clickable-pin"
           >
-            <img src={pin.imgUrl} className="user-pins" alt="Pin" />
+            <img src={pin.imgUrl} className={`user-pins ${pinClassName}`} alt="Pin" />
             <div className="button-container" ref={buttonContainerRef}>
               {currentUser.id === user.id && (
                 <button

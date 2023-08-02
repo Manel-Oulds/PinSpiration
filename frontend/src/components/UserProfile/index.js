@@ -22,6 +22,9 @@ function UserProfile() {
   const boardPins = useSelector((state) => state.boardPins);
   const [loading, setLoading] = useState(true);
 
+  console.log(currentUser.id);
+  console.log(userId)
+  console.log(currentUser.id == userId)
   useEffect(() => {
     // Fetch user data and boards
     const fetchUserAndBoards = async () => {
@@ -84,17 +87,40 @@ function UserProfile() {
           </NavLink>
         )}
       </div>
-      <div className="plus-btn" onClick={() => handleCreateBoard()}>
-        <i className="fa-solid fa-plus fa-2xl"></i>
-      </div>
-      {/* <div>
-        <PinShow user={user} />
-      </div> */}
+
+    {(userId == currentUser.id ) && <div className="plus-btn" onClick={() => handleCreateBoard()}>
+      <i className="fa-solid fa-plus fa-2xl"></i>
+    </div>}
 
       <div>
         <BoardShow user={user} />
       </div>
 
+      <div
+        classname=".unorganized_ideas"
+        style={{
+          display: "flex",
+          justifyContent: "start",
+          alignItems: "center",
+          marginTop: "60px",
+          marginLeft: "30px",
+        }}
+      >
+        {" "}
+        <label
+          style={{
+            color: "gray",
+            alignText: "center",
+            fontSize: "40px",
+          }}
+        >
+          {" "}
+          Unorganized Ideas{" "}
+        </label>
+      </div>
+      <div>
+        <PinShow user={user} />
+      </div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <BoardForm onClose={handleCloseModal} />

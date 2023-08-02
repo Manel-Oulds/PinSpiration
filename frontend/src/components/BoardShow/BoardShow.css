@@ -3,9 +3,9 @@
   flex-wrap: wrap;
   justify-content: center;
 }
-.my-div{
-    display: flex;
-    flex-direction: column;
+.my-div {
+  display: flex;
+  flex-direction: column;
 }
 .board-container {
   display: flex;
@@ -24,26 +24,23 @@
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   overflow: hidden;
-  
 }
 .div-vert1 {
   margin: 2px;
-  border: 1px solid;
   border-radius: 1px solid;
   width: 100%;
   height: 50%;
   border-top-left-radius: 20px;
-  background-color: gray;
+  background-color: rgba(56, 51, 51, 0.2);
   overflow: hidden;
   padding: 5px;
 }
 .div-vert2 {
   margin: 2px;
-  border: 1px solid;
   border-radius: 1px solid;
   width: 100%;
   height: 50%;
-  background-color: gray;
+  background-color: rgba(56, 51, 51, 0.2);
   border-bottom-left-radius: 20px;
   overflow: hidden;
   padding: 5px;
@@ -52,25 +49,68 @@
 .horizontal-div {
   margin: 2px 3px;
   margin-right: 2px;
-  border: 1px solid;
   width: 50%;
   height: 96%;
-  background-color: gray;
+  background-color: rgba(56, 51, 51, 0.2);
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   overflow: hidden;
-
 }
 .title-board {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-.div-img{
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.link:hover {
+  text-decoration: none;
+  color: rgb(6, 6, 6, 0.2);
+}
+
+.div-img {
   /* display: block; */
   width: 110%;
   height: 110%;
   object-fit: contain;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.link:hover {
+  text-decoration: none;
+  color: rgb(6, 6, 6, 0.2);
+}
+
+.title-board label {
+  font-size: 20px;
+  color: rgb(147, 134, 134);
+}
+
+.small {
+  height: 180px;
+}
+.medium {
+  height: 280px;
+}
+.large {
+  height: 400px;
+}
+
+.clickable-pin img {
+  border: 1px solid rgb(244, 218, 222, 0.5);
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.title-selected-board {
+  color: rgb(124, 113, 113);
 }
 
 

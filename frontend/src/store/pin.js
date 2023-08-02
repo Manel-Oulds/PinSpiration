@@ -5,7 +5,7 @@ import * as userActions from "./session";
 import { fetchAllBoardPins } from "./boardPins";
 
 const SET_PIN = "pins/setPin";
-const REMOVE_PIN = "pins/removePin";
+export const REMOVE_PIN = "pins/removePin";
 const GET_PIN = "pins/getPin";
 const GET_PINS = "pins/getPins";
 

@@ -64,3 +64,26 @@
 .fa-plus:hover{
     cursor: pointer;
 }
+
+
+.div-pins{
+    border-top:1px solid lightgray;
+}
+
+.unorganized_ideas{
+   margin-top: 5px;
+
+}
+
+.unorganized_ideas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+    margin: 20px; 
+  }
+  
+  
+  .unorganized_ideas label {
+    color: white; 
+  }

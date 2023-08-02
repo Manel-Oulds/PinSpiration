@@ -4,9 +4,12 @@ import { useEffect } from "react";
 import "./BoardShow.css";
 import { fetchAllBoards, fetchBoards } from "../../store/board";
 import { Link } from "react-router-dom/cjs/react-router-dom";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 function BoardShow({ user }) {
   const dispatch = useDispatch();
+
+ 
 
   //Getting boardPins for that user
   const boards = useSelector((state) => {
@@ -28,7 +31,7 @@ function BoardShow({ user }) {
     <div className="boards">
       {boards.map((board) => (
         <div key={board.id} className="my-board">
-          <Link to={`/users/${user.id}/boards/${board.id}`}>
+          <Link className="link" to={`/users/${user.id}/boards/${board.id}`}>
             <div className="board-container">
               <div className="vertical-divs">
                 {board.pins.length > 0 ? (

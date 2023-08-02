@@ -1,5 +1,6 @@
 import csrfFetch from "./csrf";
 import { SET_BOARD, createBoard } from "./board";
+import { REMOVE_PIN } from "./pin";
 
 const storeCSRFToken = (response) => {
   const csrfToken = response.headers.get("X-CSRF-Token");
@@ -51,11 +52,10 @@ export const signup =
     const data = await response.json();
     storeCurrentUser(data.user);
     await dispatch(setCurrentUser(data.user));
-    const {user_id} = data.user.id;
+    const { user_id } = data.user.id;
     // dispatch(createBoard({title:"All Pins",user_id}));
     return response;
   };
-
 
 export const update = (user) => async (dispatch) => {
   const response = await csrfFetch(`/api/users/${user.id}`, {
@@ -106,6 +106,12 @@ const sessionReducer = (state = initialState, action) => {
       const usercopy = { ...state.user };
       usercopy.boardIds = boardIds;
       return { user: usercopy };
+    case REMOVE_PIN:
+      const updatedUser = {
+        ...state.user,
+        pinIds: state.user.pinIds.filter((pinId) => pinId !== action.payload),
+      };
+      return { ...state, user: updatedUser };
     default:
       return state;
   }
