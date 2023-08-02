@@ -13,7 +13,7 @@ function EditPin({ pin, onCloseModal }) {
   const dispatch = useDispatch();
 
   const handleEdit = (pin) => {
-    console.log(pin)
+    console.log(pin);
     dispatch(pinActions.updatePin({ ...pin, title, description }));
     onCloseModal();
   };
@@ -32,13 +32,13 @@ function EditPin({ pin, onCloseModal }) {
         <div className="inf-pin">
           <div className="board-div">
             <label className="label-style"> Board</label>
-            <select value={selectedBoard} className="sel-board">
+            {/* <select value={selectedBoard} className="sel-board">
               <option value="option1" selected disabled>
                 Select a board
               </option>
               <option value="option2">Option 2</option>
               <option value="option3">Option 3</option>
-            </select>
+            </select> */}
           </div>
           <div className="title-div">
             <label className="label-style">

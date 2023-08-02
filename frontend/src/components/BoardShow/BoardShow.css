@@ -33,7 +33,6 @@
   border-top-left-radius: 20px;
   background-color: rgba(56, 51, 51, 0.2);
   overflow: hidden;
-  padding: 5px;
 }
 .div-vert2 {
   margin: 2px;
@@ -43,7 +42,6 @@
   background-color: rgba(56, 51, 51, 0.2);
   border-bottom-left-radius: 20px;
   overflow: hidden;
-  padding: 5px;
 }
 
 .horizontal-div {
@@ -73,9 +71,8 @@
 
 .div-img {
   /* display: block; */
-  width: 110%;
-  height: 110%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
 }
 
 .link {
@@ -112,5 +109,3 @@
 .title-selected-board {
   color: rgb(124, 113, 113);
 }
-
-

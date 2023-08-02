@@ -255,7 +255,7 @@ function Pin() {
       await dispatch(boardActions.fetchAllBoards());
       await dispatch(fetchAllBoardPins());
       await dispatch(pinActions.fetchAllPins());
-      setLoading(false); // Set loading to false after fetching is done
+      setLoading(false);
     };
 
     fetchInitialData();
@@ -313,7 +313,7 @@ function Pin() {
   let preview = null;
 
   if (loading) {
-    return <div>Loading...</div>; // Render a loading message while fetching data
+    return <div>Loading...</div>;
   } else {
     return (
       <div className="pin-div">
@@ -356,6 +356,8 @@ function Pin() {
                     <option value="option1" selected>
                       Select a board
                     </option>
+                    {console.log("hey there")}
+                    {console.log(userBoards)}
                     {userBoards?.map((boardId) => {
                       const board = boards[boardId];
                       if (board) {
