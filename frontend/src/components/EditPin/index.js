@@ -1,22 +1,67 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as pinActions from "../../store/pin";
+import {
+  addBoardPin,
+  deleteBoardPin,
+  fetchAllBoardPins,
+  removePinFromBoard,
+  updateBoardPin,
+} from "../../store/boardPins";
 
 function EditPin({ pin, onCloseModal }) {
   const [title, setTitle] = useState(pin.title);
-  const [board, selectedBoard] = useState();
+  const [selectedBoard, setSelectedBoard] = useState();
   const [description, setDescription] = useState(pin.description);
   const history = useHistory();
   let err = false;
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+  const boards = useSelector((state) => state.boards);
+  const userBoards = useSelector((state) => state.session.user.boardIds);
+  const boardpins = useSelector((state) => state.boardpins);
+  //Finding a board Id associated with pin
+  const foundBoardId = Object.entries(boardpins).find(([boardId, pinIds]) =>
+    pinIds.includes(pin.id)
+  );
+  const [oldBoardId, pinIds] = foundBoardId; // PinId is in boardId
+
+  useEffect(() => {
+    dispatch(fetchAllBoardPins());
+  }, [removePinFromBoard]);
+
+  // const handleEdit = (pin) => {
+  //   console.log(pin);
+  //   dispatch(pinActions.updatePin({ ...pin, title, description }));
+  //   dispatch(
+  //     addBoardPin({
+  //       board_pin: {
+  //         board_id: selectedBoard,
+  //         pin_id: pin.id,
+  //       },
+  //     })
+  //   );
+
+  //   onCloseModal();
+  // };
 
   const handleEdit = (pin) => {
     console.log(pin);
     dispatch(pinActions.updatePin({ ...pin, title, description }));
+
+    if (oldBoardId !== selectedBoard) {
+      dispatch(
+        updateBoardPin(selectedBoard, pin.id, {
+          board_id: selectedBoard,
+          pin_id: pin.id,
+        })
+      );
+    }
+
     onCloseModal();
   };
+
   const handleCancel = () => {
     onCloseModal();
   };
@@ -32,13 +77,25 @@ function EditPin({ pin, onCloseModal }) {
         <div className="inf-pin">
           <div className="board-div">
             <label className="label-style"> Board</label>
-            {/* <select value={selectedBoard} className="sel-board">
-              <option value="option1" selected disabled>
-                Select a board
+            <select
+              value={selectedBoard}
+              onChange={(e) => setSelectedBoard(e.target.value)}
+              className="sel-board"
+            >
+              <option key={oldBoardId} value={oldBoardId}>
+                {boards[oldBoardId]?.title}
               </option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-            </select> */}
+              {userBoards.map((boardId) => {
+                const board = boards[boardId];
+                return (
+                  oldBoardId != boardId && (
+                    <option key={boardId} value={boardId}>
+                      {board.title}
+                    </option>
+                  )
+                );
+              })}
+            </select>
           </div>
           <div className="title-div">
             <label className="label-style">

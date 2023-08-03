@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     resource :session, only: [:show, :create, :destroy]
     resources :pins 
     resources :boards, only: [:index, :create, :show, :destroy, :update]
-    resources :board_pins, only: [:create, :destroy, :update, :index]
+    resources :board_pins, only: [:create, :destroy, :index]
+    put '/board_pins/:board_id/:pin_id', to: 'board_pins#update', as: 'update_board_pin'
 
   end
   get '*path', to: "static_pages#frontend_index"
