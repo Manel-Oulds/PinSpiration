@@ -5,13 +5,15 @@ import pinReducer from "./pin";
 import userReducer from "./user";
 import boardReducer from "./board";
 import boardPinReducer from "./boardPins";
+import searchReducer from "./search";
 
 const rootReducer = combineReducers({
   session:sessionReducer,
   pin:pinReducer,
   users:userReducer,
   boards:boardReducer,
-  boardpins: boardPinReducer
+  boardpins: boardPinReducer,
+  search: searchReducer,
 });
 
 let enhancer;

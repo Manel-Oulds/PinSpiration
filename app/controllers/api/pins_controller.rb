@@ -56,6 +56,13 @@ class Api::PinsController < ApplicationController
         end
 
     end
+
+    def search
+      query = params[:query]
+      @pins = Pin.where('title ILIKE  ?', "%#{query}%")
+
+      render :search
+    end
 private
     def pin_params
         params.require(:pin).permit(:user_id,:title,:description, :image)

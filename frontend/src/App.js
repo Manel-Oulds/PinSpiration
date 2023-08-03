@@ -7,11 +7,10 @@ import EditProfile from "./components/ProfilePage/ProfilePage.js";
 import UserProfile from "./components/UserProfile/index.js";
 import Pin from "./components/PinForm/index.js";
 import BoardShowIndex from "./components/BoardShowIndex/index.js";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min.js";
+import SearchPage from "./components/SearchResult/index.js";
 
 function App() {
-  const sessionUser = useSelector((state) => state.session.user);
-  const dispatch = useDispatch();
-
   return (
     <>
       <Switch>
@@ -31,6 +30,9 @@ function App() {
 
         <Route exact path={`/users/:userId/boards/:boardId`}>
           <BoardShowIndex />
+        </Route>
+        <Route exact path="/search">
+          <SearchPage />
         </Route>
       </Switch>
     </>

@@ -121,3 +121,35 @@
 a {
   color: inherit;
 }
+
+.searchbar-container{
+  position: relative;
+  display: flex;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 30px;
+  height: 30px;
+  width: 700px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#search-input{
+  border: 0;
+  outline: none;
+
+}
+
+#search-dropdown{
+  position: absolute;
+  top: 45px;
+  width: 100%;
+  background-color: white;
+
+}
+
+.search-dropdown-item{
+  background-color: white;
+  
+}
+

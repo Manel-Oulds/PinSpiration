@@ -7,6 +7,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import CreateButton from "./CreateButton";
 import * as pinActions from "../../store/pin";
+import SearchBar from "./SearchBar";
 
 function Navigation() {
   const sessionUser = useSelector((state) => state.session.user);
@@ -27,7 +28,8 @@ function Navigation() {
           </NavLink>
           <button className="explore-btn btn"> Explore </button>
           <CreateButton className="create-btn" />
-          <input type="text" className="search-bar" placeholder=" 🔍 Search" />
+          <SearchBar />
+          {/* <input type="text" className="search-bar" placeholder=" 🔍 Search" /> */}
           <button className="notification-btn btn ">
             <a href="https://www.linkedin.com/in/manel-ould-saada-134231282/">
               <i class="fa-brands fa-linkedin fa-2xl"></i>

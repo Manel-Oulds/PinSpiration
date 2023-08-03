@@ -43,6 +43,13 @@ class Api::UsersController < ApplicationController
     render :show
   end
 
+  def search
+    query = params[:query]
+    @pins = Pin.where('title ILIKE  ?', "%#{query}%")
+
+    render :search
+  end
+
   
 
   private 
