@@ -24,11 +24,13 @@ function SearchPage() {
   return (
     <>
       <Navigation />
-      <h1> Results for {query}</h1>
-      {searchresults?.map((item) => (
-        <img src={pins[item.id].imgUrl} className="user-pins" alt="No pin" />
-      ))}
-      
+      <div className="container">
+        {searchresults?.map((item) => (
+          <div className={`${getRandomSize()}`}>
+            <img src={pins[item.id]?.imgUrl} alt="No pin" />
+          </div>
+        ))}
+      </div>
     </>
   );
 }

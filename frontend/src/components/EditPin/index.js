@@ -52,7 +52,7 @@ function EditPin({ pin, onCloseModal }) {
 
     if (oldBoardId !== selectedBoard) {
       dispatch(
-        updateBoardPin(selectedBoard, pin.id, {
+        updateBoardPin(oldBoardId, pin.id, {
           board_id: selectedBoard,
           pin_id: pin.id,
         })
@@ -90,7 +90,7 @@ function EditPin({ pin, onCloseModal }) {
                 return (
                   oldBoardId != boardId && (
                     <option key={boardId} value={boardId}>
-                      {board.title}
+                      {board?.title}
                     </option>
                   )
                 );
@@ -133,22 +133,22 @@ function EditPin({ pin, onCloseModal }) {
           <img src={pin.imgUrl} className="user-pins" alt="Pin" />
         </div>
       </div>
-      <div className="footer">
-        <div className="dlt-btn">
+      {/* <div className="footer"> */}
+      {/* <div className="dlt-btn">
           <button className="gray-btn" onClick={() => handleDelete(pin)}>
             Delete
           </button>
-        </div>
-        <div className="cancel-save-div">
-          <button className="gray-btn" onClick={() => handleCancel()}>
-            Cancel
-          </button>
-          <button className="red-btn" onClick={() => handleEdit(pin)}>
-            Save
-          </button>
-        </div>
+        </div> */}
+      <div className="cancel-save-div">
+        <button className="gray-btn" onClick={() => handleCancel()}>
+          Cancel
+        </button>
+        <button className="red-btn" onClick={() => handleEdit(pin)}>
+          Save
+        </button>
       </div>
     </div>
+    // </div>
   );
 }
 

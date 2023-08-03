@@ -122,7 +122,7 @@ a {
   color: inherit;
 }
 
-.searchbar-container{
+.searchbar-container {
   position: relative;
   display: flex;
   padding: 5px;
@@ -134,22 +134,25 @@ a {
   justify-content: space-between;
 }
 
-#search-input{
+#search-input {
   border: 0;
   outline: none;
-
 }
 
-#search-dropdown{
+#search-dropdown {
   position: absolute;
   top: 45px;
   width: 100%;
   background-color: white;
-
 }
 
-.search-dropdown-item{
+.search-dropdown-item {
   background-color: white;
-  
+  border-radius: 5px;
 }
 
+#search-button{
+  height: 100%;
+  border-radius: 30px;
+  background-color: lightgray;
+}

@@ -76,8 +76,15 @@ function BoardShowIndex() {
     setShowModal(false);
   };
   const handleDelete = (id) => {
-    dispatch(pinActions.deletePin(id));
-    history.push(`/users/${currentUser}`);
+    const confirmation = window.confirm(
+      "Are you sure you want to delete this board and its pins?"
+    );
+
+    if (confirmation) {
+      dispatch(pinActions.deletePin(id)).then(() => {
+        history.push(`/users/${currentUser}`);
+      });
+    }
   };
 
   const handleEditClick = (pin) => {
@@ -85,8 +92,20 @@ function BoardShowIndex() {
     setEditModal(true);
   };
 
+  // const handleDeleteBoard = () => {
+  //   dispatch(deleteBoard(boardId)).then(history.push(`/users/${currentUser}`));
+  // };
+
   const handleDeleteBoard = () => {
-    dispatch(deleteBoard(boardId)).then(history.push(`/users/${currentUser}`));
+    const confirmation = window.confirm(
+      "Are you sure you want to delete this board and its pins?"
+    );
+
+    if (confirmation) {
+      dispatch(deleteBoard(boardId)).then(() => {
+        history.push(`/users/${currentUser}`);
+      });
+    }
   };
 
   if (loading) {
@@ -103,11 +122,11 @@ function BoardShowIndex() {
             marginLeft: "45%",
           }}
         >
-          {board.title}
+          {board?.title}
         </h1>
         {boardPins ? boardPins.length : 0} Pin(s){" "}
         <div className="deleteboard" onClick={handleDeleteBoard}>
-          {userId == currentUser && board.title !== "All Pins" && (
+          {userId == currentUser && board?.title !== "All Pins" && (
             <i
               className="fa-solid fa-trash fa-fade"
               style={{ fontSize: "30px", marginLeft: "95%" }}

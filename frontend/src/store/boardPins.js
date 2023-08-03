@@ -22,9 +22,9 @@ export const deletePinFromBoard = (boardId, pinId) => ({
   payload: { boardId, pinId },
 });
 
-export const editBoardPin = (boardId, pinId, updatedData) => ({
+export const editBoardPin = (boardPin) => ({
   type: EDIT_BOARD_PIN,
-  payload: { boardId, pinId, updatedData },
+  boardPin,
 });
 
 export const fetchBoardPins = (boardId) => async (dispatch) => {
@@ -85,21 +85,21 @@ export const removePinFromBoard = (boardId, pinId) => async (dispatch) => {
     console.error("Error removing pin from board:", errorMessage);
     throw new Error("Failed to remove pin from board");
   }
-
-  // dispatch(deletePinFromBoard(boardId, pinId));
 };
 
 export const updateBoardPin =
-  (boardId, pinId, updatedData) => async (dispatch) => {
+  (prevBoardId, pinId, updatedData) => async (dispatch) => {
     try {
-      // Make the API call to update the board pin on the server
-      const response = await csrfFetch(`/api/board_pins/${boardId}/${pinId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
-      });
+      const response = await csrfFetch(
+        `/api/board_pins/${prevBoardId}/${pinId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedData),
+        }
+      );
 
       if (!response.ok) {
         const errorMessage = await response.text();
@@ -107,8 +107,8 @@ export const updateBoardPin =
         throw new Error("Failed to update BoardPin");
       }
 
-      // If the API call is successful, dispatch the updateBoardPin action
-      dispatch(editBoardPin(boardId, pinId, updatedData));
+      const data = await response.json();
+      dispatch(editBoardPin(data.boardPin));
     } catch (error) {
       console.error("Error updating BoardPin:", error);
     }
@@ -132,38 +132,8 @@ export default function boardPinReducer(state = {}, action) {
         ...action.payload,
       };
 
-    // case DELETE_PIN:
-    //   const { boardId: boardIdToRemove, pinId: pinIdToRemove } = action.payload;
-    //   if (state.boardPins[boardIdToRemove]) {
-    //     const updatedPins = state.boardPins[boardIdToRemove].filter(
-    //       (pinId) => pinId !== pinIdToRemove
-    //     );
-    //     return {
-    //       ...state,
-    //       boardPins: {
-    //         ...state.boardPins,
-    //         [boardIdToRemove]: updatedPins,
-    //       },
-    //     };
-    //   }
-    //   return state;
-
     case EDIT_BOARD_PIN:
-      const updatedBoardPins = { ...state.boardPins };
-      if (updatedBoardPins[action.payload.boardId]) {
-        const boardPinIndex = updatedBoardPins[
-          action.payload.boardId
-        ].findIndex((existingPinId) => existingPinId === action.payload.pinId);
-        if (boardPinIndex !== -1) {
-          updatedBoardPins[action.payload.boardId][boardPinIndex] =
-            action.payload.updatedData;
-          return {
-            ...state,
-            boardPins: updatedBoardPins,
-          };
-        }
-      }
-      return state;
+      return { ...newState, ...action.boardPin };
 
     default:
       return state;

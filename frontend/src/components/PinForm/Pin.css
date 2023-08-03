@@ -280,6 +280,7 @@
 }
 
 .cancel-save-div {
+  margin: 8px;
   justify-self: flex-end;
 }
 

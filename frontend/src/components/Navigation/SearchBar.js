@@ -51,7 +51,7 @@ function SearchBar() {
         onChange={handleSearch}
       />
       <button id="search-button" onClick={handelSubmit}> Search </button>
-      {searchText && searchResults && (
+      {/* {searchText && searchResults && (
         <ul id="search-dropdown">
           {searchResults.map((result) => {
             return (
@@ -64,7 +64,7 @@ function SearchBar() {
             );
           })}
         </ul>
-      )}
+      )} */}
     </div>
   );
 }

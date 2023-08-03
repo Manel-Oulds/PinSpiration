@@ -20,10 +20,12 @@ class Api::BoardPinsController < ApplicationController
     end
 
     def update
-      @board_pin = BoardPin.find_by(board_id: params[:board_pin][:board_id], pin_id: params[:board_pin][:pin_id])
+      @board_pin = BoardPin.find_by(board_id: params[:prev_board_id], pin_id: params[:pin_id])
       if @board_pin
         if @board_pin.update(board_pin_params)
-          render :show # or any other response you prefer
+          @prev_board = Board.find(params[:prev_board_id])
+          @next_board = Board.find(params[:board_pin][:board_id])
+          render :show 
         else
           render json: { errors: @board_pin.errors.full_messages }, status: 422
         end
@@ -31,17 +33,6 @@ class Api::BoardPinsController < ApplicationController
         render json: { errors: "BoardPin not found" }, status: 404
       end
     end
-
-    # def destroy
-    #     @board_pin = BoardPin.find(params[:id]);
-    #     if @board_pin
-    #         @board_pin&.delete
-    #     else
-    #         render json: {errors: "Error deleting " }, status: 422
-    #     end
-
-
-    # end
 
 
     def destroy

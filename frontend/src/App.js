@@ -9,6 +9,7 @@ import Pin from "./components/PinForm/index.js";
 import BoardShowIndex from "./components/BoardShowIndex/index.js";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min.js";
 import SearchPage from "./components/SearchResult/index.js";
+import UserError from "./components/UserEror/index.js";
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
         </Route>
         <Route exact path="/search">
           <SearchPage />
+        </Route>
+        <Route path="/">
+          <UserError />
         </Route>
       </Switch>
     </>
