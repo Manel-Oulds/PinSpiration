@@ -41,7 +41,6 @@ export const fetchAllBoardPins = () => async (dispatch) => {
   try {
     const response = await csrfFetch(`/api/board_pins`);
     const boardPinsData = await response.json();
-    console.log(boardPinsData);
     dispatch(getBoardPins(boardPinsData));
   } catch (error) {
     console.error("Error fetching board pins:", error);

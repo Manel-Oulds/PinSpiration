@@ -22,9 +22,6 @@ function UserProfile() {
   const boardPins = useSelector((state) => state.boardPins);
   const [loading, setLoading] = useState(true);
 
-  console.log(currentUser.id);
-  console.log(userId)
-  console.log(currentUser.id == userId)
   useEffect(() => {
     // Fetch user data and boards
     const fetchUserAndBoards = async () => {
@@ -52,7 +49,14 @@ function UserProfile() {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading">
+        <i
+          className="fa-solid fa-spinner fa-spin"
+          style={{ color: "#ff0000" }}
+        ></i>
+      </div>
+    );
   }
 
   return (
@@ -88,9 +92,11 @@ function UserProfile() {
         )}
       </div>
 
-    {(userId == currentUser.id ) && <div className="plus-btn" onClick={() => handleCreateBoard()}>
-      <i className="fa-solid fa-plus fa-2xl"></i>
-    </div>}
+      {userId == currentUser.id && (
+        <div className="plus-btn" onClick={() => handleCreateBoard()}>
+          <i className="fa-solid fa-plus fa-2xl"></i>
+        </div>
+      )}
 
       <div>
         <BoardShow user={user} />
@@ -99,7 +105,7 @@ function UserProfile() {
       {/* <div>
         <PinShow user={user} />
       </div> */}
-      
+
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <BoardForm onClose={handleCloseModal} />

@@ -16,6 +16,7 @@ export default function PinsIndex() {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const [isSaved, setIsSaved] = useState(false);
+  const [loading, setLoading] = useState(true);
   const pins = useSelector((state) => state.pin);
   const allBoards = useSelector((state) => state.boards);
 
@@ -34,7 +35,12 @@ export default function PinsIndex() {
   };
 
   useEffect(() => {
-    dispatch(pinActions.fetchAllPins());
+    const fetchData = async () => {
+      await dispatch(pinActions.fetchAllPins());
+      setLoading(false);
+    };
+
+    fetchData();
   }, [dispatch]);
 
   const handleSavePin = (pin) => {
@@ -51,23 +57,39 @@ export default function PinsIndex() {
 
   return (
     <div className="container">
-      {Object.values(pins).map((pin) => (
+      {loading ? (
         <div
-          key={pin.id}
-          className={getRandomSize()}
-          onClick={() => handleClick(pin)}
+          className="loading"
+          style={{
+            backgroundColor: "white",
+            marginTop: "600px",
+            marginLeft: "600px",
+          }}
         >
-          <button
-            className="save-pin"
-            style={{ background: "red" }}
-            onClick={() => handleSavePin(pin)}
-            disabled={isSaved}
-          >
-            {isSaved ? "Saved" : "Save"}
-          </button>
-          <img src={pin.imgUrl} alt={pin.title}></img>
+          <i
+            className="fa-solid fa-spinner fa-spin"
+            style={{ color: "#ff0000" }}
+          ></i>
         </div>
-      ))}
+      ) : (
+        Object.values(pins).map((pin) => (
+          <div
+            key={pin.id}
+            className={getRandomSize()}
+            onClick={() => handleClick(pin)}
+          >
+            <button
+              className="save-pin"
+              style={{ background: "red" }}
+              onClick={() => handleSavePin(pin)}
+              disabled={isSaved}
+            >
+              {isSaved ? "Saved" : "Save"}
+            </button>
+            <img src={pin.imgUrl} alt={pin.title}></img>
+          </div>
+        ))
+      )}
 
       {showModal && selectedPin && (
         <Modal onClose={handleModalClose}>

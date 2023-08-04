@@ -38,22 +38,8 @@ function BoardShowIndex() {
       await dispatch(fetchUser(userId));
       setLoading(false);
     };
-    // const fetchPins = async () => {
-    //   if (boardPins) {
-    //     boardPins.forEach((pinId) => {
-    //       const pin = pins[pinId];
-    //       if (pin) {
-    //         dispatch(fetchPin(pinId));
-    //       }
-    //     });
-    //   }
-    // };
 
-    // async function fetchData() {
     fetchBoardData();
-    // await fetchPins();
-    // }
-    // fetchData();
   }, [boardId, dispatch]);
 
   function getRandomSize() {
@@ -92,10 +78,6 @@ function BoardShowIndex() {
     setEditModal(true);
   };
 
-  // const handleDeleteBoard = () => {
-  //   dispatch(deleteBoard(boardId)).then(history.push(`/users/${currentUser}`));
-  // };
-
   const handleDeleteBoard = () => {
     const confirmation = window.confirm(
       "Are you sure you want to delete this board and its pins?"
@@ -109,7 +91,14 @@ function BoardShowIndex() {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading">
+        <i
+          className="fa-solid fa-spinner fa-spin"
+          style={{ color: "#ff0000" }}
+        ></i>
+      </div>
+    );
   } else {
     return (
       <>

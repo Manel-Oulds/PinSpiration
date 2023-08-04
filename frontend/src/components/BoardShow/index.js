@@ -19,13 +19,13 @@ function BoardShow({ user }) {
       return user.boardIds.map((id) => state.boards[id]);
     }
   });
-  // console.log(boards)
+
 
   const boardPins = useSelector((state) => state.boardpins);
-  // console.log(boardPins)
+
 
   const pins = useSelector((state) => state.pin);
-  console.log(pins);
+
 
   return (
     <div className="boards">
@@ -36,7 +36,7 @@ function BoardShow({ user }) {
               <div className="vertical-divs">
                 {board.pins.length > 0 ? (
                   <div className="div-vert1">
-                    {/* {console.log(pins[Object.values(boardPins[board.id])[0]]?.imgUrl)} */}
+                    
                     <img
                       className="div-img"
                       src={pins[Object.values(boardPins[board.id])[0]]?.imgUrl}

@@ -31,23 +31,8 @@ function EditPin({ pin, onCloseModal }) {
     dispatch(fetchAllBoardPins());
   }, [removePinFromBoard]);
 
-  // const handleEdit = (pin) => {
-  //   console.log(pin);
-  //   dispatch(pinActions.updatePin({ ...pin, title, description }));
-  //   dispatch(
-  //     addBoardPin({
-  //       board_pin: {
-  //         board_id: selectedBoard,
-  //         pin_id: pin.id,
-  //       },
-  //     })
-  //   );
-
-  //   onCloseModal();
-  // };
 
   const handleEdit = (pin) => {
-    console.log(pin);
     dispatch(pinActions.updatePin({ ...pin, title, description }));
 
     if (oldBoardId !== selectedBoard) {

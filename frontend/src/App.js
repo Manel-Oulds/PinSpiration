@@ -12,6 +12,7 @@ import SearchPage from "./components/SearchResult/index.js";
 import UserError from "./components/UserEror/index.js";
 
 function App() {
+  
   return (
     <>
       <Switch>
@@ -35,7 +36,7 @@ function App() {
         <Route exact path="/search">
           <SearchPage />
         </Route>
-        <Route path="/">
+        <Route>
           <UserError />
         </Route>
       </Switch>

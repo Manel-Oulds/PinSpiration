@@ -23,11 +23,6 @@ export function ShowPinItem({ pin }) {
   }, [dispatch, pin.userId]);
 
   const currentUser = useSelector((state) => state.session.user);
-  console.log("userBoards");
-  console.log(userBoardIds);
-  console.log("all boards");
-  console.log(allBoards);
-  console.log(allBoards[allPinId]);
 
   const handleSavePin = () => {
     dispatch(

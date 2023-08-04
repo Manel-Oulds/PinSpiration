@@ -56,14 +56,7 @@ export const createBoard = (board) => async (dispatch, getState) => {
     body: JSON.stringify(board),
   });
   const data = await response.json();
-  // const { user } = getState().session;
-  // const updatedUser = {
-  //   ...user,
-  //   boardIds: [...user.boardIds, data.board.id],
-  // };
-  // console.log(updatedUser);
   dispatch(setBoard(data.board));
-  // dispatch(userActions.setCurrentUser(updatedUser));
 };
 
 export const fetchBoard = (boardId) => async (dispatch) => {

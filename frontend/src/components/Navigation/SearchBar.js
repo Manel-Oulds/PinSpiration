@@ -10,24 +10,23 @@ function SearchBar() {
   const [timer, setTimer] = useState(0);
   const dispatch = useDispatch();
   const searchResults = useSelector((state) => Object.values(state.search));
-  console.log(searchResults);
 
   function handleClick(id) {
     return (e) => {
       e.preventDefault();
       history.push(`/pins/${id}`);
-      dispatch(clearSearchresults())
+      dispatch(clearSearchresults());
       setSearchText("");
     };
   }
 
-  function handelSubmit(e){
+  function handelSubmit(e) {
     e.preventDefault();
-    if(searchText.trim() !== ""){
-        history.push(`/search?query=${searchText}`);
-        setSearchText("");
+    if (searchText?.trim() !== "") {
+      history.push(`/search?query=${searchText}`);
+      setSearchText("");
     }
-}
+  }
 
   function handleSearch(e) {
     const query = e.target.value;
@@ -50,7 +49,10 @@ function SearchBar() {
         value={searchText}
         onChange={handleSearch}
       />
-      <button id="search-button" onClick={handelSubmit}> Search </button>
+      <button id="search-button" onClick={handelSubmit}>
+        {" "}
+        Search{" "}
+      </button>
       {/* {searchText && searchResults && (
         <ul id="search-dropdown">
           {searchResults.map((result) => {

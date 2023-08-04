@@ -32,13 +32,13 @@ function Navigation() {
           {/* <input type="text" className="search-bar" placeholder=" 🔍 Search" /> */}
           <button className="notification-btn btn ">
             <a href="https://www.linkedin.com/in/manel-ould-saada-134231282/">
-              <i class="fa-brands fa-linkedin fa-2xl"></i>
+              <i className="fa-brands fa-linkedin fa-2xl"></i>
             </a>
           </button>
           <button className="message-btn btn ">
             <a href="https://github.com/Manel-oulds">
               {" "}
-              <i class="fa-brands fa-square-github fa-2xl"></i>
+              <i className="fa-brands fa-square-github fa-2xl"></i>
             </a>
           </button>
           <NavLink to={`/users/${sessionUser.id}`}>

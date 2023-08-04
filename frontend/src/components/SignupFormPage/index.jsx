@@ -67,7 +67,7 @@ function SignupFormPage() {
         </div>
         {!emailPattern.test(email) && email.length > 0 && (err = true) && (
           <p>
-            <i class="fa-solid fa-triangle-exclamation"></i>
+            <i className="fa-solid fa-triangle-exclamation"></i>
             Hmm...that doesn't look like an email address.
           </p>
         )}
@@ -87,7 +87,7 @@ function SignupFormPage() {
         </div>
         {emailPattern.test(username) && username.length > 0 && (err = true) && (
           <p>
-            <i class="fa-solid fa-triangle-exclamation"></i>
+            <i className="fa-solid fa-triangle-exclamation"></i>
             Hmm...Username can't be an email.
           </p>
         )}
@@ -124,7 +124,7 @@ function SignupFormPage() {
         </div>
         {password.length < 6 && password.length > 0 && (err = true) && (
           <p>
-            <i class="fa-solid fa-triangle-exclamation"></i>The password you
+            <i className="fa-solid fa-triangle-exclamation"></i>The password you
             entered is too short.
           </p>
         )}

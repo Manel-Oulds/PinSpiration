@@ -1,89 +1,94 @@
-.info-picture{
-    margin-top:50px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;  
-    
+.info-picture {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.informations{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.informations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.profile-picture{
-    height: 150px;
-    width: 150px;
-    border-radius: 180px;
-    border:none;
-    background-color: rgb(69, 83, 108);
-    font-size: 100px;
-    color: white;
+.profile-picture {
+  height: 150px;
+  width: 150px;
+  border-radius: 180px;
+  border: none;
+  background-color: rgb(69, 83, 108);
+  font-size: 100px;
+  color: white;
 }
 
-
-.user-name, .input-email{
-    font-size: 45px;
-    border: none;
-    margin-top: 10px;
-    background-color: white;
-    position: relative;
-    text-align: center;
+.user-name,
+.input-email {
+  font-size: 45px;
+  border: none;
+  margin-top: 10px;
+  background-color: white;
+  position: relative;
+  text-align: center;
 }
 
-.input-email{
-    font-size: 15px;
-    color:lightgray;
+.input-email {
+  font-size: 15px;
+  color: lightgray;
 }
 
-.edit{
-    margin-top: 10px;
-    padding: 10px 10px;
-    border:none;
-    border-radius: 25px;
-    background-color: lightgray;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 18px;
-    
+.edit {
+  margin-top: 10px;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 25px;
+  background-color: lightgray;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px;
 }
 
-.plus-btn{
-    display: flex;
-    justify-content: end;
-   
+.plus-btn {
+  display: flex;
+  justify-content: end;
 }
 
-.fa-plus{
-    border: none;
-    background-color: none;
-    border-radius: 25px;
-    margin-right: 25px;
+.fa-plus {
+  border: none;
+  background-color: none;
+  border-radius: 25px;
+  margin-right: 25px;
 }
 
-.fa-plus:hover{
-    cursor: pointer;
+.fa-plus:hover {
+  cursor: pointer;
 }
 
-
-.div-pins{
-    border-top:1px solid lightgray;
-}
-
-.unorganized_ideas{
-   margin-top: 5px;
-
+.div-pins {
+  border-top: 1px solid lightgray;
 }
 
 .unorganized_ideas {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: gray;
-    margin: 20px; 
-  }
-  
-  
-  .unorganized_ideas label {
-    color: white; 
-  }
+  margin-top: 5px;
+}
+
+.unorganized_ideas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
+  margin: 20px;
+}
+
+.unorganized_ideas label {
+  color: white;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 40%;
+}
+.loading i {
+  font-size: 100px;
+}

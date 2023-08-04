@@ -44,7 +44,6 @@ function PinShow({ user }) {
     setShowModal(false);
   };
   const handleDelete = (id) => {
-    console.log(`hey ${id}`);
     dispatch(pinActions.deletePin(id));
   };
 
