@@ -1,7 +1,7 @@
 <h1>Overview</h1>
 <p></p>
 <p><a href="https://pinspiration.onrender.com/">PinSpiration</a> is a <a href="https://www.pinterest.com/"> Pinterest </a>clone  the social website for sharing and categorizing images.</p>
-<p><img src="./frontend/public/pinspiration.svg" style=" margin:5px; width: 600px; height: auto;", alt="pinspiration"/></p>
+<p><img src="./frontend/public/pinspiration.svg" style=" margin:5px; width: 600px; height: auto;" alt="pinspiration"/></p>
 
 <h1> Technologies</h1>
 <ul>
@@ -17,28 +17,28 @@
 
 <h1> Preview</h1>
 <h3>Splash Page</h3>
-<img src="../PinSpiration/frontend/assets/splash.gif" alt="splash" style=" margin:5px; width: 600px; height: auto;">
+<img src="../PinSpiration/frontend/public/assets/splash.gif" alt="splash" style=" margin:5px; width: 600px; height: auto;">
 <h3>Index Page</h3>
-<img src="../PinSpiration/frontend/assets/index.gif" style=" margin:5px; width: 600px; height: auto;">
+<img src="../PinSpiration/frontend/public/assets/index.gif" style=" margin:5px; width: 600px; height: auto;">
 <h3>User Profile</h3>
-<img src="../PinSpiration/frontend/assets/userProfile.png" style=" margin:5px; width: 600px; height: auto;", margin="50px" }} alt="profile">
+<img src="../PinSpiration/frontend/public/assets/userProfile.png" style=" margin:5px; width: 600px; height: auto;", alt="profile">
 <h3>Create Pin</h3>
-<img src="../PinSpiration/frontend/assets/create-pin.gif" style=" margin:5px; width: 600px; height: auto;", alt="pin">
+<img src="../PinSpiration/frontend/public/assets/create-pin.gif" style=" margin:5px; width: 600px; height: auto;", alt="pin">
 
 <h1>Code snipets</h1>
 <h3>Bellow is a code snippet for Pin controller to create, show, update and delete.</h3>
-<img src="../PinSpiration/frontend/assets/pinController1.png" style=" margin:5px; width: 600px; height: auto;", margin="50px", alt="pin-controller"/>
-<img src="../PinSpiration/frontend/assets/pinController2.png" style=" margin:5px; width: 600px; height: auto;" alt="pin-controller"/>
+<img src="../PinSpiration/frontend/public/assets/pinController1.png" style=" margin:5px; width: 600px; height: auto;", margin="50px", alt="pin-controller"/>
+<img src="../PinSpiration/frontend/public/assets/pinController2.png" style=" margin:5px; width: 600px; height: auto;" alt="pin-controller"/>
 
 <h3>Bellow is a code snippet for Board Reducer in the frontend with react.</h3>
-<img src="../PinSpiration/frontend/assets/board1.png" style=" margin:5px; width: 600px; height: auto;"alt="board-reducer"/>
-<img src="../PinSpiration/frontend/assets/board2.png" style=" margin:5px; width: 600px; height: auto;" alt="board-reducer"/>
-<img src="../PinSpiration/frontend/assets/board3.png" style=" margin:5px; width: 600px; height: auto;" alt="board-reducer"/>
+<img src="../PinSpiration/frontend/public/assets/board1.png" style=" margin:5px; width: 600px; height: auto;"alt="board-reducer"/>
+<img src="../PinSpiration/frontend/public/assets/board2.png" style=" margin:5px; width: 600px; height: auto;" alt="board-reducer"/>
+<img src="../PinSpiration/frontend/public/assets/board3.png" style=" margin:5px; width: 600px; height: auto;" alt="board-reducer"/>
 
 <h3>Bellow is a code snipper for BoardPin in the frontend.</h3>
-<img src="../PinSpiration/frontend/assets/boardPin1.png" style=" margin:5px; width: 600px; height: auto;" alt="board-pin" />
-<img src="../PinSpiration/frontend/assets/boardPin2.png" style=" margin:5px; width: 600px; height: auto;" alt="board-pin" />
-<img src="../PinSpiration/frontend/assets/boardPin3.png" style=" margin:5px; width: 600px; height: auto;" alt="board-pin" />
+<img src="../PinSpiration/frontend/public/assets/boardPin1.png" style=" margin:5px; width: 600px; height: auto;" alt="board-pin" />
+<img src="../PinSpiration/frontend/public/assets/boardPin2.png" style=" margin:5px; width: 600px; height: auto;" alt="board-pin" />
+<img src="../PinSpiration/frontend/public/assets/boardPin3.png" style=" margin:5px; width: 600px; height: auto;" alt="board-pin" />
 
 <h1>Future Features</h1>
 <ul>
