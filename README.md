@@ -17,7 +17,7 @@
 
 <h1> Preview</h1>
 <h3>Splash Page</h3>
-<img src="" alt="splash" style=" margin:5px; width: 600px; height: auto;">
+<img src="./frontend/public/splash.png" alt="splash" style=" margin:5px; width: 600px; height: auto;">
 <h3>Index Page</h3>
 <img src="./frontend/public/index.gif" alt="splash" style=" margin:5px; width: 600px; height: auto;">
 <h3>User Profile</h3>
