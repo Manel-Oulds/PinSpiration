@@ -27,7 +27,7 @@
 
 <h1>Code snipets</h1>
 
-<h3>Bellow is a code snippet for Pin controller to delete and search.</h3>
+<h3>Below is a code snippet for Pin controller to delete and search.</h3>
 <img src="./frontend/public/pinController2.png" style=" margin:5px; width: 600px; height: auto;", margin="50px", alt="pin-controller"/>
 
 <h3>Below is a code snippet for Board Reducer in the frontend with react.</h3>
