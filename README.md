@@ -36,20 +36,6 @@
 <h3>Below is a code snipper for BoardPin to update and remove in the frontend.</h3>
 <img src="./frontend/public/boardPin2.png" style=" margin:5px; width: 600px; height: auto;" alt="board-pin" />
 
-<h3>Bellow is a code snippet for Pin controller to create, show, update and delete.</h3>
-<img src="./frontend/public/pinController1.png" style=" margin:5px; width: 600px; height: auto;", margin="50px", alt="pin-controller"/>
-<img src="./frontend/public/pinController2.png" style=" margin:5px; width: 600px; height: auto;" alt="pin-controller"/>
-
-<h3>Bellow is a code snippet for Board Reducer in the frontend with react.</h3>
-<img src="./frontend/public/board1.png" style=" margin:5px; width: 600px; height: auto;"alt="board-reducer"/>
-<img src="./frontend/public/board2.png" style=" margin:5px; width: 600px; height: auto;" alt="board-reducer"/>
-<img src="./frontend/public/board3.png" style=" margin:5px; width: 600px; height: auto;" alt="board-reducer"/>
-
-<h3>Bellow is a code snipper for BoardPin in the frontend.</h3>
-<img src="./frontend/public/boardPin1.png" style=" margin:5px; width: 600px; height: auto;" alt="board-pin" />
-<img src="./frontend/public/boardPin2.png" style=" margin:5px; width: 600px; height: auto;" alt="board-pin" />
-<img src="./frontend/public/boardPin3.png" style=" margin:5px; width: 600px; height: auto;" alt="board-pin" />
-
 <h1>Future Features</h1>
 <ul>
     <li>Follows</li>
