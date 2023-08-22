@@ -103,9 +103,9 @@ function UserProfile() {
           </NavLink>
         )}
         {currentUser.id !== user.id && (
-          <NavLink to="/edit">
-            <button className="edit"> Follow</button>
-          </NavLink>
+          // <NavLink to="/edit">
+          <button className="edit"> Follow</button>
+          // </NavLink>
         )}
       </div>
 
