@@ -15,11 +15,31 @@ export const fetchUser = (userId) => async (dispatch) => {
   dispatch(receiveUser(data.user));
 };
 
+const RECEIVE_ALL_USERS = "users/receiveAllUsers";
+
+export const receiveAllUsers = (users) => {
+  return {
+    type: RECEIVE_ALL_USERS,
+    users,
+  };
+};
+
+export const fetchAllUsers = () => async (dispatch) => {
+  const res = await csrfFetch(`/api/users`);
+  const data = await res.json();
+  dispatch(receiveAllUsers(data.users));
+};
+
 export default function userReducer(state = {}, action) {
   const newState = { ...state };
   switch (action.type) {
     case RECEIVE_USER:
       newState[action.user.id] = action.user;
+      return newState;
+    case RECEIVE_ALL_USERS:
+      action.users?.forEach((user) => {
+        newState[user.id] = user;
+      });
       return newState;
     case SET_BOARD:
       // debugger;

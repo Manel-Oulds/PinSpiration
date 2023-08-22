@@ -12,10 +12,12 @@ import SearchPage from "./components/SearchResult/index.js";
 import UserError from "./components/UserEror/index.js";
 
 function App() {
-  
   return (
     <>
       <Switch>
+      <Route exact path="/users/error">
+          <UserError />
+        </Route>
         <Route exact path="/">
           <SplashPage />
         </Route>
@@ -36,9 +38,7 @@ function App() {
         <Route exact path="/search">
           <SearchPage />
         </Route>
-        <Route>
-          <UserError />
-        </Route>
+        
       </Switch>
     </>
   );

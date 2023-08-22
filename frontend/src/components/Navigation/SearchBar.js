@@ -48,8 +48,16 @@ function SearchBar() {
         placeholder=" 🔍 Search"
         value={searchText}
         onChange={handleSearch}
+        onKeyPress={(e) => {
+          if (e.key === "Enter") {
+            handelSubmit(e);
+          }
+        }}
       />
-      <button id="search-button" onClick={handelSubmit}>
+      <button
+        id="search-button"
+        onClick={handelSubmit}
+      >
         {" "}
         Search{" "}
       </button>

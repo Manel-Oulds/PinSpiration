@@ -1,6 +1,10 @@
 import "./UserProfile.css";
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  NavLink,
+  useHistory,
+  useParams,
+} from "react-router-dom/cjs/react-router-dom.min";
 import Navigation from "../Navigation";
 import { useDispatch, useSelector } from "react-redux";
 import PinShow from "../PinShow";
@@ -11,8 +15,11 @@ import BoardShow from "../BoardShow";
 import { fetchAllBoards } from "../../store/board";
 import { fetchAllBoardPins } from "../../store/boardPins";
 import { fetchAllPins } from "../../store/pin";
+import UserError from "../../components/UserEror/index.js";
+import { Redirect } from "react-router-dom/cjs/react-router-dom";
 
 function UserProfile() {
+  const history = useHistory();
   const { userId } = useParams();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.users[userId]);
@@ -21,22 +28,32 @@ function UserProfile() {
   const userBoards = useSelector((state) => state.users[userId]?.boardIds);
   const boardPins = useSelector((state) => state.boardPins);
   const [loading, setLoading] = useState(true);
+  const [userExists, setUserExists] = useState(true);
 
   useEffect(() => {
     // Fetch user data and boards
     const fetchUserAndBoards = async () => {
       setLoading(true);
-      await dispatch(userActions.fetchUser(userId));
-      await dispatch(fetchAllBoards());
-      await dispatch(fetchAllBoardPins());
-      await dispatch(fetchAllPins());
-      setLoading(false); // Set loading to false after fetching is done
+      try {
+        await dispatch(userActions.fetchUser(userId));
+        await dispatch(fetchAllBoards());
+        await dispatch(fetchAllBoardPins());
+        await dispatch(fetchAllPins());
+        setLoading(false);
+      } catch {
+        setUserExists(false);
+        setLoading(false);
+      }
     };
 
     const res = dispatch(fetchAllBoardPins());
 
     fetchUserAndBoards();
   }, [userId, dispatch]);
+
+  if (!loading && !userExists) {
+    return <Redirect to="/users/error" />;
+  }
 
   if (!user) return null;
 
