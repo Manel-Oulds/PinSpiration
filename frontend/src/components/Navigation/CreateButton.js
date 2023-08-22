@@ -33,17 +33,22 @@ function CreateButton() {
   };
 
   return (
+    // <div className="div-dropdown" ref={menuRef}>
+    //   <button onClick={toggleMenu} className="dropdown">
+    //     Create <i className="fa-solid fa-chevron-down"></i>
+    //   </button>
+    //   {showMenu && (
+    //     <ul className="create-dropdown">
+    //       <li>
+    //         <button onClick={createpin}>Create Pin</button>
+    //       </li>
+    //     </ul>
+    //   )}
+    // </div>
     <div className="div-dropdown" ref={menuRef}>
-      <button onClick={toggleMenu} className="dropdown">
-        Create <i className="fa-solid fa-chevron-down"></i>
+      <button onClick={createpin} className="dropdown">
+        Create Pin
       </button>
-      {showMenu && (
-        <ul className="create-dropdown">
-          <li>
-            <button onClick={createpin}>Create Pin</button>
-          </li>
-        </ul>
-      )}
     </div>
   );
 }
