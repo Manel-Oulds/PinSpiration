@@ -61,20 +61,7 @@ function SearchBar() {
         {" "}
         Search{" "}
       </button>
-      {/* {searchText && searchResults && (
-        <ul id="search-dropdown">
-          {searchResults.map((result) => {
-            return (
-              <li
-                className="search-dropdown-item"
-                onClick={handleClick(result.id)}
-              >
-                {result.title}
-              </li>
-            );
-          })}
-        </ul>
-      )} */}
+      
     </div>
   );
 }
