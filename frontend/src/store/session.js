@@ -7,7 +7,7 @@ const storeCSRFToken = (response) => {
   if (csrfToken) sessionStorage.setItem("X-CSRF-Token", csrfToken);
 };
 
-const storeCurrentUser = (user) => {
+export const storeCurrentUser = (user) => {
   if (user) sessionStorage.setItem("currentUser", JSON.stringify(user));
   else sessionStorage.removeItem("currentUser");
 };
@@ -63,6 +63,10 @@ export const update = (user) => async (dispatch) => {
     body: JSON.stringify(user),
   });
   const data = await response.json();
+  //Fetch data user after login
+  // if (data.user) {
+  //   await dispatch(restoreSession()); // This action fetches the user data
+  // }
   storeCurrentUser(data.user);
   dispatch(setCurrentUser(data.user));
   return response;
@@ -92,29 +96,37 @@ const initialState = {
   user: JSON.parse(sessionStorage.getItem("currentUser")),
 };
 
-const sessionReducer = (state = initialState, action) => {
+const sessionReducer = (state= initialState, action) => {
+  const newState = { ...state };
   switch (action.type) {
     case SET_CURRENT_USER:
-      return { ...state, user: action.payload };
+      return { ...newState, user: action.payload };
     case REMOVE_CURRENT_USER:
-      return { ...state, user: null };
+      return { ...newState, user: null };
     case UPDATE_CURRENT_USER:
-      return { ...state, user: action.payload };
+      return { ...newState, user: action.payload };
     case SET_BOARD:
       // debugger;
-      const boardIds = [...state.user.boardIds, action.payload.id];
-      const usercopy = { ...state.user };
+      const boardIds = [...newState.user.boardIds, action.payload.id];
+      const usercopy = { ...newState.user };
       usercopy.boardIds = boardIds;
       return { user: usercopy };
+    // const updatedUserBoardIds = [...state.user.boardIds, action.payload.id];
+    // const updatedUserBoard = { ...state.user, boardIds: updatedUserBoardIds };
+    // return { ...state, user: updatedUserBoard };
     case REMOVE_PIN:
       const updatedUser = {
-        ...state.user,
-        pinIds: state.user.pinIds.filter((pinId) => pinId !== action.payload),
+        ...newState.user,
+        pinIds: newState.user.pinIds.filter(
+          (pinId) => pinId !== action.payload
+        ),
       };
-      return { ...state, user: updatedUser };
+      return { ...newState, user: updatedUser };
     default:
       return state;
   }
 };
+
+
 
 export default sessionReducer;

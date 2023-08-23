@@ -22,7 +22,9 @@ function Pin() {
   const history = useHistory();
 
   const fileInputRef = useRef(null);
-  const userBoards = useSelector((state) => state.session.user.boardIds);
+  const userBoards = useSelector(
+    (state) => state.users[sessionUser.id].boardIds
+  );
   const boards = useSelector((state) => state.boards);
   let err = false;
 

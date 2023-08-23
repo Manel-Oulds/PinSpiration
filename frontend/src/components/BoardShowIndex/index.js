@@ -8,7 +8,7 @@ import EditPin from "../EditPin";
 import Modal from "../context/Modal";
 import * as pinActions from "../../store/pin";
 import Navigation from "../Navigation";
-import { deleteBoard, fetchAllBoards } from "../../store/board";
+import { deleteBoard, fetchAllBoards, fetchBoards } from "../../store/board";
 import { fetchUser } from "../../store/user";
 import "./BoardShowIndex.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
@@ -31,16 +31,17 @@ function BoardShowIndex() {
   useEffect(() => {
     const fetchBoardData = async () => {
       setLoading(true);
-      await dispatch(fetchBoardPins(boardId)); // No board Id when removing the last pin
+      await dispatch(fetchBoardPins(boardId)); 
       await dispatch(fetchAllBoards());
       await dispatch(fetchAllBoardPins());
       await dispatch(pinActions.fetchAllPins());
       await dispatch(fetchUser(userId));
+      await fetchBoards(currentUser);
       setLoading(false);
     };
 
     fetchBoardData();
-  }, [boardId, dispatch]);
+  }, [boardId, dispatch, userId]);
 
   function getRandomSize() {
     const sizes = ["small", "medium", "large"];
@@ -67,9 +68,10 @@ function BoardShowIndex() {
     );
 
     if (confirmation) {
-      dispatch(pinActions.deletePin(id)).then(() => {
-        history.push(`/users/${currentUser}`);
-      });
+      dispatch(pinActions.deletePin(id))
+      // dispatch(pinActions.deletePin(id)).then(() => {
+      //   history.push(`/users/${currentUser}`);
+      // });
     }
   };
 

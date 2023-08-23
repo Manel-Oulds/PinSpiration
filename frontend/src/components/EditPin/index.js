@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as pinActions from "../../store/pin";
+import { fetchAllBoards, fetchBoards } from "../../store/board";
 import {
   addBoardPin,
   deleteBoardPin,
@@ -19,7 +20,8 @@ function EditPin({ pin, onCloseModal }) {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards);
-  const userBoards = useSelector((state) => state.session.user.boardIds);
+  const userBoards = useSelector((state) => state.users[sessionUser.id].boardIds);
+  debugger;
   const boardpins = useSelector((state) => state.boardpins);
   //Finding a board Id associated with pin
   const foundBoardId = Object.entries(boardpins).find(([boardId, pinIds]) =>
@@ -27,10 +29,14 @@ function EditPin({ pin, onCloseModal }) {
   );
   const [oldBoardId, pinIds] = foundBoardId; // PinId is in boardId
 
-  useEffect(() => {
-    dispatch(fetchAllBoardPins());
-  }, [removePinFromBoard]);
-
+  useEffect(
+    () => {
+      dispatch(fetchAllBoardPins());
+      dispatch(fetchBoards(sessionUser));
+    },
+    [removePinFromBoard],
+    dispatch
+  );
 
   const handleEdit = (pin) => {
     dispatch(pinActions.updatePin({ ...pin, title, description }));

@@ -2,6 +2,7 @@ import React from "react";
 import csrfFetch from "./csrf";
 import { useSelector } from "react-redux";
 import * as userActions from "./session";
+import { storeCurrentUser } from "./session";
 
 export const SET_BOARD = "boards/setBoard";
 const REMOVE_BOARD = "boards/removeBoard";

@@ -20,6 +20,7 @@ export default function PinsIndex() {
   const pins = useSelector((state) => state.pin);
   const allBoards = useSelector((state) => state.boards);
 
+  
   const userBoardIds = useSelector((state) => state.session.user.boardIds);
   const allPinId = userBoardIds.find(
     (boardId) => allBoards[boardId]?.title === "All Pins"

@@ -12,7 +12,7 @@ import * as userActions from "../../store/user";
 import Modal from "../context/Modal";
 import BoardForm from "../BoardForm";
 import BoardShow from "../BoardShow";
-import { fetchAllBoards } from "../../store/board";
+import { fetchAllBoards, fetchBoards } from "../../store/board";
 import { fetchAllBoardPins } from "../../store/boardPins";
 import { fetchAllPins } from "../../store/pin";
 import UserError from "../../components/UserEror/index.js";
@@ -39,6 +39,7 @@ function UserProfile() {
         await dispatch(fetchAllBoards());
         await dispatch(fetchAllBoardPins());
         await dispatch(fetchAllPins());
+        await dispatch(fetchBoards(userId));
         setLoading(false);
       } catch {
         setUserExists(false);
