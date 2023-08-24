@@ -6,7 +6,6 @@ import "./navigation.css";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import CreateButton from "./CreateButton";
-import * as pinActions from "../../store/pin";
 import SearchBar from "./SearchBar";
 
 function Navigation() {
@@ -19,7 +18,8 @@ function Navigation() {
         <div className="nav-user">
           <NavLink exact to="/">
             <img
-              src={`${process.env.PUBLIC_URL}/Frame_new.svg`}
+              src={`/assets/images/Frame_new.svg`}
+              
               alt="PinSpiration"
             />
           </NavLink>
@@ -55,8 +55,8 @@ function Navigation() {
       <>
         <div className="navbar">
           <NavLink exact to="/">
-            <img src="Frame_new.svg" alt="PinSpiration" />
-            <img src="pinspiration.svg" className="pin" alt="PinSpiration" />
+            <img src="/assets/images/Frame_new.svg" alt="PinSpiration" />
+            <img src="/assets/images/pinspiration.svg" className="pin" alt="PinSpiration" />
           </NavLink>
 
           <div className="nav-right">
