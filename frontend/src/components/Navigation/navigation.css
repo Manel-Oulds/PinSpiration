@@ -116,7 +116,10 @@
 
 .nav-prof {
   z-index: 1;
+  
 }
+
+
 
 a {
   color: inherit;
@@ -156,3 +159,5 @@ a {
   border-radius: 30px;
   background-color: lightgray;
 }
+
+
