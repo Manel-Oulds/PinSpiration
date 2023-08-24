@@ -10,10 +10,12 @@ class Api::BoardPinsController < ApplicationController
         render :index
     end
 
+  
+
     def create
         @board_pin = BoardPin.new(board_pin_params)
         if @board_pin.save
-        
+          
         else
           render json: { errors: ["Something went wrong"] }, status: 422
         end

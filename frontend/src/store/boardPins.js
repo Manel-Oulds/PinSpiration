@@ -6,6 +6,7 @@ const GET_BOARD_PINS = "boardPins/getBoardPins";
 const CREATE_BOARD_PIN = "boardPins/createBoardPin";
 const DELETE_PIN = "boardPins/deletePinFromBoard";
 const EDIT_BOARD_PIN = "boardPins/editBoardPin";
+const CLEAR_BOARD_PINS = "boardPins/clearBoardPins";
 
 export const getBoardPins = (boardPins) => ({
   type: GET_BOARD_PINS,
@@ -36,6 +37,11 @@ export const fetchBoardPins = (boardId) => async (dispatch) => {
     console.error("Error fetching board pins:", error);
   }
 };
+
+export const clearBoardPins = (boardId) => ({
+  type: CLEAR_BOARD_PINS,
+  payload: boardId,
+});
 
 export const fetchAllBoardPins = () => async (dispatch) => {
   try {
@@ -133,6 +139,12 @@ export default function boardPinReducer(state = {}, action) {
 
     case EDIT_BOARD_PIN:
       return { ...newState, ...action.boardPin };
+
+      case CLEAR_BOARD_PINS:
+        return {
+          ...state,
+          [action.payload]: [], 
+        };
 
     default:
       return state;

@@ -21,7 +21,6 @@ function EditPin({ pin, onCloseModal }) {
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards);
   const userBoards = useSelector((state) => state.users[sessionUser.id].boardIds);
-  debugger;
   const boardpins = useSelector((state) => state.boardpins);
   //Finding a board Id associated with pin
   const foundBoardId = Object.entries(boardpins).find(([boardId, pinIds]) =>

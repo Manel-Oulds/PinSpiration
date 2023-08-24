@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchAllBoardPins, fetchBoardPins } from "../../store/boardPins";
+import { fetchAllBoardPins, fetchBoardPins, clearBoardPins } from "../../store/boardPins";
 import { fetchPin } from "../../store/pin";
 import ShowPinItem from "../ShowPinItem";
 import EditPin from "../EditPin";
@@ -31,12 +31,13 @@ function BoardShowIndex() {
   useEffect(() => {
     const fetchBoardData = async () => {
       setLoading(true);
-      await dispatch(fetchBoardPins(boardId)); 
-      await dispatch(fetchAllBoards());
+      await fetchBoards(currentUser);
       await dispatch(fetchAllBoardPins());
+      await dispatch(fetchAllBoards());
+      await dispatch(fetchBoardPins(boardId));
       await dispatch(pinActions.fetchAllPins());
       await dispatch(fetchUser(userId));
-      await fetchBoards(currentUser);
+
       setLoading(false);
     };
 
@@ -64,14 +65,18 @@ function BoardShowIndex() {
   };
   const handleDelete = (id) => {
     const confirmation = window.confirm(
-      "Are you sure you want to delete this board and its pins?"
+      "Are you sure you want to delete this pin?"
     );
 
     if (confirmation) {
-      dispatch(pinActions.deletePin(id))
+      dispatch(pinActions.deletePin(id));
       // dispatch(pinActions.deletePin(id)).then(() => {
       //   history.push(`/users/${currentUser}`);
       // });
+    }
+
+    if (boardPins && boardPins.length === 1) {
+      dispatch(clearBoardPins(boardId)); // Assuming you have an action to clear boardPins
     }
   };
 
