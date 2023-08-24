@@ -31,6 +31,15 @@ class User < ApplicationRecord
   has_one_attached :picture
   has_many :pins
   has_many :boards
+  # has_many :followers, foreign_key: :followee_id, class_name: 'Follow', dependent: :destroy
+  # has_many :followees, foreign_key: :follower_id, class_name: 'Follow', dependent: :destroy
+  has_many :follower_relationships, foreign_key: :followee_id, class_name: 'Follow'
+has_many :followers, through: :follower_relationships, source: :follower
+
+has_many :followee_relationships, foreign_key: :follower_id, class_name: 'Follow'
+has_many :followees, through: :followee_relationships, source: :followee
+
+
  
   before_validation :ensure_session_token
 

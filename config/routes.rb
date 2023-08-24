@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :pins 
     resources :boards, only: [:index, :create, :show, :destroy, :update]
     resources :board_pins, only: [:create, :destroy, :index]
-   
+    resources :follows, only: [:create, :destroy, :index]
 
   end
   get '*path', to: "static_pages#frontend_index"
