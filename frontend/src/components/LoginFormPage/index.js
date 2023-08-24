@@ -17,7 +17,7 @@ function LoginFormPage() {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   let err = false;
   useEffect(() => {
-    if(sessionUser) dispatch(fetchBoards(sessionUser.id));
+    if (sessionUser) dispatch(fetchBoards(sessionUser.id));
     dispatch(fetchAllBoardPins());
   }, [dispatch]);
   if (sessionUser) return <Redirect to="/" />;
@@ -53,7 +53,7 @@ function LoginFormPage() {
 
   return (
     <div className="login-div">
-      <img src="Frame_new.svg" alt="Logo" className="logo" />
+      <img src="/assets/images/Frame_new.svg" alt="Logo" className="logo" />
 
       <div className="title">Welcome to PinSpiration</div>
       <form onSubmit={handleSubmit}>

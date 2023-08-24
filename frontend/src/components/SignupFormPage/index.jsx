@@ -43,7 +43,7 @@ function SignupFormPage() {
 
   return (
     <div className="signup-div">
-      <img src="Frame_new.svg" alt="Logo" className="logo" />
+      <img src="/assets/images/Frame_new.svg" alt="Logo" className="logo" />
       <div className="title">Welcome to PinSpiration </div>
       <form onSubmit={handleSubmit}>
         <ul className="errors">
