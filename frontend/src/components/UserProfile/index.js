@@ -31,6 +31,7 @@ function UserProfile() {
   const [loading, setLoading] = useState(true);
   const [userExists, setUserExists] = useState(true);
   const [isFollowing, setIsFollowing] = useState(false);
+  const followees = useSelector((state) => state.follows.followees);
 
   useEffect(() => {
     // Fetch user data and boards
@@ -42,8 +43,8 @@ function UserProfile() {
         await dispatch(fetchAllBoardPins());
         await dispatch(fetchAllPins());
         await dispatch(fetchBoards(userId));
-        // await dispatch(followActions.fetchFollowees(currentUser.id));
-        // await dispatch(followActions.fetchFollowers(currentUser.id));
+        await dispatch(followActions.fetchFollowees(currentUser.id));
+        await dispatch(followActions.fetchFollowers(currentUser.id));
         setLoading(false);
       } catch {
         setUserExists(false);
@@ -58,14 +59,14 @@ function UserProfile() {
 
   const handleFollow = async () => {
     const followerId = currentUser.id;
-    const followeeId = user.id;
+    const followee = user;
 
     if (isFollowing) {
       // Unfollow if already following
-      await dispatch(followActions.deleteFollow(followerId, followeeId));
+      await dispatch(followActions.deleteFollow(followerId, followee.id));
       setIsFollowing(false);
     } else {
-      await dispatch(followActions.followUser(followerId, followeeId));
+      await dispatch(followActions.followUser(followerId, followee));
       setIsFollowing(true);
     }
   };
@@ -123,7 +124,7 @@ function UserProfile() {
         )}
         {currentUser.id !== user.id && (
           <button className="edit" onClick={handleFollow}>
-            {isFollowing ? "Following" : "Follow"}
+            {isFollowing || followees.includes(user) ? "Following" : "Follow"}
           </button>
         )}
       </div>

@@ -1,6 +1,28 @@
 import csrfFetch from "./csrf";
 
-export const followUser = (followerId, followeeId) => async (dispatch) => {
+// export const followUser = (followerId, followeeId) => async (dispatch) => {
+//   try {
+//     const response = await csrfFetch(`/api/follows`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({
+//         follower_id: followerId,
+//         followee_id: followeeId,
+//       }),
+//     });
+
+//     if (response.ok) {
+//       dispatch({ type: "FOLLOW_USER", payload: { followeeId } });
+//     }
+//   } catch (error) {
+//     // Handle error
+//   }
+// };
+
+// Action Creators
+export const followUser = (followerId, followee) => async (dispatch) => {
   try {
     const response = await csrfFetch(`/api/follows`, {
       method: "POST",
@@ -9,12 +31,12 @@ export const followUser = (followerId, followeeId) => async (dispatch) => {
       },
       body: JSON.stringify({
         follower_id: followerId,
-        followee_id: followeeId,
+        followee_id: followee.id,
       }),
     });
 
     if (response.ok) {
-      dispatch({ type: "FOLLOW_USER", payload: { followeeId } });
+      dispatch({ type: "FOLLOW_USER", payload: { followee } });
     }
   } catch (error) {
     // Handle error
@@ -70,17 +92,18 @@ function followReducer(state = initialState, action) {
       return { ...state, followers: action.payload };
     case "FETCH_FOLLOWEES":
       return { ...state, followees: action.payload };
+
     case "DELETE_FOLLOW":
       return {
         ...state,
         followees: state.followees.filter(
-          (followee) => followee !== action.payload
+          (followee) => followee.id !== action.payload
         ),
       };
     case "FOLLOW_USER":
       return {
         ...state,
-        followees: [...state.followees, action.payload.followeeId],
+        followees: [...state.followees, action.payload.followee],
       };
 
     default:
