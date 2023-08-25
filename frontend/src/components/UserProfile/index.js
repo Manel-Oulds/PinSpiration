@@ -57,8 +57,8 @@ function UserProfile() {
   }, [userId, dispatch]);
 
   const handleFollow = async () => {
-    const followerId = currentUser.id; // Get the current user ID
-    const followeeId = user.id; // Get the user ID you want to follow
+    const followerId = currentUser.id;
+    const followeeId = user.id;
     await dispatch(followActions.followUser(followerId, followeeId));
     setIsFollowing(true);
   };
