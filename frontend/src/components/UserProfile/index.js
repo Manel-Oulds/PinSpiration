@@ -17,6 +17,7 @@ import { fetchAllBoardPins } from "../../store/boardPins";
 import { fetchAllPins } from "../../store/pin";
 import UserError from "../../components/UserEror/index.js";
 import { Redirect } from "react-router-dom/cjs/react-router-dom";
+import * as followActions from "../../store/follow";
 
 function UserProfile() {
   const history = useHistory();
@@ -29,6 +30,7 @@ function UserProfile() {
   const boardPins = useSelector((state) => state.boardPins);
   const [loading, setLoading] = useState(true);
   const [userExists, setUserExists] = useState(true);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
     // Fetch user data and boards
@@ -40,6 +42,8 @@ function UserProfile() {
         await dispatch(fetchAllBoardPins());
         await dispatch(fetchAllPins());
         await dispatch(fetchBoards(userId));
+        await dispatch(followActions.fetchFollowees(currentUser.id));
+        await dispatch(followActions.fetchFollowees(currentUser.id));
         setLoading(false);
       } catch {
         setUserExists(false);
@@ -51,6 +55,13 @@ function UserProfile() {
 
     fetchUserAndBoards();
   }, [userId, dispatch]);
+
+  const handleFollow = async () => {
+    const followerId = currentUser.id; // Get the current user ID
+    const followeeId = user.id; // Get the user ID you want to follow
+    await dispatch(followActions.followUser(followerId, followeeId));
+    setIsFollowing(true);
+  };
 
   if (!loading && !userExists) {
     return <Redirect to="/users/error" />;
@@ -103,10 +114,10 @@ function UserProfile() {
             <button className="edit"> Edit Profile</button>
           </NavLink>
         )}
-        {currentUser.id !== user.id && (
-          // <NavLink to="/edit">
-          <button className="edit"> Follow</button>
-          // </NavLink>
+        {currentUser.id !== user.id && !isFollowing && (
+          <button className="edit" onClick={handleFollow}>
+            Follow
+          </button>
         )}
       </div>
 

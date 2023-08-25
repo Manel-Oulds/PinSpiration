@@ -14,7 +14,13 @@ Rails.application.routes.draw do
     resources :pins 
     resources :boards, only: [:index, :create, :show, :destroy, :update]
     resources :board_pins, only: [:create, :destroy, :index]
-    resources :follows, only: [:create, :destroy, :index]
+    resources :follows, only: [:create, :destroy]
+    resources :users, only: [] do
+      member do
+        get 'followers', to: 'follows#followers'
+        get 'followees', to: 'follows#followees'
+      end
+    end
 
   end
   get '*path', to: "static_pages#frontend_index"

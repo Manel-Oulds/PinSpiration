@@ -6,6 +6,7 @@ import userReducer from "./user";
 import boardReducer from "./board";
 import boardPinReducer from "./boardPins";
 import searchReducer from "./search";
+import followReducer from "./follow";
 
 const rootReducer = combineReducers({
   session:sessionReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   boards:boardReducer,
   boardpins: boardPinReducer,
   search: searchReducer,
+  follows: followReducer,
 });
 
 let enhancer;
