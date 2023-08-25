@@ -92,3 +92,36 @@
 .loading i {
   font-size: 100px;
 }
+
+
+.following-btn{
+  border-radius: 25px;
+  margin-left: 3px;
+}
+.follows-div {
+  text-decoration: none;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  margin-bottom: 10px; 
+}
+
+.follows-div a{
+  text-decoration: none;
+}
+
+.follow-btn-div {
+  margin-left: 10px; 
+}
+
+.username-btn{
+  border-radius: 20px;
+  border: 1px solid lightgray;
+  margin-right: 5px;
+  width: fit-content;
+  padding: 3px 3px;
+  text-align: center;
+} 
+
+

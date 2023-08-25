@@ -6,6 +6,7 @@ import * as userActions from "../../store/user";
 import { createPin } from "../../store/pin";
 import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { addBoardPin } from "../../store/boardPins";
+import * as followActions from "../../store/follow";
 
 export function ShowPinItem({ pin }) {
   const dispatch = useDispatch();
@@ -17,6 +18,8 @@ export function ShowPinItem({ pin }) {
   const allPinId = userBoardIds.find(
     (boardId) => allBoards[boardId]?.title === "All Pins"
   );
+  const followees = useSelector((state) => state.follows.followees);
+  const followers = useSelector((state) => state.follows.followers);
 
   useEffect(() => {
     dispatch(userActions.fetchUser(pin.userId));
@@ -40,6 +43,18 @@ export function ShowPinItem({ pin }) {
     return <div>Loading...</div>;
   }
 
+  const handleFollow = async (user) => {
+    const followerId = currentUser.id;
+    const followee = user;
+
+    if (followees.some((followee) => followee.id === user.id)) {
+      // Unfollow if already following
+      await dispatch(followActions.deleteFollow(followerId, followee.id));
+    } else {
+      await dispatch(followActions.followUser(followerId, followee));
+    }
+  };
+
   return (
     <div className="pin-item">
       <div className="image-pin">
@@ -58,17 +73,28 @@ export function ShowPinItem({ pin }) {
         </div>
 
         <h1 className="descr-pin">{pin.description}</h1>
-        <NavLink to={`/users/${user.id}`}>
-          <div className="created-by">
+
+        <div className="created-by">
+          <NavLink to={`/users/${user.id}`}>
             <div className="first">
               <button className="circle-username">{user.username[0]}</button>
               <h1 className="user-username">{user.username}</h1>
             </div>
-            <div className="second">
-              <button className="gray-btn lightgray">Follow</button>
-            </div>
+          </NavLink>
+          <div className="second">
+            {currentUser.id !== user.id && (
+              <button
+                className="gray-btn lightgray"
+                onClick={() => handleFollow(user)}
+              >
+                {followees.some((followee) => followee.id === user.id)
+                  ? "Following"
+                  : "Follow"}
+              </button>
+            )}
           </div>
-        </NavLink>
+        </div>
+
         <div className="comments">
           <h1>Comments</h1>
           <h2>No Comments yet</h2>

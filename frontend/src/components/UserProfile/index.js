@@ -5,6 +5,7 @@ import {
   useHistory,
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 import Navigation from "../Navigation";
 import { useDispatch, useSelector } from "react-redux";
 import PinShow from "../PinShow";
@@ -18,6 +19,7 @@ import { fetchAllPins } from "../../store/pin";
 import UserError from "../../components/UserEror/index.js";
 import { Redirect } from "react-router-dom/cjs/react-router-dom";
 import * as followActions from "../../store/follow";
+import ModalFollow from "../context/ModalFollow";
 
 function UserProfile() {
   const history = useHistory();
@@ -32,6 +34,9 @@ function UserProfile() {
   const [userExists, setUserExists] = useState(true);
   const [isFollowing, setIsFollowing] = useState(false);
   const followees = useSelector((state) => state.follows.followees);
+  const followers = useSelector((state) => state.follows.followers);
+  const [showFollowersModal, setShowFollowersModal] = useState(false);
+  const [showFolloweesModal, setShowFolloweesModal] = useState(false);
 
   useEffect(() => {
     // Fetch user data and boards
@@ -45,6 +50,8 @@ function UserProfile() {
         await dispatch(fetchBoards(userId));
         await dispatch(followActions.fetchFollowees(currentUser.id));
         await dispatch(followActions.fetchFollowers(currentUser.id));
+        // await dispatch(followActions.fetchFollowees(userId));
+        // await dispatch(followActions.fetchFollowees(userId));
         setLoading(false);
       } catch {
         setUserExists(false);
@@ -61,7 +68,7 @@ function UserProfile() {
     const followerId = currentUser.id;
     const followee = user;
 
-    if (isFollowing) {
+    if (followees.some((followee) => followee.id === user.id)) {
       // Unfollow if already following
       await dispatch(followActions.deleteFollow(followerId, followee.id));
       setIsFollowing(false);
@@ -69,6 +76,22 @@ function UserProfile() {
       await dispatch(followActions.followUser(followerId, followee));
       setIsFollowing(true);
     }
+  };
+
+  const handleOpenFollowersModal = () => {
+    setShowFollowersModal(true);
+  };
+
+  const handleCloseFollowersModal = () => {
+    setShowFollowersModal(false);
+  };
+
+  const handleOpenFolloweesModal = () => {
+    setShowFolloweesModal(true);
+  };
+
+  const handleCloseFolloweesModal = () => {
+    setShowFolloweesModal(false);
   };
 
   if (!loading && !userExists) {
@@ -95,6 +118,10 @@ function UserProfile() {
       </div>
     );
   }
+  const handleFolloweeClick = (userId) => {
+    history.push(`/users/${userId}`);
+    // handleCloseFollowersModal();
+  };
 
   return (
     <>
@@ -111,22 +138,38 @@ function UserProfile() {
           value={`${user.username}`}
           disabled
         />
-        <input
-          type="text"
-          className="input-email"
-          value={`${user.email}`}
-          disabled
-        />
+
+        <div>
+          {currentUser.id === user.id && (
+            <div>
+              <button
+                className="input-email"
+                onClick={handleOpenFollowersModal}
+              >
+                {followers.length} Followers
+              </button>
+              <button
+                className="input-email"
+                onClick={handleOpenFolloweesModal}
+              >
+                {followees.length} Followees
+              </button>
+            </div>
+          )}
+        </div>
+
         {currentUser.id === user.id && (
           <NavLink to="/edit">
             <button className="edit"> Edit Profile</button>
           </NavLink>
         )}
         {currentUser.id !== user.id && (
-           <button className="edit" onClick={handleFollow}>
-           {isFollowing || followees.some(followee => followee.id === user.id) ? "Following" : "Follow"}
-        
-         </button>
+          <button className="edit" onClick={handleFollow}>
+            {isFollowing ||
+            followees.some((followee) => followee.id === user.id)
+              ? "Following"
+              : "Follow"}
+          </button>
         )}
       </div>
 
@@ -140,15 +183,44 @@ function UserProfile() {
         <BoardShow user={user} />
       </div>
 
-      {/* <div>
-        <PinShow user={user} />
-      </div> */}
-
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <BoardForm onClose={handleCloseModal} />
         </Modal>
       )}
+      <div>
+        {showFollowersModal && (
+          <ModalFollow onClose={handleCloseFollowersModal}>
+            {followers.map((follower) => (
+              <div
+                key={follower.id}
+                className="follows-div"
+                onClick={() => handleFolloweeClick(follower.id)}
+              >
+                <button className="username-btn">{follower.username[0]}</button>
+                {follower.username}
+              </div>
+            ))}
+          </ModalFollow>
+        )}
+      </div>
+
+      <div>
+        {showFolloweesModal && (
+          <ModalFollow onClose={handleCloseFolloweesModal}>
+            {followees.map((followee) => (
+              <div
+                key={followee.id}
+                className="follows-div"
+                onClick={() => handleFolloweeClick(followee.id)}
+              >
+                <button className="username-btn">{followee.username[0]}</button>
+                {followee.username}
+              </div>
+            ))}
+          </ModalFollow>
+        )}
+      </div>
     </>
   );
 }
