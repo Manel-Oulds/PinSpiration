@@ -43,7 +43,7 @@ function UserProfile() {
         await dispatch(fetchAllPins());
         await dispatch(fetchBoards(userId));
         await dispatch(followActions.fetchFollowees(currentUser.id));
-        await dispatch(followActions.fetchFollowees(currentUser.id));
+        await dispatch(followActions.fetchFollowers(currentUser.id));
         setLoading(false);
       } catch {
         setUserExists(false);
