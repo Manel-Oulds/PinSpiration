@@ -74,7 +74,7 @@ function followReducer(state = initialState, action) {
       return {
         ...state,
         followees: state.followees.filter(
-          (followee) => followee.id !== action.payload
+          (followee) => followee !== action.payload
         ),
       };
     case "FOLLOW_USER":

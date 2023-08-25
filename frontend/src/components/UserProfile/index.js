@@ -42,8 +42,8 @@ function UserProfile() {
         await dispatch(fetchAllBoardPins());
         await dispatch(fetchAllPins());
         await dispatch(fetchBoards(userId));
-        await dispatch(followActions.fetchFollowees(currentUser.id));
-        await dispatch(followActions.fetchFollowers(currentUser.id));
+        // await dispatch(followActions.fetchFollowees(currentUser.id));
+        // await dispatch(followActions.fetchFollowers(currentUser.id));
         setLoading(false);
       } catch {
         setUserExists(false);
@@ -65,7 +65,6 @@ function UserProfile() {
       await dispatch(followActions.deleteFollow(followerId, followeeId));
       setIsFollowing(false);
     } else {
-      // Follow if not following
       await dispatch(followActions.followUser(followerId, followeeId));
       setIsFollowing(true);
     }
