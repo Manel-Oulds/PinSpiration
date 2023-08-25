@@ -24,8 +24,9 @@ class Api::FollowsController < ApplicationController
       end
     
       def destroy
+        follower = User.find(params[:follower_id])
         followee = User.find(params[:id])
-        @user.followees.delete(followee)
+        follower.followees.delete(followee)
         render json: { message: 'Unfollowed successfully' }
       end
   

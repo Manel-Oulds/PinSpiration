@@ -59,8 +59,16 @@ function UserProfile() {
   const handleFollow = async () => {
     const followerId = currentUser.id;
     const followeeId = user.id;
-    await dispatch(followActions.followUser(followerId, followeeId));
-    setIsFollowing(true);
+
+    if (isFollowing) {
+      // Unfollow if already following
+      await dispatch(followActions.deleteFollow(followerId, followeeId));
+      setIsFollowing(false);
+    } else {
+      // Follow if not following
+      await dispatch(followActions.followUser(followerId, followeeId));
+      setIsFollowing(true);
+    }
   };
 
   if (!loading && !userExists) {
@@ -114,9 +122,9 @@ function UserProfile() {
             <button className="edit"> Edit Profile</button>
           </NavLink>
         )}
-        {currentUser.id !== user.id && !isFollowing && (
+        {currentUser.id !== user.id && (
           <button className="edit" onClick={handleFollow}>
-            Follow
+            {isFollowing ? "Following" : "Follow"}
           </button>
         )}
       </div>

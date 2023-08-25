@@ -41,10 +41,17 @@ export const fetchFollowees = (userId) => async (dispatch) => {
   }
 };
 
-export const deleteFollow = (followeeId) => async (dispatch) => {
+export const deleteFollow = (followerId, followeeId) => async (dispatch) => {
   try {
     await csrfFetch(`/api/follows/${followeeId}`, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        follower_id: followerId,
+        followee_id: followeeId,
+      }),
     });
     dispatch({ type: "DELETE_FOLLOW", payload: followeeId });
   } catch (error) {
