@@ -30,25 +30,7 @@ class Api::FollowsController < ApplicationController
         render json: { message: 'Unfollowed successfully' }
       end
   
-    # def destroy
-    #   followee = User.find(params[:followee_id])
-    #   if followee && @user.followees.include?(followee)
-    #     @user.followees.delete(followee)
-    #     render json: { message: 'Unfollowed successfully' }
-    #   else
-    #     render json: { errors: ['Unable to unfollow'] }, status: 422
-    #   end
-    # end
-  
-    # def followers
-    #   followers = @user.followers
-    #   render json: followers, status: 200
-    # end
-  
-    # def followees
-    #   followees = @user.followees
-    #   render json: followees, status: 200
-    # end
+   
   
    
   end

@@ -123,9 +123,10 @@ function UserProfile() {
           </NavLink>
         )}
         {currentUser.id !== user.id && (
-          <button className="edit" onClick={handleFollow}>
-            {isFollowing || followees.includes(user) ? "Following" : "Follow"}
-          </button>
+           <button className="edit" onClick={handleFollow}>
+           {isFollowing || followees.some(followee => followee.id === user.id) ? "Following" : "Follow"}
+        
+         </button>
         )}
       </div>
 
