@@ -76,17 +76,59 @@ export const addBoardPin = (boardPin) => async (dispatch) => {
   }
 };
 
-export const removePinFromBoard = (boardId, pinId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/board_pins`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ board_id: boardId, pin_id: pinId }),
-  });
+// export const removePinFromBoard = (boardId, pinId) => async (dispatch) => {
+//   const response = await csrfFetch(`/api/board_pins`, {
+//     method: "DELETE",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ board_id: boardId, pin_id: pinId }),
+//   });
 
-  if (!response.ok) {
-    const errorMessage = await response.text();
+//   if (!response.ok) {
+//     const errorMessage = await response.text();
+//     console.error("Error removing pin from board:", errorMessage);
+//     throw new Error("Failed to remove pin from board");
+//   }
+// };
+export const removePinFromBoard = (boardId, pinId) => async (dispatch) => {
+  console.log("Board ID:", boardId);
+  console.log("Pin ID:", pinId);
+  // Fetch all board pins associated with the board
+  const response = await csrfFetch(
+    `/api/board_pins?board_id=${boardId}`
+  );
+  const boardPins = await response.json();
+
+  // Find the array of pin IDs for the given board ID
+  const pinsArray = boardPins[boardId];
+
+  if (!pinsArray) {
+    console.error("Board not found or no pins associated");
+    return; // Handle the error appropriately
+  }
+
+  // Find the relevant pin ID within the array
+  const pinIndex = pinsArray.indexOf(pinId);
+
+  if (pinIndex === -1) {
+    console.error("Board pin not found");
+    return; // Handle the error appropriately
+  }
+
+  // Delete the board pin using the pinId and boardId
+  const deleteResponse = await csrfFetch(
+    `/api/board_pins/destroy?board_id=${boardId}&pin_id=${pinId}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  if (!deleteResponse.ok) {
+    const errorMessage = await deleteResponse.text();
     console.error("Error removing pin from board:", errorMessage);
     throw new Error("Failed to remove pin from board");
   }
@@ -140,11 +182,11 @@ export default function boardPinReducer(state = {}, action) {
     case EDIT_BOARD_PIN:
       return { ...newState, ...action.boardPin };
 
-      case CLEAR_BOARD_PINS:
-        return {
-          ...state,
-          [action.payload]: [], 
-        };
+    case CLEAR_BOARD_PINS:
+      return {
+        ...state,
+        [action.payload]: [],
+      };
 
     default:
       return state;

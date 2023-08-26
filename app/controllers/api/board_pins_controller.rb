@@ -7,7 +7,7 @@ class Api::BoardPinsController < ApplicationController
             @board_pins = BoardPin.all.order(created_at: :asc)
         end
       
-        render :index
+        render :index , include: :id
     end
 
   

@@ -21,18 +21,18 @@ export default function PinsIndex() {
   const [loading, setLoading] = useState(true);
   const pins = useSelector((state) => state.pin);
   const allBoards = useSelector((state) => state.boards);
-  const [selectedBoard, setSelectedBoard] = useState("");
+  const [selectedBoards, setSelectedBoards] = useState({});
   const currentUser = useSelector((state) => state.session.user);
   const boards = useSelector((state) => state.boards);
 
   const userBoards = useSelector(
-    (state) => state.users[currentUser.id].boardIds
+    (state) => state.users[currentUser.id]?.boardIds
   );
-  const allPinsBoardId = userBoards.find(
+  const allPinsBoardId = userBoards?.find(
     (boardId) => boards[boardId]?.title === "All Pins"
   );
 
-  const allPinId = userBoards.find(
+  const allPinId = userBoards?.find(
     (boardId) => allBoards[boardId]?.title === "All Pins"
   );
 
@@ -58,17 +58,6 @@ export default function PinsIndex() {
     fetchData();
   }, [dispatch]);
 
-  // const handleSavePin = (pin) => {
-  //   dispatch(
-  //     addBoardPin({
-  //       board_pin: {
-  //         board_id: allPinId,
-  //         pin_id: pin.id,
-  //       },
-  //     })
-  //   );
-  //   setIsSaved(true);
-  // };
   const handleSavePin = (pin, selectedBoardId) => {
     if (!selectedBoardId) {
       return; // Prevent saving if no board is selected
@@ -106,8 +95,13 @@ export default function PinsIndex() {
           <div key={pin.id} className={getRandomSize()}>
             <div className="pin-actions">
               <select
-                value={selectedBoard}
-                onChange={(e) => setSelectedBoard(e.target.value)}
+                value={selectedBoards[pin.id] || ""}
+                onChange={(e) =>
+                  setSelectedBoards((prevSelectedBoards) => ({
+                    ...prevSelectedBoards,
+                    [pin.id]: e.target.value,
+                  }))
+                }
                 className="select-board"
               >
                 <option value={allPinId}>All Pins</option>
@@ -120,13 +114,13 @@ export default function PinsIndex() {
                       </option>
                     );
                   }
-                  return null; // Return null if the condition is not met to avoid React warnings
+                  return null;
                 })}
               </select>
               <button
                 className="save-pin"
                 style={{ background: "red" }}
-                onClick={() => handleSavePin(pin, selectedBoard)}
+                onClick={() => handleSavePin(pin, selectedBoards[pin.id])}
                 disabled={isSaved}
               >
                 {isSaved ? "Saved" : "Save"}
@@ -135,6 +129,7 @@ export default function PinsIndex() {
             <img src={pin.imgUrl} alt={pin.title} />
           </div>
         ))
+      
       )}
 
       {showModal && selectedPin && (
