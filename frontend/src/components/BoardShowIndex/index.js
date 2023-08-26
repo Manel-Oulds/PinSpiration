@@ -1,12 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-  fetchAllBoardPins,
-  fetchBoardPins,
-  clearBoardPins,
-  removePinFromBoard,
-} from "../../store/boardPins";
+import { fetchAllBoardPins, fetchBoardPins, clearBoardPins } from "../../store/boardPins";
 import { fetchPin } from "../../store/pin";
 import ShowPinItem from "../ShowPinItem";
 import EditPin from "../EditPin";
@@ -68,23 +63,22 @@ function BoardShowIndex() {
   const handleModalClose = () => {
     setShowModal(false);
   };
-  const handleDelete = (pin) => {
+  const handleDelete = (id) => {
     const confirmation = window.confirm(
       "Are you sure you want to delete this pin?"
     );
 
     if (confirmation) {
-      if (currentUser.id == pin.userId) {
-        dispatch(pinActions.deletePin(pin.id));
-      } else {
-        dispatch(removePinFromBoard(board.id, pin.id));
+      dispatch(pinActions.deletePin(id));
+      // dispatch(pinActions.deletePin(id)).then(() => {
+      //   history.push(`/users/${currentUser}`);
+      // });
     }
 
-    // if (boardPins && boardPins.length === 1) {
-    //   dispatch(clearBoardPins(boardId)); // Assuming you have an action to clear boardPins
-    // }
+    if (boardPins && boardPins.length === 1) {
+      dispatch(clearBoardPins(boardId)); // Assuming you have an action to clear boardPins
+    }
   };
-}
 
   const handleEditClick = (pin) => {
     setSelectedPin(pin);
@@ -157,7 +151,7 @@ function BoardShowIndex() {
                   alt="Pin"
                 />
                 <div className="button-container" ref={buttonContainerRef}>
-                  {currentUser == userId && currentUser == pin.userId && (
+                  {currentUser == userId && (
                     <button
                       className="edit-btn"
                       onClick={() => handleEditClick(pin)}
@@ -168,7 +162,7 @@ function BoardShowIndex() {
                   {currentUser == userId && (
                     <button
                       className="delete-btn"
-                      onClick={() => handleDelete(pin)}
+                      onClick={() => handleDelete(pin.id)}
                     >
                       <i className="fa-solid fa-trash fa-beat-fade"></i>
                     </button>
