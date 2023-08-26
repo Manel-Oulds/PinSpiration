@@ -95,9 +95,7 @@ export const removePinFromBoard = (boardId, pinId) => async (dispatch) => {
   console.log("Board ID:", boardId);
   console.log("Pin ID:", pinId);
   // Fetch all board pins associated with the board
-  const response = await csrfFetch(
-    `/api/board_pins?board_id=${boardId}`
-  );
+  const response = await csrfFetch(`/api/board_pins?board_id=${boardId}`);
   const boardPins = await response.json();
 
   // Find the array of pin IDs for the given board ID
@@ -186,6 +184,19 @@ export default function boardPinReducer(state = {}, action) {
       return {
         ...state,
         [action.payload]: [],
+      };
+    case DELETE_PIN:
+      const { boardId: deleteBoardId, pinId: deletePinId } = action.payload;
+      const updatedBoardPins = state.boardPins[deleteBoardId].filter(
+        (pin) => pin !== deletePinId
+      );
+
+      return {
+        ...state,
+        boardPins: {
+          ...state.boardPins,
+          [deleteBoardId]: updatedBoardPins,
+        },
       };
 
     default:
