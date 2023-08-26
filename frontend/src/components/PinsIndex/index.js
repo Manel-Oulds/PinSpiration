@@ -4,6 +4,8 @@ import * as pinActions from "../../store/pin";
 import Modal from "../context/Modal";
 import ShowPinItem from "../ShowPinItem";
 import { addBoardPin } from "../../store/boardPins";
+import { fetchAllBoards, fetchBoards } from "../../store/board";
+import { fetchUser } from "../../store/user";
 
 const getRandomSize = () => {
   const sizes = ["small", "medium", "large"];
@@ -19,10 +21,18 @@ export default function PinsIndex() {
   const [loading, setLoading] = useState(true);
   const pins = useSelector((state) => state.pin);
   const allBoards = useSelector((state) => state.boards);
+  const [selectedBoard, setSelectedBoard] = useState("");
+  const currentUser = useSelector((state) => state.session.user);
+  const boards = useSelector((state) => state.boards);
 
-  
-  const userBoardIds = useSelector((state) => state.session.user.boardIds);
-  const allPinId = userBoardIds.find(
+  const userBoards = useSelector(
+    (state) => state.users[currentUser.id].boardIds
+  );
+  const allPinsBoardId = userBoards.find(
+    (boardId) => boards[boardId]?.title === "All Pins"
+  );
+
+  const allPinId = userBoards.find(
     (boardId) => allBoards[boardId]?.title === "All Pins"
   );
 
@@ -37,18 +47,37 @@ export default function PinsIndex() {
 
   useEffect(() => {
     const fetchData = async () => {
+      await dispatch(fetchUser(currentUser.id));
       await dispatch(pinActions.fetchAllPins());
+      await dispatch(fetchBoards(currentUser));
+
+      await dispatch(fetchAllBoards);
       setLoading(false);
     };
 
     fetchData();
   }, [dispatch]);
 
-  const handleSavePin = (pin) => {
+  // const handleSavePin = (pin) => {
+  //   dispatch(
+  //     addBoardPin({
+  //       board_pin: {
+  //         board_id: allPinId,
+  //         pin_id: pin.id,
+  //       },
+  //     })
+  //   );
+  //   setIsSaved(true);
+  // };
+  const handleSavePin = (pin, selectedBoardId) => {
+    if (!selectedBoardId) {
+      return; // Prevent saving if no board is selected
+    }
+
     dispatch(
       addBoardPin({
         board_pin: {
-          board_id: allPinId,
+          board_id: selectedBoardId,
           pin_id: pin.id,
         },
       })
@@ -74,20 +103,36 @@ export default function PinsIndex() {
         </div>
       ) : (
         Object.values(pins).map((pin) => (
-          <div
-            key={pin.id}
-            className={getRandomSize()}
-            onClick={() => handleClick(pin)}
-          >
-            <button
-              className="save-pin"
-              style={{ background: "red" }}
-              onClick={() => handleSavePin(pin)}
-              disabled={isSaved}
-            >
-              {isSaved ? "Saved" : "Save"}
-            </button>
-            <img src={pin.imgUrl} alt={pin.title}></img>
+          <div key={pin.id} className={getRandomSize()}>
+            <div className="pin-actions">
+              <select
+                value={selectedBoard}
+                onChange={(e) => setSelectedBoard(e.target.value)}
+                className="select-board"
+              >
+                <option value={allPinId}>All Pins</option>
+                {userBoards.map((boardId) => {
+                  const board = allBoards[boardId];
+                  if (board && boardId !== allPinId) {
+                    return (
+                      <option key={boardId} value={boardId}>
+                        {board.title}
+                      </option>
+                    );
+                  }
+                  return null; // Return null if the condition is not met to avoid React warnings
+                })}
+              </select>
+              <button
+                className="save-pin"
+                style={{ background: "red" }}
+                onClick={() => handleSavePin(pin, selectedBoard)}
+                disabled={isSaved}
+              >
+                {isSaved ? "Saved" : "Save"}
+              </button>
+            </div>
+            <img src={pin.imgUrl} alt={pin.title} />
           </div>
         ))
       )}

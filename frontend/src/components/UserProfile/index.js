@@ -20,6 +20,7 @@ import UserError from "../../components/UserEror/index.js";
 import { Redirect } from "react-router-dom/cjs/react-router-dom";
 import * as followActions from "../../store/follow";
 import ModalFollow from "../context/ModalFollow";
+import FollowsList from "./followsList";
 
 function UserProfile() {
   const history = useHistory();
@@ -208,16 +209,10 @@ function UserProfile() {
       <div>
         {showFolloweesModal && (
           <ModalFollow onClose={handleCloseFolloweesModal}>
-            {followees.map((followee) => (
-              <div
-                key={followee.id}
-                className="follows-div"
-                onClick={() => handleFolloweeClick(followee.id)}
-              >
-                <button className="username-btn">{followee.username[0]}</button>
-                {followee.username}
-              </div>
-            ))}
+            <FollowsList
+              followees={followees}
+              onClose={handleCloseFolloweesModal}
+            />
           </ModalFollow>
         )}
       </div>
