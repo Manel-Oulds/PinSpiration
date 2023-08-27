@@ -41,6 +41,13 @@ export default function PinsIndex() {
     setShowModal(true);
   };
 
+  const handleContainerClick = (pin, event) => {
+    if (event.target != ".save-pin") {
+      setSelectedPin(pin);
+      setShowModal(true);
+    }
+  };
+
   const handleModalClose = () => {
     setShowModal(false);
   };
@@ -93,34 +100,42 @@ export default function PinsIndex() {
       ) : (
         Object.values(pins).map((pin) => (
           <div key={pin.id} className={`pin-container ${getRandomSize()}`}>
-            <div className="pin-actions">
-              <select
-                value={selectedBoards[pin.id] || ""}
-                onChange={(e) =>
-                  setSelectedBoards((prevSelectedBoards) => ({
-                    ...prevSelectedBoards,
-                    [pin.id]: e.target.value,
-                  }))
-                }
-                className="select-board"
-              >
-                <option value={allPinId}>All Pins</option>
-                {userBoards.map((boardId) => {
-                  const board = allBoards[boardId];
-                  if (board && boardId !== allPinId) {
-                    return (
-                      <option key={boardId} value={boardId}>
-                        {board.title}
-                      </option>
-                    );
+            <div className="pin-actions" onClick={() => handleClick(pin)}>
+              <div className="custom-select" onClick={(e)=> e.stopPropagation()}>
+                <select
+                  id="dropdown"
+                  value={selectedBoards[pin.id] || ""}
+                  onChange={(e) =>
+                    setSelectedBoards((prevSelectedBoards) => ({
+                      ...prevSelectedBoards,
+                      [pin.id]: e.target.value,
+                    }))
                   }
-                  return null;
-                })}
-              </select>
+                  className="select-board"
+                >
+                  <option value={allPinId} className="option-allpins">
+                    All Pins
+                  </option>
+                  {userBoards.map((boardId) => {
+                    const board = allBoards[boardId];
+                    if (board && boardId !== allPinId) {
+                      return (
+                        <option key={boardId} value={boardId}>
+                          {board.title}
+                        </option>
+                      );
+                    }
+                    return null;
+                  })}
+                </select>
+              </div>
               <button
                 className="save-pin"
                 style={{ background: "red" }}
-                onClick={() => handleSavePin(pin, selectedBoards[pin.id])}
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent click from propagating
+                  handleSavePin(pin, selectedBoards[pin.id]);
+                }}
                 disabled={isSaved}
               >
                 {isSaved ? "Saved" : "Save"}

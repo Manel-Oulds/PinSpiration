@@ -16,8 +16,8 @@
   }
   
   .clickable-pin img {
-    border: 1px solid rgb(244, 218, 222, 0.5);
+    border: 1px solid rgba(231, 219, 220, 0.5);
     border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
   }
 

@@ -73,21 +73,21 @@ function PinShow({ user }) {
               <div className="button-container" ref={buttonContainerRef}>
                 {currentUser.id === user.id &&
                   currentUser.id === pin.userId && (
-                    <button
+                    <div
                       className="edit-btn"
                       onClick={() => handleEditClick(pin)}
                     >
                       <i className="fa-solid fa-pen-to-square fa-beat-fade"></i>
-                    </button>
+                    </div>
                   )}
                 {currentUser.id === user.id &&
                   currentUser.id === pin.userId && (
-                    <button
+                    <div
                       className="delete-btn"
                       onClick={() => handleDelete(pin.id)}
                     >
                       <i className="fa-solid fa-trash fa-beat-fade"></i>
-                    </button>
+                    </div>
                   )}
                 {currentUser.id === pin.userId}
               </div>

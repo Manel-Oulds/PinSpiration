@@ -83,7 +83,7 @@ function BoardShowIndex() {
       // });
     }
 
-    if (boardPins && boardPins.length === 1) {
+    if (confirmation && boardPins && boardPins.length === 1) {
       dispatch(clearBoardPins(boardId));
     }
   };
@@ -160,20 +160,20 @@ function BoardShowIndex() {
                 />
                 <div className="button-container" ref={buttonContainerRef}>
                   {currentUser == userId && (
-                    <button
+                    <div
                       className="edit-btn"
                       onClick={() => handleEditClick(pin)}
                     >
                       <i className="fa-solid fa-pen-to-square fa-beat-fade"></i>
-                    </button>
+                    </div>
                   )}
                   {currentUser == userId && (
-                    <button
+                    <div
                       className="delete-btn"
                       onClick={() => handleDelete(pin)}
                     >
                       <i className="fa-solid fa-trash fa-beat-fade"></i>
-                    </button>
+                    </div>
                   )}
                 </div>
               </div>

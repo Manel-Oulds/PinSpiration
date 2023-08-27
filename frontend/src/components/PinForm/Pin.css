@@ -91,6 +91,7 @@
   background-color: rgb(173, 158, 158);
   font-family: "Times New Roman", Times, serif;
   border-radius: 10px 0 0 10px;
+  background-color: transparent;
 }
 
 .image-text {
@@ -151,14 +152,20 @@
 
 .button-container {
   position: absolute;
-  top: 85%;
+  display: flex;
+  bottom: 50px;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
   opacity: 0;
 }
 
-.clickable-pin:hover .button-container {
+.pin-container:hover .button-container {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.user-pins:hover .button-container {
   pointer-events: auto;
   opacity: 1;
 }
@@ -167,9 +174,12 @@
 .delete-btn {
   padding: 8px 16px;
   margin: 4px;
-  background-color: #ffffff;
-  border: 1px solid #000000;
-  border-radius: 15px;
+  color: #ffffff;
+  background-color: transparent;
+  font-weight: 1000;
+  size: xx-large;
+  /* border: 1px solid #000000; */
+  /* border-radius: 15px; */
   cursor: pointer;
 }
 
@@ -201,6 +211,7 @@
 }
 .pin-container {
   position: relative;
+  border-radius: 10px;
 }
 
 .pin-actions {
@@ -433,10 +444,56 @@
   left: 200px;
   border-radius: 20px;
   padding: 6px;
-  opacity: 0;
 }
 
-.small:hover .save-pin {
+/* .small:hover .save-pin {
   opacity: 1;
   background-color: red;
+} */
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+  color: white;
+  background-color: transparent;
 }
+
+#dropdown {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* padding: 8px 16px; */
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  font-weight: 100;
+  font-size: 17px;
+  color: white;
+}
+
+#dropdown::-ms-expand {
+  display: none;
+
+}
+
+.custom-select::before {
+  content: "\f107"; /* Unicode arrow-down icon */
+  font-family: FontAwesome;
+  position: absolute;
+  top: 50%;
+  color: #ffffff;
+  right: 10px;
+  pointer-events: none;
+  transform: translate(130%, -40%);
+}
+
+#dropdown option {
+  color: #ffffff;
+}
+
+
+
+
+
