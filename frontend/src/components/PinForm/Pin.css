@@ -195,9 +195,23 @@
   background-color: rgba(173, 158, 158, 0.5);
   transition: background-color 0.3s;
 }
-.container div:hover .save-pin {
-  background-color: rgba(161, 78, 78, 0.2);
+.container div:hover .pin-actions {
+  background: rgba(0, 0, 0, 0.4);
   opacity: 1;
+}
+.pin-container {
+  position: relative;
+}
+
+.pin-actions {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  opacity: 0;
 }
 
 .small {
@@ -225,7 +239,7 @@
   object-fit: fill;
   width: 100%;
   height: 100%;
-  border: 4px solid rgb(244, 218, 222); /* Pink border, you can choose any cute color you like */
+  border: 2px solid rgba(215, 214, 214, 0.6); /* Pink border, you can choose any cute color you like */
   border-radius: 10px; /* Round the corners of the image */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
@@ -416,7 +430,6 @@
 
 .save-pin {
   position: absolute;
-  top: 5px;
   left: 200px;
   border-radius: 20px;
   padding: 6px;

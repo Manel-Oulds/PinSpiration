@@ -92,7 +92,7 @@ export default function PinsIndex() {
         </div>
       ) : (
         Object.values(pins).map((pin) => (
-          <div key={pin.id} className={getRandomSize()}>
+          <div key={pin.id} className={`pin-container ${getRandomSize()}`}>
             <div className="pin-actions">
               <select
                 value={selectedBoards[pin.id] || ""}
