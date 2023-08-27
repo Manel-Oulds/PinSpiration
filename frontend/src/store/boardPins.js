@@ -189,18 +189,11 @@ export default function boardPinReducer(state = {}, action) {
       };
     case DELETE_PIN:
       const { boardId: deleteBoardId, pinId: deletePinId } = action.payload;
-
-      // Create a copy of the array for the specific boardId
       const updatedPinsArray = [...state[deleteBoardId]];
-
-      // Find the index of the pin to be deleted
       const pinIndex = updatedPinsArray.indexOf(deletePinId);
 
       if (pinIndex !== -1) {
-        // Use the splice method to remove the pin ID from the array
         updatedPinsArray.splice(pinIndex, 1);
-
-        // Update the state with the modified array
         const updatedBoardPins = {
           ...state,
           [deleteBoardId]: updatedPinsArray,
@@ -208,7 +201,6 @@ export default function boardPinReducer(state = {}, action) {
 
         return updatedBoardPins;
       } else {
-        // Pin ID not found, return the original state
         return state;
       }
 
