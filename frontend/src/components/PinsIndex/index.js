@@ -126,10 +126,13 @@ export default function PinsIndex() {
                 {isSaved ? "Saved" : "Save"}
               </button>
             </div>
-            <img src={pin.imgUrl} alt={pin.title} />
+            <img
+              onClick={() => handleClick(pin)}
+              src={pin.imgUrl}
+              alt={pin.title}
+            />
           </div>
         ))
-      
       )}
 
       {showModal && selectedPin && (

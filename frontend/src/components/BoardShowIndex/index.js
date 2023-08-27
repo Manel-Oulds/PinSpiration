@@ -74,19 +74,18 @@ function BoardShowIndex() {
     );
 
     if (confirmation) {
-
-      (pin.userId == currentUser) && dispatch(pinActions.deletePin(pin.id));
-      (pin.userId !== currentUser) && dispatch(removePinFromBoard(board.id, pin.id));
+      pin.userId == currentUser && dispatch(pinActions.deletePin(pin.id));
+      pin.userId !== currentUser &&
+        dispatch(removePinFromBoard(board.id, pin.id));
       // dispatch(pinActions.deletePin(id)).then(() => {
       //   history.push(`/users/${currentUser}`);
       // });
     }
 
-    if (boardPins && boardPins.length === 1) {
-      dispatch(clearBoardPins(boardId)); // Assuming you have an action to clear boardPins
-    }
+    // if (boardPins && boardPins.length === 1) {
+    //   dispatch(clearBoardPins(boardId)); // Assuming you have an action to clear boardPins
+    // }
   };
-
 
   const handleEditClick = (pin) => {
     setSelectedPin(pin);
@@ -159,7 +158,7 @@ function BoardShowIndex() {
                   alt="Pin"
                 />
                 <div className="button-container" ref={buttonContainerRef}>
-                  {currentUser == userId && currentUser == pin.userId && (
+                  {currentUser == userId && (
                     <button
                       className="edit-btn"
                       onClick={() => handleEditClick(pin)}
