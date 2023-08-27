@@ -88,10 +88,11 @@
   width: fit-content;
   height: fit-content;
   padding: 5px 5px;
-  background-color: rgb(173, 158, 158);
   font-family: "Times New Roman", Times, serif;
-  border-radius: 10px 0 0 10px;
-  background-color: transparent;
+  border: none;
+  background: none;
+  font-size: large;
+  color: white;
 }
 
 .image-text {
@@ -444,6 +445,7 @@
   left: 200px;
   border-radius: 20px;
   padding: 6px;
+  top: 0;
 }
 
 /* .small:hover .save-pin {
@@ -456,42 +458,17 @@
   display: inline-block;
   color: white;
   background-color: transparent;
-}
-
-#dropdown {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  /* padding: 8px 16px; */
-  background-color: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  background-color: transparent;
-  font-weight: 100;
-  font-size: 17px;
-  color: white;
-}
-
-#dropdown::-ms-expand {
-  display: none;
+  display: flex;
 
 }
 
-.custom-select::before {
-  content: "\f107"; /* Unicode arrow-down icon */
-  font-family: FontAwesome;
-  position: absolute;
-  top: 50%;
-  color: #ffffff;
-  right: 10px;
-  pointer-events: none;
-  transform: translate(130%, -40%);
-}
 
-#dropdown option {
-  color: #ffffff;
-}
+
+
+
+
+
+
 
 
 

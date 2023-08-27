@@ -6,6 +6,8 @@ import ShowPinItem from "../ShowPinItem";
 import { addBoardPin } from "../../store/boardPins";
 import { fetchAllBoards, fetchBoards } from "../../store/board";
 import { fetchUser } from "../../store/user";
+import SaveDropdown from "./save-dropdown";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 const getRandomSize = () => {
   const sizes = ["small", "medium", "large"];
@@ -24,14 +26,11 @@ export default function PinsIndex() {
   const [selectedBoards, setSelectedBoards] = useState({});
   const currentUser = useSelector((state) => state.session.user);
   const boards = useSelector((state) => state.boards);
+  const boardPins = useSelector((state) => state.boardpins);
 
   const userBoards = useSelector(
     (state) => state.users[currentUser.id]?.boardIds
   );
-  const allPinsBoardId = userBoards?.find(
-    (boardId) => boards[boardId]?.title === "All Pins"
-  );
-
   const allPinId = userBoards?.find(
     (boardId) => allBoards[boardId]?.title === "All Pins"
   );
@@ -39,13 +38,6 @@ export default function PinsIndex() {
   const handleClick = (pin) => {
     setSelectedPin(pin);
     setShowModal(true);
-  };
-
-  const handleContainerClick = (pin, event) => {
-    if (event.target != ".save-pin") {
-      setSelectedPin(pin);
-      setShowModal(true);
-    }
   };
 
   const handleModalClose = () => {
@@ -58,7 +50,7 @@ export default function PinsIndex() {
       await dispatch(pinActions.fetchAllPins());
       await dispatch(fetchBoards(currentUser));
 
-      await dispatch(fetchAllBoards);
+      await dispatch(fetchAllBoards());
       setLoading(false);
     };
 
@@ -98,56 +90,87 @@ export default function PinsIndex() {
           ></i>
         </div>
       ) : (
-        Object.values(pins).map((pin) => (
-          <div key={pin.id} className={`pin-container ${getRandomSize()}`}>
-            <div className="pin-actions" onClick={() => handleClick(pin)}>
-              <div className="custom-select" onClick={(e)=> e.stopPropagation()}>
-                <select
-                  id="dropdown"
-                  value={selectedBoards[pin.id] || ""}
-                  onChange={(e) =>
-                    setSelectedBoards((prevSelectedBoards) => ({
-                      ...prevSelectedBoards,
-                      [pin.id]: e.target.value,
-                    }))
-                  }
-                  className="select-board"
-                >
-                  <option value={allPinId} className="option-allpins">
-                    All Pins
-                  </option>
-                  {userBoards.map((boardId) => {
-                    const board = allBoards[boardId];
-                    if (board && boardId !== allPinId) {
-                      return (
-                        <option key={boardId} value={boardId}>
-                          {board.title}
-                        </option>
-                      );
-                    }
-                    return null;
-                  })}
-                </select>
+        Object.values(pins).map((pin) => {
+          const isPinSaved = userBoards.some((boardId) =>
+            boardPins[boardId]?.includes(pin.id)
+          );
+          const board = userBoards.map((boardId) =>
+            boardPins[boardId]?.includes(pin.id) ? boards[boardId].title : null
+          );
+          const idboard = userBoards
+            .map((boardId) =>
+              boardPins[boardId]?.includes(pin.id) ? boardId : null
+            ).filter(Boolean)
+            
+
+          return (
+            <div key={pin.id} className={`pin-container ${getRandomSize()}`}>
+              <div className="pin-actions" onClick={() => handleClick(pin)}>
+                {isPinSaved ? (
+                  <div
+                    className="custom-select"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <label>
+                      {" "}
+                      Saved in{" "}
+                      <NavLink
+                        to={`/users/${currentUser.id}/boards/${idboard}`}
+                      >
+                        <span style={{ color: "red" }}>{board}</span>
+                      </NavLink>{" "}
+                    </label>
+                    <button
+                      className="save-pin"
+                      style={{ background: "red" }}
+                      disabled
+                    >
+                      Saved
+                    </button>
+                  </div>
+                ) : (
+                  <div
+                    className="custom-select"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <select
+                      id="dropdown"
+                      value={selectedBoards[pin.id] || ""}
+                      onChange={(e) =>
+                        setSelectedBoards((prevSelectedBoards) => ({
+                          ...prevSelectedBoards,
+                          [pin.id]: e.target.value,
+                        }))
+                      }
+                      className="select-board"
+                    >
+                      <option value={allPinId} className="option-allpins">
+                        All Pins
+                      </option>
+                      {userBoards.map((boardId) => {
+                        const board = allBoards[boardId];
+                        if (board && boardId !== allPinId) {
+                          return (
+                            <option key={boardId} value={boardId}>
+                              {board.title}
+                            </option>
+                          );
+                        }
+                        return null;
+                      })}
+                    </select>
+                  </div>
+                )}
               </div>
-              <button
-                className="save-pin"
-                style={{ background: "red" }}
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevent click from propagating
-                  handleSavePin(pin, selectedBoards[pin.id]);
-                }}
-                disabled={isSaved}
-              >
-                {isSaved ? "Saved" : "Save"}
-              </button>
+
+              <img
+                onClick={() => handleClick(pin)}
+                src={pin.imgUrl}
+                alt={pin.title}
+              />
             </div>
-            <img
-              onClick={() => handleClick(pin)}
-              src={pin.imgUrl}
-              alt={pin.title}
-            />
-          </div>
-        ))
+          );
+        })
       )}
 
       {showModal && selectedPin && (
