@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import * as pinActions from "../../store/pin";
 import Modal from "../context/Modal";
 import ShowPinItem from "../ShowPinItem";
-import { addBoardPin } from "../../store/boardPins";
+import { addBoardPin, fetchAllBoardPins } from "../../store/boardPins";
 import { fetchAllBoards, fetchBoards } from "../../store/board";
 import { fetchUser } from "../../store/user";
 import SaveDropdown from "./save-dropdown";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const getRandomSize = () => {
   const sizes = ["small", "medium", "large"];
@@ -16,6 +16,7 @@ const getRandomSize = () => {
 };
 
 export default function PinsIndex() {
+  const history = useHistory();
   const [selectedPin, setSelectedPin] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
@@ -49,6 +50,8 @@ export default function PinsIndex() {
       await dispatch(fetchUser(currentUser.id));
       await dispatch(pinActions.fetchAllPins());
       await dispatch(fetchBoards(currentUser));
+      await dispatch(fetchBoards(currentUser.id));
+      await dispatch(fetchAllBoardPins());
 
       await dispatch(fetchAllBoards());
       setLoading(false);
@@ -59,7 +62,7 @@ export default function PinsIndex() {
 
   const handleSavePin = (pin, selectedBoardId) => {
     if (!selectedBoardId) {
-      return; // Prevent saving if no board is selected
+      selectedBoardId = allPinId;
     }
 
     dispatch(
@@ -71,6 +74,7 @@ export default function PinsIndex() {
       })
     );
     setIsSaved(true);
+    history.push(`Users/${currentUser.id}/boards/${selectedBoardId}`);
   };
 
   return (
@@ -100,8 +104,8 @@ export default function PinsIndex() {
           const idboard = userBoards
             .map((boardId) =>
               boardPins[boardId]?.includes(pin.id) ? boardId : null
-            ).filter(Boolean)
-            
+            )
+            .filter(Boolean);
 
           return (
             <div key={pin.id} className={`pin-container ${getRandomSize()}`}>
@@ -111,15 +115,18 @@ export default function PinsIndex() {
                     className="custom-select"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <label>
+                    <div className="select-board">
+                      <label>
                       {" "}
                       Saved in{" "}
                       <NavLink
                         to={`/users/${currentUser.id}/boards/${idboard}`}
                       >
-                        <span style={{ color: "red" }}>{board}</span>
+                        <span>{board}</span>
                       </NavLink>{" "}
                     </label>
+                    </div>
+                    
                     <button
                       className="save-pin"
                       style={{ background: "red" }}
@@ -159,6 +166,17 @@ export default function PinsIndex() {
                         return null;
                       })}
                     </select>
+                    <button
+                      className="save-pin"
+                      style={{ background: "red" }}
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent click from propagating
+                        handleSavePin(pin, selectedBoards[pin.id]);
+                      }}
+                      disabled={isSaved}
+                    >
+                      {isSaved ? "Saved" : "Save"}
+                    </button>
                   </div>
                 )}
               </div>
