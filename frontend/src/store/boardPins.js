@@ -92,9 +92,6 @@ export const addBoardPin = (boardPin) => async (dispatch) => {
 //   }
 // };
 export const removePinFromBoard = (boardId, pinId) => async (dispatch) => {
-  console.log("Board ID:", boardId);
-  console.log("Pin ID:", pinId);
-  // Fetch all board pins associated with the board
   const response = await csrfFetch(`/api/board_pins?board_id=${boardId}`);
   const boardPins = await response.json();
 
@@ -124,6 +121,11 @@ export const removePinFromBoard = (boardId, pinId) => async (dispatch) => {
       },
     }
   );
+
+  dispatch({
+    type: DELETE_PIN,
+    payload: { boardId, pinId },
+  });
 
   if (!deleteResponse.ok) {
     const errorMessage = await deleteResponse.text();
@@ -187,17 +189,28 @@ export default function boardPinReducer(state = {}, action) {
       };
     case DELETE_PIN:
       const { boardId: deleteBoardId, pinId: deletePinId } = action.payload;
-      const updatedBoardPins = state.boardPins[deleteBoardId].filter(
-        (pin) => pin !== deletePinId
-      );
 
-      return {
-        ...state,
-        boardPins: {
-          ...state.boardPins,
-          [deleteBoardId]: updatedBoardPins,
-        },
-      };
+      // Create a copy of the array for the specific boardId
+      const updatedPinsArray = [...state[deleteBoardId]];
+
+      // Find the index of the pin to be deleted
+      const pinIndex = updatedPinsArray.indexOf(deletePinId);
+
+      if (pinIndex !== -1) {
+        // Use the splice method to remove the pin ID from the array
+        updatedPinsArray.splice(pinIndex, 1);
+
+        // Update the state with the modified array
+        const updatedBoardPins = {
+          ...state,
+          [deleteBoardId]: updatedPinsArray,
+        };
+
+        return updatedBoardPins;
+      } else {
+        // Pin ID not found, return the original state
+        return state;
+      }
 
     default:
       return state;
