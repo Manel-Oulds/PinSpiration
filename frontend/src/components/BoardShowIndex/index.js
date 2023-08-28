@@ -57,7 +57,7 @@ function BoardShowIndex() {
 
   const handleImageClick = (pin) => (event) => {
     setSelectedPin(pin);
-    if (buttonContainerRef.current?.contains(event.target)) {
+    if (buttonContainerRef.current.contains(event.target)) {
       setShowModal(false);
     } else {
       setShowModal(true);
@@ -89,11 +89,14 @@ function BoardShowIndex() {
   };
 
   const handleEditClick = (pin) => {
+    setShowModal(false);
     setSelectedPin(pin);
     setEditModal(true);
+    
   };
 
   const handleDeleteBoard = () => {
+    setShowModal(false); 
     const confirmation = window.confirm(
       "Are you sure you want to delete this board and its pins?"
     );
@@ -128,7 +131,11 @@ function BoardShowIndex() {
         >
           {board?.title}
         </h1>
-        {boardPins ? boardPins.length : 0} Pin(s){" "}
+        <span
+          style={{ marginLeft: "10px", fontWeight: "50px", fontSize: "18px" }}
+        >
+          {boardPins ? boardPins.length : 0} Pin(s){" "}
+        </span>
         <div className="deleteboard" onClick={handleDeleteBoard}>
           {userId == currentUser && board?.title !== "All Pins" && (
             <i
