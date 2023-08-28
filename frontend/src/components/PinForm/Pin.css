@@ -82,6 +82,7 @@
   background-color: red;
   font-family: "Times New Roman", Times, serif;
   border-radius: 0 10px 10px 0;
+  margin: 8px;
 }
 
 .select-board {
@@ -93,6 +94,16 @@
   background: none;
   font-size: large;
   color: white;
+  margin-right: 15px;
+}
+
+.select-b {
+  width: fit-content;
+  height: fit-content;
+  padding: 5px 5px;
+  background-color: rgb(173, 158, 158);
+  font-family: "Times New Roman", Times, serif;
+  border-radius: 10px 0 0 10px;
 }
 
 .image-text {
@@ -139,7 +150,7 @@
   justify-content: space-around;
 }
 .title-pin {
-  margin: 20px;
+  margin-top: 80px;
   font-size: 45px;
   padding: 10px;
 }
@@ -437,7 +448,7 @@
   height: fit-content;
   background-color: red;
   padding: 10px;
-  margin: 5px;
+  /* margin: 5px; */
   top: 1%;
   border-radius: 30px;
 }
@@ -448,6 +459,7 @@
   border-radius: 20px;
   padding: 6px;
   top: 0;
+  /* margin: 0px; */
 }
 
 /* .small:hover .save-pin {

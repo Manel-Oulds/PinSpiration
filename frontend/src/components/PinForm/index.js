@@ -145,7 +145,7 @@ function Pin() {
                   <select
                     value={selectedBoard}
                     onChange={handleSelectChange}
-                    className="select-board"
+                    className="select-b"
                   >
                     <option value={allPinsBoardId}>All Pins</option>
                     {userBoards?.map((boardId) => {

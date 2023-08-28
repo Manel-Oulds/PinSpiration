@@ -15,11 +15,18 @@ export function ShowPinItem({ pin }) {
   const history = useHistory();
   const [isSaved, setIsSaved] = useState(false);
   const allBoards = useSelector((state) => state.boards);
+  const boardPins = useSelector((state) => state.boardpins);
   const allPinId = userBoardIds.find(
     (boardId) => allBoards[boardId]?.title === "All Pins"
   );
   const followees = useSelector((state) => state.follows.followees);
   const followers = useSelector((state) => state.follows.followers);
+  const boards = useSelector((state) => state.boards);
+  const [selectedBoards, setSelectedBoards] = useState({});
+
+  const isPinSaved = Object.values(userBoardIds).some((boardId) =>
+    boardPins[boardId]?.includes(pin.id)
+  );
 
   useEffect(() => {
     dispatch(userActions.fetchUser(pin.userId));
@@ -27,17 +34,32 @@ export function ShowPinItem({ pin }) {
 
   const currentUser = useSelector((state) => state.session.user);
   const [isFollowing, setIsFollowing] = useState(false);
+  const boardId = userBoardIds
+    .map((boardId) => (boardPins[boardId]?.includes(pin.id) ? boardId : null))
+    .filter(Boolean);
+  const board = userBoardIds.map((boardId) =>
+    boardPins[boardId]?.includes(pin.id) ? boards[boardId].title : null
+  );
 
-  const handleSavePin = () => {
+  const handleSavePin = (pin, selectedBoardId) => {
+    if (!selectedBoardId) {
+      selectedBoardId = allPinId;
+    }
+
     dispatch(
       addBoardPin({
         board_pin: {
-          board_id: allPinId,
-          pin_id: pin.id,
+          board_id: selectedBoardId,
+          pin_id: pin?.id,
         },
       })
     );
     setIsSaved(true);
+    history.push(`Users/${currentUser.id}/boards/${selectedBoardId}`);
+  };
+
+  const handleSavedPin = () => {
+    history.push(`users/${currentUser.id}/boards/${boardId}`);
   };
 
   if (!user) {
@@ -66,13 +88,53 @@ export function ShowPinItem({ pin }) {
       <div className="pin-informations">
         <div className="title-save">
           <h2 className="title-pin">{pin.title}</h2>
-          {/* <button
-            className="save-pin-btn"
-            onClick={handleSavePin}
-            disabled={isSaved}
-          >
-            {isSaved ? "Saved" : "Save"}
-          </button> */}
+          {!isPinSaved && (
+            <div className="custom-select">
+              <select
+                // id="dropdown"
+                value={selectedBoards[pin.id] || ""}
+                onChange={(e) =>
+                  setSelectedBoards((prevSelectedBoards) => ({
+                    ...prevSelectedBoards,
+                    [pin.id]: e.target.value,
+                  }))
+                }
+                className="select-board"
+              >
+                <option value={allPinId} className="option-allpins">
+                  All Pins
+                </option>
+                {userBoardIds.map((boardId) => {
+                  const board = allBoards[boardId];
+                  if (board && boardId !== allPinId) {
+                    return (
+                      <option key={boardId} value={boardId}>
+                        {board.title}
+                      </option>
+                    );
+                  }
+                  return null;
+                })}
+              </select>
+              <button className="save-pin-btn" onClick={() => handleSavePin()}>
+                Save
+              </button>
+            </div>
+          )}
+          {isPinSaved && (
+            // <NavLink to={`users/${currentUser.id}/boards/${boardId}`}>
+            //   {" "}
+            //   Saved in {board}
+            // </NavLink>
+
+            <button
+              className="save-pin-btn"
+              style={{ backgroundColor: "blue", color: "white" }}
+              onClick={() => handleSavedPin()}
+            >
+              Saved in {board}
+            </button>
+          )}
         </div>
 
         <h1 className="descr-pin">{pin.description}</h1>
