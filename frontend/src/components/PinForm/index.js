@@ -7,6 +7,7 @@ import * as boardActions from "../../store/board";
 import Navigation from "../Navigation";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { addBoardPin, fetchAllBoardPins } from "../../store/boardPins";
+import { fetchUser } from "../../store/user";
 
 function Pin() {
   const dispatch = useDispatch();
@@ -23,14 +24,14 @@ function Pin() {
 
   const fileInputRef = useRef(null);
   const userBoards = useSelector(
-    (state) => state.users[sessionUser.id].boardIds
+    (state) => state.users[sessionUser.id]?.boardIds
   );
   const boards = useSelector((state) => state.boards);
   let err = false;
 
   const pinBoardIds = useSelector((state) => state.boardPins);
   const boardIds = useSelector((state) => state.boards);
-  const allPinsBoardId = userBoards.find(
+  const allPinsBoardId = userBoards?.find(
     (boardId) => boards[boardId]?.title === "All Pins"
   );
   const [selectedBoard, setSelectedBoard] = useState(allPinsBoardId);
@@ -49,6 +50,7 @@ function Pin() {
       await dispatch(boardActions.fetchAllBoards());
       await dispatch(fetchAllBoardPins());
       await dispatch(pinActions.fetchAllPins());
+      await dispatch(fetchUser(sessionUser.id));
       setLoading(false);
     };
 
@@ -145,7 +147,8 @@ function Pin() {
                   <select
                     value={selectedBoard}
                     onChange={handleSelectChange}
-                    className="select-b"
+                    className="custom-select"
+                    style={{margin:"20px",  border:"none", color:"black", fontSize:"15px"}}
                   >
                     <option value={allPinsBoardId}>All Pins</option>
                     {userBoards?.map((boardId) => {
@@ -159,7 +162,9 @@ function Pin() {
                       }
                     })}
                   </select>
-                  <button className="pin-btn b">Create Pin</button>
+                  <button className="edit" style={{ backgroundColor: "red" }}>
+                    Create Pin
+                  </button>
                 </div>
 
                 <input
