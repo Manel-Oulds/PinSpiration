@@ -151,7 +151,7 @@ function BoardShowIndex() {
               <div
                 key={pin.id}
                 onClick={handleImageClick(pin)}
-                className="clickable-pin"
+                className={`clickable-pin ${pinClassName}`}
               >
                 <img
                   src={pin.imgUrl}

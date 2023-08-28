@@ -108,6 +108,7 @@
 }
 
 .user-pins {
+  position: relative;
   border-radius: 30px;
   box-shadow: #6c5757;
   height: 300px;
@@ -118,7 +119,6 @@
 
 .clickable-pin {
   position: relative;
-  width: auto;
 }
 
 .user-pins:hover {
@@ -154,11 +154,11 @@
 .button-container {
   position: absolute;
   display: flex;
-  bottom: 50px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 110%;
+  left: 55%;
+  /* transform: translate(-50%, -50%); */
   z-index: 1;
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 .pin-container:hover .button-container {
@@ -175,13 +175,14 @@
 .delete-btn {
   padding: 8px 16px;
   margin: 4px;
-  color: #ffffff;
+  color: rgb(255, 0, 0);
   background-color: transparent;
   font-weight: 1000;
   size: xx-large;
   /* border: 1px solid #000000; */
   /* border-radius: 15px; */
   cursor: pointer;
+  /* background-color: rgba(147, 143, 138, 0.5); */
 }
 
 .edit-form {
@@ -200,6 +201,7 @@
   grid-auto-rows: 10px;
   justify-content: center;
   align-items: center;
+  /* position: relative; */
 }
 
 .container div {
@@ -230,21 +232,21 @@
   margin: 50px;
   width: 250px;
   grid-row-end: span 26;
-  position: relative;
+  /* position: relative; */
 }
 
 .medium {
   margin: 50px;
   width: 250px;
   grid-row-end: span 35;
-  position: relative;
+  /* position: relative; */
 }
 
 .large {
   margin: 50px;
   width: 250px;
   grid-row-end: span 45;
-  position: relative;
+  /* position: relative; */
 }
 
 .container img {
@@ -442,7 +444,7 @@
 
 .save-pin {
   position: absolute;
-  left: 200px;
+  left: 75%;
   border-radius: 20px;
   padding: 6px;
   top: 0;
@@ -459,18 +461,4 @@
   color: white;
   background-color: transparent;
   display: flex;
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

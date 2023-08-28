@@ -43,10 +43,7 @@ function EditPin({ pin, onCloseModal }) {
   };
 
   const handleCancel = () => {
-    debugger;
     onCloseModal();
-    console.log(pin.userId);
-    console.log(sessionUser.id);
   };
 
   const handleDelete = (id) => {
