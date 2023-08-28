@@ -38,14 +38,19 @@ function SearchPage() {
     <>
       <Navigation />
       <div className="container">
-        {searchresults?.map((item) => (
-          <div
-            className={`${getRandomSize()}`}
-            onClick={handleImageClick(pins[item.id])}
-          >
-            <img src={pins[item.id]?.imgUrl} alt="No pin" />
-          </div>
-        ))}
+        {searchresults.length === 0 ? (
+          <p style={{width:"100%", fontSize:"25px", marginLeft:"200%", marginTop:"100%"}}>No results match your search</p>
+        ) : (
+          searchresults.map((item) => (
+            <div
+              key={item.id} // Add a unique key here
+              className={`${getRandomSize()}`}
+              onClick={handleImageClick(pins[item.id])}
+            >
+              <img src={pins[item.id]?.imgUrl} alt="No pin" />
+            </div>
+          ))
+        )}
       </div>
       {showModal && selectedPin && (
         <Modal onClose={handleModalClose}>
