@@ -122,21 +122,20 @@ export function ShowPinItem({ pin }) {
             </div>
           )}
           {isPinSaved && (
-            // <NavLink to={`users/${currentUser.id}/boards/${boardId}`}>
-            //   {" "}
-            //   Saved in {board}
-            // </NavLink>
-
-            <>
-              {board}{" "}
+            <div className="saved-div">
+              <div style={{margin:"15px", color:"white"}}><NavLink to={`users/${currentUser.id}/boards/${boardId}`}>
+                {" "}
+                {board}
+              </NavLink></div>
               <button
                 className="save-pin-btn"
                 style={{ backgroundColor: "black", color: "white" }}
                 onClick={() => handleSavedPin()}
+                disabled="true"
               >
                 Saved
               </button>
-            </>
+            </div>
           )}
         </div>
 

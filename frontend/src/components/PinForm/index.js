@@ -159,7 +159,7 @@ function Pin() {
                       }
                     })}
                   </select>
-                  <button className="pin-btn">Create Pin</button>
+                  <button className="pin-btn b">Create Pin</button>
                 </div>
 
                 <input

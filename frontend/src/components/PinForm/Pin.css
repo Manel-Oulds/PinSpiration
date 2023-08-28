@@ -455,7 +455,7 @@
   height: fit-content;
   background-color: red;
   padding: 10px;
-  /* margin: 5px; */
+  margin: 5px;
   top: 1%;
   border-radius: 30px;
 }
@@ -483,4 +483,12 @@
   background-color: transparent;
   display: flex;
   border-radius: 5px;
+}
+
+.saved-div{
+  display: flex;
+}
+
+.b{
+  margin: 0;
 }
