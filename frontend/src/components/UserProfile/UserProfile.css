@@ -93,8 +93,7 @@
   font-size: 100px;
 }
 
-
-.following-btn{
+.following-btn {
   border-radius: 25px;
   margin-left: 3px;
 }
@@ -103,25 +102,34 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between; 
-  margin-bottom: 10px; 
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-.follows-div a{
+.follows-div a {
   text-decoration: none;
 }
 
 .follow-btn-div {
-  margin-left: 10px; 
+  margin-left: 10px;
 }
 
-.username-btn{
+.username-btn {
   border-radius: 20px;
   border: 1px solid lightgray;
   margin-right: 5px;
   width: fit-content;
   padding: 3px 3px;
   text-align: center;
-} 
+}
 
+.follow {
+  background-color: red;
+  color: white;
+}
 
+/* Define the styles for the Following button */
+.following {
+  background-color: blue;
+  color: white;
+}

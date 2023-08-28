@@ -165,7 +165,10 @@ function UserProfile() {
           </NavLink>
         )}
         {currentUser.id !== user.id && (
-          <button className="edit" onClick={handleFollow}>
+          <button
+            className={`edit ${isFollowing ? "following" : "follow"}`}
+            onClick={handleFollow}
+          >
             {isFollowing ||
             followees.some((followee) => followee.id === user.id)
               ? "Following"

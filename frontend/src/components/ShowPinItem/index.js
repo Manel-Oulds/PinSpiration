@@ -26,6 +26,7 @@ export function ShowPinItem({ pin }) {
   }, [dispatch, pin.userId]);
 
   const currentUser = useSelector((state) => state.session.user);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   const handleSavePin = () => {
     dispatch(
@@ -50,8 +51,10 @@ export function ShowPinItem({ pin }) {
     if (followees.some((followee) => followee.id === user.id)) {
       // Unfollow if already following
       await dispatch(followActions.deleteFollow(followerId, followee.id));
+      setIsFollowing(false);
     } else {
       await dispatch(followActions.followUser(followerId, followee));
+      setIsFollowing(true);
     }
   };
 
@@ -84,7 +87,7 @@ export function ShowPinItem({ pin }) {
           <div className="second">
             {currentUser.id !== user.id && (
               <button
-                className="gray-btn lightgray"
+                className={`edit ${isFollowing ? "following" : "follow"}`}
                 onClick={() => handleFollow(user)}
               >
                 {followees.some((followee) => followee.id === user.id)
