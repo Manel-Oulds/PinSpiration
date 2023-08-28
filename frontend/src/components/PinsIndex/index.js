@@ -36,6 +36,18 @@ export default function PinsIndex() {
     (boardId) => allBoards[boardId]?.title === "All Pins"
   );
 
+  const localStorageKey = "imageSize";
+  const initialImageSize = localStorage.getItem(localStorageKey) || getRandomSize();
+
+  const [imageSize, setImageSize] = useState(initialImageSize);
+
+  useEffect(() => {
+    // Save the random size to local storage on initial mount
+    if (!localStorage.getItem(localStorageKey)) {
+      localStorage.setItem(localStorageKey, imageSize);
+    }
+  }, [imageSize]);
+
   const handleClick = (pin) => {
     setSelectedPin(pin);
     setShowModal(true);

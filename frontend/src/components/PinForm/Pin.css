@@ -167,6 +167,7 @@
   display: flex;
   top: 110%;
   left: 55%;
+
   /* transform: translate(-50%, -50%); */
   z-index: 0.5;
   /* opacity: 0; */
@@ -226,6 +227,10 @@
 .pin-container {
   position: relative;
   border-radius: 10px;
+}
+
+.pin-container img {
+  height: auto;
 }
 
 .pin-actions {
