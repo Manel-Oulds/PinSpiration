@@ -51,7 +51,7 @@ function UpdateFormPage() {
     <>
       {isLoggedIn && (
         <div className="update-div">
-          <img src="Frame_new.svg" alt="Logo" className="logo" />
+          <img src="/assets/images/Frame_new.svg" alt="Logo" className="logo" />
           <div className="title1">Welcome to PinSpiration </div>
           <div className="title2">
             People visiting your profile will see the following info{" "}
