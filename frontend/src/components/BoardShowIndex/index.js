@@ -57,10 +57,9 @@ function BoardShowIndex() {
 
   const handleImageClick = (pin) => (event) => {
     setSelectedPin(pin);
-    if (
-      buttonContainerRef.current &&
-      !buttonContainerRef.current.contains(event.target)
-    ) {
+    if (buttonContainerRef.current?.contains(event.target)) {
+      setShowModal(false);
+    } else {
       setShowModal(true);
     }
   };
@@ -86,6 +85,7 @@ function BoardShowIndex() {
     if (confirmation && boardPins && boardPins.length === 1) {
       dispatch(clearBoardPins(boardId));
     }
+    setSelectedPin(null);
   };
 
   const handleEditClick = (pin) => {
