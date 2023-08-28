@@ -12,8 +12,11 @@ import {
 } from "../../store/boardPins";
 
 function EditPin({ pin, onCloseModal }) {
+  const [title, setTitle] = useState(pin.title);
   const [selectedBoard, setSelectedBoard] = useState();
+  const [description, setDescription] = useState(pin.description);
   const history = useHistory();
+  let err = false;
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards);
@@ -21,24 +24,33 @@ function EditPin({ pin, onCloseModal }) {
     (state) => state.users[sessionUser.id].boardIds
   );
   const boardpins = useSelector((state) => state.boardpins);
-  // Finding a board Id associated with pin
+  //Finding a board Id associated with pin
   const foundBoardId = Object.entries(boardpins).find(([boardId, pinIds]) =>
     pinIds.includes(pin.id)
   );
-  const [oldBoardId] = foundBoardId;
+  const [oldBoardId, pinIds] = foundBoardId; // PinId is in boardId
 
-  useEffect(() => {
-    dispatch(fetchAllBoardPins());
-    dispatch(fetchBoards(sessionUser));
-  }, [removePinFromBoard, dispatch]);
+  useEffect(
+    () => {
+      dispatch(fetchAllBoardPins());
+      dispatch(fetchBoards(sessionUser));
+    },
+    [removePinFromBoard],
+    dispatch
+  );
 
   const handleEdit = (pin) => {
-    const updatedPin = {
-      ...pin,
-      boardId: selectedBoard,
-    };
+    dispatch(pinActions.updatePin({ ...pin, title, description }));
 
-    dispatch(pinActions.updatePin(updatedPin));
+    if (oldBoardId !== selectedBoard) {
+      dispatch(
+        updateBoardPin(oldBoardId, pin.id, {
+          board_id: selectedBoard,
+          pin_id: pin.id,
+        })
+      );
+    }
+
     onCloseModal();
   };
 
@@ -77,7 +89,7 @@ function EditPin({ pin, onCloseModal }) {
               })}
             </select>
           </div>
-          {sessionUser.id === pin.userId && (
+          {sessionUser.id == pin.userId && (
             <>
               <div className="title-div">
                 <label className="label-style">
@@ -85,15 +97,17 @@ function EditPin({ pin, onCloseModal }) {
                   <input
                     className="input-title"
                     type="text"
-                    value={pin.title}
+                    value={title}
                     placeholder="Add your title"
-                    onChange={(e) =>
-                      dispatch(
-                        pinActions.updatePin({ ...pin, title: e.target.value })
-                      )
-                    }
+                    onChange={(e) => setTitle(e.target.value)}
                   />
                 </label>
+                {title.length < 0 && (err = true) && (
+                  <p>
+                    <i className="fa-solid fa-triangle-exclamation"></i>
+                    Hmm...title can't be empty.
+                  </p>
+                )}
               </div>
               <div className="description-div">
                 <label className="label-style">
@@ -103,15 +117,8 @@ function EditPin({ pin, onCloseModal }) {
                     className="input-description"
                     type="text"
                     placeholder="Tell us about this pin"
-                    value={pin.description}
-                    onChange={(e) =>
-                      dispatch(
-                        pinActions.updatePin({
-                          ...pin,
-                          description: e.target.value,
-                        })
-                      )
-                    }
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                   />
                 </label>
               </div>
@@ -123,7 +130,7 @@ function EditPin({ pin, onCloseModal }) {
         </div>
       </div>
       <div className="cancel-save-div">
-        <button className="gray-btn" onClick={handleCancel}>
+        <button className="gray-btn" onClick={() => handleCancel()}>
           Cancel
         </button>
         <button className="red-btn" onClick={() => handleEdit(pin)}>
@@ -131,6 +138,7 @@ function EditPin({ pin, onCloseModal }) {
         </button>
       </div>
     </div>
+    // </div>
   );
 }
 
