@@ -127,13 +127,16 @@ export function ShowPinItem({ pin }) {
             //   Saved in {board}
             // </NavLink>
 
-            <button
-              className="save-pin-btn"
-              style={{ backgroundColor: "blue", color: "white" }}
-              onClick={() => handleSavedPin()}
-            >
-              Saved in {board}
-            </button>
+            <>
+              {board}{" "}
+              <button
+                className="save-pin-btn"
+                style={{ backgroundColor: "black", color: "white" }}
+                onClick={() => handleSavedPin()}
+              >
+                Saved
+              </button>
+            </>
           )}
         </div>
 

@@ -94,7 +94,9 @@
   background: none;
   font-size: large;
   color: white;
+  margin: 10px 10px;
   margin-right: 15px;
+  padding: 2px;
 }
 
 .select-b {
@@ -208,10 +210,10 @@
   display: grid;
   width: 100%;
   height: auto;
-  margin-top: 60px;
-  grid-template-columns: repeat(auto-fill, 320px);
+  margin-top: 20px;
+  grid-template-columns: repeat(auto-fill, 280px);
   grid-auto-rows: 10px;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   /* position: relative; */
 }
@@ -270,8 +272,8 @@
   width: 100%;
   height: 100%;
   border: 2px solid rgba(215, 214, 214, 0.6); /* Pink border, you can choose any cute color you like */
-  border-radius: 10px; /* Round the corners of the image */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); */
 }
 
 .edit-pin {
@@ -464,6 +466,8 @@
   border-radius: 20px;
   padding: 6px;
   top: 0;
+  margin: 6px 6px;
+
   /* margin: 0px; */
 }
 
@@ -478,4 +482,5 @@
   color: white;
   background-color: transparent;
   display: flex;
+  border-radius: 5px;
 }

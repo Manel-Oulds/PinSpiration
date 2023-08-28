@@ -37,7 +37,8 @@ export default function PinsIndex() {
   );
 
   const localStorageKey = "imageSize";
-  const initialImageSize = localStorage.getItem(localStorageKey) || getRandomSize();
+  const initialImageSize =
+    localStorage.getItem(localStorageKey) || getRandomSize();
 
   const [imageSize, setImageSize] = useState(initialImageSize);
 
@@ -129,16 +130,16 @@ export default function PinsIndex() {
                   >
                     <div className="select-board">
                       <label>
-                      {" "}
-                      Saved in{" "}
-                      <NavLink
-                        to={`/users/${currentUser.id}/boards/${idboard}`}
-                      >
-                        <span>{board}</span>
-                      </NavLink>{" "}
-                    </label>
+                        <NavLink
+                          to={`/users/${currentUser.id}/boards/${idboard}`}
+                        >
+                          <span style={{ textDecoration: "none" }}>
+                            {board}
+                          </span>
+                        </NavLink>{" "}
+                      </label>
                     </div>
-                    
+
                     <button
                       className="save-pin"
                       style={{ background: "red" }}
