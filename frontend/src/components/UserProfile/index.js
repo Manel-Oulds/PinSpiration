@@ -33,11 +33,13 @@ function UserProfile() {
   const boardPins = useSelector((state) => state.boardPins);
   const [loading, setLoading] = useState(true);
   const [userExists, setUserExists] = useState(true);
-  const [isFollowing, setIsFollowing] = useState(false);
+ 
   const followees = useSelector((state) => state.follows.followees);
   const followers = useSelector((state) => state.follows.followers);
   const [showFollowersModal, setShowFollowersModal] = useState(false);
   const [showFolloweesModal, setShowFolloweesModal] = useState(false);
+
+  const [isFollowing, setIsFollowing] = useState(followees.some((followee) => followee.id === user.id));
 
   useEffect(() => {
     // Fetch user data and boards
