@@ -83,9 +83,6 @@ export function ShowPinItem({ pin }) {
       setIsFollowing(true);
     }
   };
-  const handleLink = (boardId) => {
-    history.push(`/users/${currentUser.id}/boards/${boardId}`);
-  };
 
   return (
     <div className="pin-item">
@@ -132,11 +129,11 @@ export function ShowPinItem({ pin }) {
             <div className="saved-div">
               <div
                 style={{ margin: "15px", color: "white" }}
-                onClick={() => handleLink(boardId)}
+                
               >
-                {/* <NavLink to={`users/${currentUser.id}/boards/${boardId}`}> */}{" "}
+                <NavLink to={`/users/${currentUser.id}/boards/${boardId}`}>{" "}
                 {board}
-                {/* </NavLink> */}
+                </NavLink>
               </div>
               <button
                 className="save-pin-btn"
