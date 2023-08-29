@@ -46,7 +46,22 @@ export default function PinsIndex() {
     setShowModal(false);
   };
 
-  const handleSavePin = (pin, selectedBoardId) => {
+  const fetchData = async () => {
+    await dispatch(fetchUser(currentUser.id));
+    await dispatch(pinActions.fetchAllPins());
+    await dispatch(fetchBoards(currentUser));
+    await dispatch(fetchBoards(currentUser.id));
+    await dispatch(fetchAllBoardPins());
+
+    await dispatch(fetchAllBoards());
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [dispatch]);
+
+  const handleSavePin = async (pin, selectedBoardId) => {
     if (!selectedBoardId) {
       selectedBoardId = allPinId;
     }
@@ -59,29 +74,17 @@ export default function PinsIndex() {
         },
       })
     );
+
     setIsSaved((prevIsSaved) => ({
       ...prevIsSaved,
       [pin.id]: true,
     }));
+    setLoading(true);
+    await fetchData();
+    setLoading(false);
+
     // history.push(`Users/${currentUser.id}`);
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      await dispatch(fetchUser(currentUser.id));
-      await dispatch(pinActions.fetchAllPins());
-      await dispatch(fetchBoards(currentUser));
-      await dispatch(fetchBoards(currentUser.id));
-      await dispatch(fetchAllBoardPins());
-
-      await dispatch(fetchAllBoards());
-      setLoading(false);
-    };
-
-    fetchData();
-  }, [dispatch, handleSavePin]);
-
-  
 
   const renderPinSize = (pin) => {
     if (pinSizes[pin.id]) {
