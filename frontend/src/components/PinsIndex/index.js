@@ -28,6 +28,11 @@ export default function PinsIndex() {
   const currentUser = useSelector((state) => state.session.user);
   const boards = useSelector((state) => state.boards);
   const boardPins = useSelector((state) => state.boardpins);
+  const [pinSizes, setPinSizes] = useState({});
+  const [pinSizesGenerated, setPinSizesGenerated] = useState(false);
+
+
+  
 
   const userBoards = useSelector(
     (state) => state.users[currentUser.id]?.boardIds
@@ -35,19 +40,6 @@ export default function PinsIndex() {
   const allPinId = userBoards?.find(
     (boardId) => allBoards[boardId]?.title === "All Pins"
   );
-
-  const localStorageKey = "imageSize";
-  const initialImageSize =
-    localStorage.getItem(localStorageKey) || getRandomSize();
-
-  const [imageSize, setImageSize] = useState(initialImageSize);
-
-  useEffect(() => {
-    // Save the random size to local storage on initial mount
-    if (!localStorage.getItem(localStorageKey)) {
-      localStorage.setItem(localStorageKey, imageSize);
-    }
-  }, [imageSize]);
 
   const handleClick = (pin) => {
     setSelectedPin(pin);
@@ -90,6 +82,19 @@ export default function PinsIndex() {
     history.push(`Users/${currentUser.id}`);
   };
 
+  const renderPinSize = (pin) => {
+    if (pinSizes[pin.id]) {
+      return pinSizes[pin.id];
+    } else {
+      const randomSize = getRandomSize();
+      setPinSizes((prevSizes) => ({ ...prevSizes, [pin.id]: randomSize }));
+      return randomSize;
+    }
+  };
+
+
+
+
   return (
     <div className="container">
       {loading ? (
@@ -108,6 +113,7 @@ export default function PinsIndex() {
         </div>
       ) : (
         Object.values(pins).map((pin) => {
+          const size = renderPinSize(pin);
           const isPinSaved = userBoards.some((boardId) =>
             boardPins[boardId]?.includes(pin.id)
           );
@@ -121,7 +127,7 @@ export default function PinsIndex() {
             .filter(Boolean);
 
           return (
-            <div key={pin.id} className={`pin-container ${getRandomSize()}`}>
+            <div key={pin.id} className={`pin-container ${size}`}>
               <div className="pin-actions" onClick={() => handleClick(pin)}>
                 {isPinSaved ? (
                   <div
