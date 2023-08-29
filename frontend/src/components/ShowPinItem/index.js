@@ -4,7 +4,11 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import * as userActions from "../../store/user";
 import { createPin } from "../../store/pin";
-import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  NavLink,
+  Redirect,
+  useHistory,
+} from "react-router-dom/cjs/react-router-dom.min";
 import { addBoardPin } from "../../store/boardPins";
 import * as followActions from "../../store/follow";
 
@@ -79,6 +83,9 @@ export function ShowPinItem({ pin }) {
       setIsFollowing(true);
     }
   };
+  const handleLink = (boardId) => {
+    history.push(`/users/${currentUser.id}/boards/${boardId}`);
+  };
 
   return (
     <div className="pin-item">
@@ -123,11 +130,13 @@ export function ShowPinItem({ pin }) {
           )}
           {isPinSaved && (
             <div className="saved-div">
-              <div style={{ margin: "15px", color: "white" }}>
-                <NavLink to={`users/${currentUser.id}/boards/${boardId}`}>
-                  {" "}
-                  {board}
-                </NavLink>
+              <div
+                style={{ margin: "15px", color: "white" }}
+                onClick={() => handleLink(boardId)}
+              >
+                {/* <NavLink to={`users/${currentUser.id}/boards/${boardId}`}> */}{" "}
+                {board}
+                {/* </NavLink> */}
               </div>
               <button
                 className="save-pin-btn"

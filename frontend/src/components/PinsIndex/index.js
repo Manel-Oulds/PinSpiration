@@ -20,7 +20,7 @@ export default function PinsIndex() {
   const [selectedPin, setSelectedPin] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
-  const [isSaved, setIsSaved] = useState(false);
+  const [isSaved, setIsSaved] = useState({});
   const [loading, setLoading] = useState(true);
   const pins = useSelector((state) => state.pin);
   const allBoards = useSelector((state) => state.boards);
@@ -29,10 +29,6 @@ export default function PinsIndex() {
   const boards = useSelector((state) => state.boards);
   const boardPins = useSelector((state) => state.boardpins);
   const [pinSizes, setPinSizes] = useState({});
-  const [pinSizesGenerated, setPinSizesGenerated] = useState(false);
-
-
-  
 
   const userBoards = useSelector(
     (state) => state.users[currentUser.id]?.boardIds
@@ -50,21 +46,6 @@ export default function PinsIndex() {
     setShowModal(false);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      await dispatch(fetchUser(currentUser.id));
-      await dispatch(pinActions.fetchAllPins());
-      await dispatch(fetchBoards(currentUser));
-      await dispatch(fetchBoards(currentUser.id));
-      await dispatch(fetchAllBoardPins());
-
-      await dispatch(fetchAllBoards());
-      setLoading(false);
-    };
-
-    fetchData();
-  }, [dispatch]);
-
   const handleSavePin = (pin, selectedBoardId) => {
     if (!selectedBoardId) {
       selectedBoardId = allPinId;
@@ -78,9 +59,29 @@ export default function PinsIndex() {
         },
       })
     );
-    setIsSaved(true);
-    history.push(`Users/${currentUser.id}`);
+    setIsSaved((prevIsSaved) => ({
+      ...prevIsSaved,
+      [pin.id]: true,
+    }));
+    // history.push(`Users/${currentUser.id}`);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await dispatch(fetchUser(currentUser.id));
+      await dispatch(pinActions.fetchAllPins());
+      await dispatch(fetchBoards(currentUser));
+      await dispatch(fetchBoards(currentUser.id));
+      await dispatch(fetchAllBoardPins());
+
+      await dispatch(fetchAllBoards());
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [dispatch, handleSavePin]);
+
+  
 
   const renderPinSize = (pin) => {
     if (pinSizes[pin.id]) {
@@ -91,9 +92,6 @@ export default function PinsIndex() {
       return randomSize;
     }
   };
-
-
-
 
   return (
     <div className="container">
@@ -145,7 +143,6 @@ export default function PinsIndex() {
                         </NavLink>{" "}
                       </label>
                     </div>
-
                     <button
                       className="save-pin"
                       style={{ background: "red" }}
@@ -189,12 +186,12 @@ export default function PinsIndex() {
                       className="save-pin"
                       style={{ background: "red" }}
                       onClick={(e) => {
-                        e.stopPropagation(); // Prevent click from propagating
+                        e.stopPropagation();
                         handleSavePin(pin, selectedBoards[pin.id]);
                       }}
-                      disabled={isSaved}
+                      disabled={isSaved[pin.id]}
                     >
-                      {isSaved ? "Saved" : "Save"}
+                      {isSaved[pin.id] ? "Saved" : "Save"}
                     </button>
                   </div>
                 )}
