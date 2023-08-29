@@ -87,7 +87,7 @@ export default function PinsIndex() {
       })
     );
     setIsSaved(true);
-    history.push(`Users/${currentUser.id}/boards/${selectedBoardId}`);
+    history.push(`Users/${currentUser.id}`);
   };
 
   return (

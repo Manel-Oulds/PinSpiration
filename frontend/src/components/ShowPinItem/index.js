@@ -55,7 +55,7 @@ export function ShowPinItem({ pin }) {
       })
     );
     setIsSaved(true);
-    history.push(`Users/${currentUser.id}/boards/${selectedBoardId}`);
+    history.push(`Users/${currentUser.id}`);
   };
 
   const handleSavedPin = () => {
@@ -90,7 +90,7 @@ export function ShowPinItem({ pin }) {
           <h2 className="title-pin">{pin.title}</h2>
           {!isPinSaved && (
             <div className="custom-select">
-              <select
+              {/* <select
                 // id="dropdown"
                 value={selectedBoards[pin.id] || ""}
                 onChange={(e) =>
@@ -116,17 +116,19 @@ export function ShowPinItem({ pin }) {
                   return null;
                 })}
               </select>
-              <button className="save-pin-btn" onClick={() => handleSavePin()}>
+              <button className="save-pin-btn" onClick={() => handleSavePin(pin, selectedBoards)}>
                 Save
-              </button>
+              </button> */}
             </div>
           )}
           {isPinSaved && (
             <div className="saved-div">
-              <div style={{margin:"15px", color:"white"}}><NavLink to={`users/${currentUser.id}/boards/${boardId}`}>
-                {" "}
-                {board}
-              </NavLink></div>
+              <div style={{ margin: "15px", color: "white" }}>
+                <NavLink to={`users/${currentUser.id}/boards/${boardId}`}>
+                  {" "}
+                  {board}
+                </NavLink>
+              </div>
               <button
                 className="save-pin-btn"
                 style={{ backgroundColor: "black", color: "white" }}

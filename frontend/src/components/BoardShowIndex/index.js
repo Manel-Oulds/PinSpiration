@@ -57,7 +57,7 @@ function BoardShowIndex() {
 
   const handleImageClick = (pin) => (event) => {
     setSelectedPin(pin);
-    if (buttonContainerRef.current.contains(event.target)) {
+    if (buttonContainerRef.current?.contains(event.target)) {
       setShowModal(false);
     } else {
       setShowModal(true);
