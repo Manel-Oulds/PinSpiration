@@ -124,7 +124,7 @@ export function ShowPinItem({ pin }) {
           {isPinSaved && (
             <div className="saved-div">
               <div style={{ margin: "15px", color: "white" }}>
-                <NavLink to={`users/${currentUser.id}/boards/${boardId}`}>
+                <NavLink to={`/users/${currentUser.id}/boards/${boardId}`}>
                   {" "}
                   {board}
                 </NavLink>
