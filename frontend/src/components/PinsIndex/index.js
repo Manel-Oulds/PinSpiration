@@ -20,7 +20,7 @@ export default function PinsIndex() {
   const [selectedPin, setSelectedPin] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
-  const [isSaved, setIsSaved] = useState(false);
+  const [isSaved, setIsSaved] = useState({});
   const [loading, setLoading] = useState(true);
   const pins = useSelector((state) => state.pin);
   const allBoards = useSelector((state) => state.boards);
@@ -78,8 +78,11 @@ export default function PinsIndex() {
         },
       })
     );
-    setIsSaved(true);
-    history.push(`Users/${currentUser.id}`);
+    setIsSaved((prevIsSaved) => ({
+      ...prevIsSaved,
+      [pin.id]: true,
+    }));
+    // history.push(`Users/${currentUser.id}`);
   };
 
   const renderPinSize = (pin) => {
