@@ -3,7 +3,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-height: 500px;
 }
 input{
     width:300px;
