@@ -64,13 +64,13 @@ function LoginFormPage() {
         </ul>
         <div className="username">
           <label>
-            <div>Email</div>
+          <div style={{ padding: "6px" }}>Email</div>
             <div>
               <input
                 type="text"
                 value={credential}
                 onChange={(e) => setCredential(e.target.value)}
-                placeholder="Email"
+                placeholder="   Email"
                 required
               />
             </div>
@@ -87,7 +87,7 @@ function LoginFormPage() {
 
         <div className="password">
           <label>
-            <div> Password</div>
+            <div style={{ padding: "6px" }}> Password</div>
 
             <div>
               <input
@@ -95,7 +95,7 @@ function LoginFormPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder="Password"
+                placeholder="   Password"
               />
             </div>
           </label>
@@ -111,13 +111,13 @@ function LoginFormPage() {
           className="submit"
           type="submit"
           disabled={err}
-          style={{ backgroundColor: err ? "gray" : "red" }}
+          style={{ backgroundColor: err ? "gray" : "red", fontFamily: "sans-serif" }}
         >
           Log in
         </button>
-        <div className="or"> or </div>
+        <div className="or" style={{ fontWeight: "bold", marginTop: "5px" }}> OR </div>
         <button className="demo" onClick={handleDemo}>
-          Demo user
+          Continue as Demo user
         </button>
         <div className="loading">
           {showLoad && (

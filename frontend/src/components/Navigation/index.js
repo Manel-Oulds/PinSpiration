@@ -60,6 +60,7 @@ function Navigation() {
           </NavLink>
 
           <div className="nav-right">
+        
             <LoginFormModal className="login" />
             <SignupFormModal className="signup" />
           </div>
