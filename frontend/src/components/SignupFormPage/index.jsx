@@ -44,7 +44,12 @@ function SignupFormPage() {
   return (
     <div className="signup-div">
       <img src="/assets/images/Frame_new.svg" alt="Logo" className="logo" />
-      <div className="title" style={{ fontFamily: "sans-serif" }}>Welcome to PinSpiration </div>
+      <div className="title" style={{ fontFamily: "sans-serif", textAlign:"center"}}>
+        <div>Welcome to PinSpiration </div>
+         
+        <div style={{fontSize: "20px" , color:"gray"}}> Find new ideas to try</div>
+          
+        </div>
       <form onSubmit={handleSubmit}>
         <ul className="errors">
           {errors.map((error) => (

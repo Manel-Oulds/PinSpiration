@@ -54,13 +54,13 @@ function SearchBar() {
           }
         }}
       />
-      <button
+      {/* <button
         id="search-button"
         onClick={handelSubmit}
       >
         {" "}
         Search{" "}
-      </button>
+      </button> */}
       
     </div>
   );

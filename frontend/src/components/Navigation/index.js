@@ -30,19 +30,19 @@ function Navigation() {
           <CreateButton className="create-btn" />
           <SearchBar />
           {/* <input type="text" className="search-bar" placeholder=" 🔍 Search" /> */}
-          <button className="notification-btn btn ">
+          <button className="notification-btn btn " style={{marginTop:"10px"}}>
             <a href="https://www.linkedin.com/in/manel-ould-saada-134231282/">
               <i className="fa-brands fa-linkedin fa-2xl"></i>
             </a>
           </button>
-          <button className="message-btn btn ">
+          <button className="message-btn btn " style={{marginTop:"10px"}}>
             <a href="https://github.com/Manel-oulds">
               {" "}
               <i className="fa-brands fa-square-github fa-2xl"></i>
             </a>
           </button>
           <NavLink to={`/users/${sessionUser.id}`}>
-            <button className="profile-btn btn ">
+            <button className="profile-btn btn " style={{marginTop:"10px"}}>
               {sessionUser.username[0]}
             </button>
           </NavLink>

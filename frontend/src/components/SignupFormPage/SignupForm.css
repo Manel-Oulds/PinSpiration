@@ -1,87 +1,77 @@
-.signup-div{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: auto;
+.signup-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
 }
-input{
-    width:300px;
-    height: 35px;
-    border-radius: 15px;
-    border: 2px solid lightgray;
+input {
+  width: 300px;
+  height: 35px;
+  border-radius: 15px;
+  border: 2px solid lightgray;
 }
-.username{
-    padding: 5px;
+.username {
+  padding: 5px;
 
-    div{
-        padding: 10px;
-    }
-    
-    
-}
-.email{
-    padding: 5px;
-
-    div{
-        padding: 10px;
-    }
-    
-    
-}
-.birthdate{
-    padding: 5px;
-
-    div{
-        padding: 10px;
-    }
-    
-    
-}
-.password{
-    padding: 5px;
-}
-
-.submit{
-    position: relative;
-    padding: 15px;
-    left:50;
-    right:0;
-    bottom: 0;
-    top: 0;
-    width: 100%;
-    border-radius: 25px;
-    background-color: red;
-    font-family: "Times New Roman", Times, serif;
-    font-size: 15px;
-    color: white;
-    margin-top: 10px
-    
-}
-
-.title{
-    margin: 5px,5px;
-    font-family:"Times New Roman", Times, serif;
-    font-weight: 600px;
-    font-size: 32px;
-}
-
-.logo{
+  div {
     padding: 10px;
-    margin: 10px;
-    height: 100px;
-    width:400px;
-    
+  }
 }
-.errors{
-    color: red;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    size: 8px;
+.email {
+  padding: 5px;
+
+  div {
+    padding: 10px;
+  }
+}
+.birthdate {
+  padding: 5px;
+
+  div {
+    padding: 10px;
+  }
+}
+.password {
+  padding: 5px;
 }
 
-.loading{
-    margin-top: 20px;
-    text-align: center;
+.submit {
+  position: relative;
+  padding: 15px;
+  left: 50;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  border-radius: 25px;
+  background-color: red;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+  color: white;
+  /* margin-top: 10px; */
+}
+
+.title {
+  /* margin: 5px, 5px; */
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 600px;
+  font-size: 32px;
+}
+
+.logo {
+  padding: 10px;
+  height: 100px;
+  width: 400px;
+}
+.errors {
+  color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  size: 8px;
+}
+
+.loading {
+  margin-top: 20px;
+  text-align: center;
 }

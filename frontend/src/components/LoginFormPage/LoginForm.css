@@ -35,8 +35,6 @@ input {
   font-size: 15px;
   color: white;
   margin-top: 10px;
-  margin-left: 25px;
-  width: 300px;
   font-weight: bold;
 }
 
@@ -53,7 +51,7 @@ input {
   font-size: 15px;
   color: white;
   margin-top: 10px;
-  margin-left: 25px;
+  margin-left: 5%;
   width: 300px;
   font-weight: bold;
 }
@@ -71,7 +69,6 @@ input {
 
 .logo {
   padding: 10px;
-  margin: 10px;
   height: 100px;
   width: 400px;
 }
