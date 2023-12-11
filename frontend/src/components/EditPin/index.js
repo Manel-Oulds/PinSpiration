@@ -63,38 +63,39 @@ function EditPin({ pin, onCloseModal }) {
   };
 
   return (
-    <div style={{position:"", height:"500PX"}}>
-    <div className="my-div-edit">
-      <label className="div-ed"> Edit this Pin</label>
-      <div className="edit-pin">
-        <div className="inf-pin">
-          <div className="board-div">
-            <label className="label-style"> Board</label>
-            <select
-              value={selectedBoard}
-              onChange={(e) => setSelectedBoard(e.target.value)}
-              className="sel-board"
-            >
-              <option key={oldBoardId} value={oldBoardId}>
-                {boards[oldBoardId]?.title}
-              </option>
-              {userBoards.map((boardId) => {
-                const board = boards[boardId];
-                return (
-                  oldBoardId != boardId && (
-                    <option key={boardId} value={boardId}>
-                      {board?.title}
-                    </option>
-                  )
-                );
-              })}
-            </select>
-          </div>
-          {sessionUser.id == pin.userId && (
+    <div>
+      <div className="my-div-edit">
+        <label className="div-ed"> Edit this Pin</label>
+        <div className="edit-pin">
+          <div className="inf-pin">
+            <div className="board-div">
+              <label className="label-style"> Board</label>
+              <select
+                value={selectedBoard}
+                onChange={(e) => setSelectedBoard(e.target.value)}
+                className="sel-board"
+              >
+                <option key={oldBoardId} value={oldBoardId}>
+                  {boards[oldBoardId]?.title}
+                </option>
+                {userBoards.map((boardId) => {
+                  const board = boards[boardId];
+                  return (
+                    oldBoardId != boardId && (
+                      <option key={boardId} value={boardId}>
+                        {board?.title}
+                      </option>
+                    )
+                  );
+                })}
+              </select>
+            </div>
+            {/* {sessionUser.id == pin.userId && (
+            
             <>
               <div className="title-div">
                 <label className="label-style">
-                  Title
+                  Title </label>
                   <input
                     className="input-title"
                     type="text"
@@ -102,7 +103,7 @@ function EditPin({ pin, onCloseModal }) {
                     placeholder="Add your title"
                     onChange={(e) => setTitle(e.target.value)}
                   />
-                </label>
+               
                 {title.length < 0 && (err = true) && (
                   <p>
                     <i className="fa-solid fa-triangle-exclamation"></i>
@@ -110,35 +111,74 @@ function EditPin({ pin, onCloseModal }) {
                   </p>
                 )}
               </div>
+
+              <div className="separator-div" style={{borderBottom:'1px solid lightgray', margin:"15px"}}></div>
               <div className="description-div">
                 <label className="label-style">
                   {" "}
-                  Description
-                  <input
-                    className="input-description"
-                    type="text"
-                    placeholder="Tell us about this pin"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                  />
-                </label>
+                  Description </label>
+                  <textarea name="input-description" className="input-description" cols="30" rows="30" 
+                  onChange={(e) => setDescription(e.target.value)} value={description}  placeholder="Tell us about this pin">
+                  </textarea>
+               
               </div>
             </>
-          )}
+          )} */}
+            <div className="title-div">
+              <label className="label-style">Title</label>
+              <input
+                className="input-title"
+                type="text"
+                value={
+                  sessionUser.id !== pin.userId
+                    ? "You can not edit the title of a saved pin"
+                    : title
+                }
+                onChange={(e) => setTitle(e.target.value)}
+                disabled={sessionUser.id !== pin.userId}
+              />
+            </div>
+
+            <div
+              className="separator-div"
+              style={{ borderBottom: "1px solid lightgray", margin: "15px" }}
+            ></div>
+
+            <div className="description-div">
+              <label className="label-style">Description</label>
+              <textarea
+                name="input-description"
+                className="input-description"
+                cols="30"
+                rows="30"
+                onChange={(e) => setDescription(e.target.value)}
+                value={
+                  sessionUser.id !== pin.userId
+                    ? "You can not edit the description of a saved pin"
+                    : description
+                }
+                disabled={sessionUser.id !== pin.userId}
+              ></textarea>
+            </div>
+          </div>
+          <div className="image-pin">
+            <img
+              src={pin.imgUrl}
+              className="user-pins"
+              alt="Pin"
+              style={{ width: "70%", height: "85%" }}
+            />
+          </div>
         </div>
-        <div className="image-pin">
-          <img src={pin.imgUrl} className="user-pins" alt="Pin" />
+        <div className="cancel-save-div">
+          <button className="gray-btn" onClick={() => handleCancel()}>
+            Cancel
+          </button>
+          <button className="red-btn" onClick={() => handleEdit(pin)}>
+            Save
+          </button>
         </div>
       </div>
-      <div className="cancel-save-div">
-        <button className="gray-btn" onClick={() => handleCancel()}>
-          Cancel
-        </button>
-        <button className="red-btn" onClick={() => handleEdit(pin)}>
-          Save
-        </button>
-      </div>
-    </div>
     </div>
   );
 }
