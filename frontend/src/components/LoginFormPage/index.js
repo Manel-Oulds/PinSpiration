@@ -55,7 +55,7 @@ function LoginFormPage() {
     <div className="login-div">
       <img src="/assets/images/Frame_new.svg" alt="Logo" className="logo" />
 
-      <div className="title">Welcome to PinSpiration</div>
+      <div className="title"  style={{ fontFamily: "sans-serif" }}>Welcome to PinSpiration</div>
       <form onSubmit={handleSubmit}>
         <ul className="errors">
           {errors.map((error) => (

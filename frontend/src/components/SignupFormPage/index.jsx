@@ -44,7 +44,7 @@ function SignupFormPage() {
   return (
     <div className="signup-div">
       <img src="/assets/images/Frame_new.svg" alt="Logo" className="logo" />
-      <div className="title">Welcome to PinSpiration </div>
+      <div className="title" style={{ fontFamily: "sans-serif" }}>Welcome to PinSpiration </div>
       <form onSubmit={handleSubmit}>
         <ul className="errors">
           {errors.map((error) => (
@@ -53,14 +53,14 @@ function SignupFormPage() {
         </ul>
         <div className="email">
           <label>
-            <div>Email</div>
+            <div style={{ padding: "6px" }}>Email</div>
             <div>
               <input
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                placeholder="Email"
+                placeholder="   Email"
               />
             </div>
           </label>
@@ -71,16 +71,16 @@ function SignupFormPage() {
             Hmm...that doesn't look like an email address.
           </p>
         )}
-        <div className="username">
+        <div className="username" >
           <label>
-            <div>Username</div>
+            <div style={{ padding: "6px" }}>Username</div>
             <div>
               <input
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
-                placeholder="Username"
+                placeholder="   Username"
               />
             </div>
           </label>
@@ -93,14 +93,14 @@ function SignupFormPage() {
         )}
         <div className="birthdate">
           <label>
-            <div>Birthdate</div>
+            <div style={{ padding: "6px" }}>Birthdate</div>
             <div>
               <input
                 type="date"
                 value={birthdate}
                 onChange={(e) => setBirthdate(e.target.value)}
                 required
-                placeholder="Birthdate"
+                placeholder="   Birthdate"
               />
             </div>
           </label>
@@ -110,14 +110,14 @@ function SignupFormPage() {
 
         <div className="password">
           <label>
-            <div>Password</div>
+            <div style={{ padding: "6px" }}>Password</div>
             <div>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder="Password"
+                placeholder="   Password"
               />
             </div>
           </label>

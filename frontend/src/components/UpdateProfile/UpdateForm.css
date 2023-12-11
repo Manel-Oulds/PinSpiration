@@ -43,13 +43,15 @@ input {
   right: 0;
   bottom: 0;
   top: 0;
-  width: 100%;
+  height: fit-content;
   border-radius: 25px;
   background-color: red;
-  font-family: "Times New Roman", Times, serif;
   font-size: 15px;
   color: white;
   margin-top: 10px;
+  margin-left: 25px;
+  width: 300px;
+  font-weight: bold;
 }
 
 .title1,
