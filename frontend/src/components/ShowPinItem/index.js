@@ -83,7 +83,7 @@ export function ShowPinItem({ pin }) {
   return (
     <div className="pin-item">
       <div className="image-pin">
-        <img src={pin.imgUrl} className="user-pin" alt="Pin" />
+        <img src={pin.imgUrl} className="user-pin" alt="Pin" style={{height:"100%", objectFit:"cover"}} />
       </div>
       <div className="pin-informations">
         <div className="title-save">
@@ -123,7 +123,7 @@ export function ShowPinItem({ pin }) {
           )}
           {isPinSaved && (
             <div className="saved-div">
-              <div style={{ margin: "15px", color: "white" }}>
+              <div style={{ margin: "15px", color: "black" }}>
                 <NavLink to={`/users/${currentUser.id}/boards/${boardId}`}>
                   {" "}
                   {board}

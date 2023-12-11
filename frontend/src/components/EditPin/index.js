@@ -63,6 +63,7 @@ function EditPin({ pin, onCloseModal }) {
   };
 
   return (
+    <div style={{position:"", height:"500PX"}}>
     <div className="my-div-edit">
       <label className="div-ed"> Edit this Pin</label>
       <div className="edit-pin">
@@ -138,7 +139,7 @@ function EditPin({ pin, onCloseModal }) {
         </button>
       </div>
     </div>
-    // </div>
+    </div>
   );
 }
 

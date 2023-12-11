@@ -122,9 +122,9 @@
 
 .user-pins {
   position: relative;
-  border-radius: 30px;
+  border-radius: 25px;
   box-shadow: #6c5757;
-  height: 300px;
+  height: 100vh;
   width: 200px;
   padding: 20px;
   margin: 15px;
@@ -277,7 +277,7 @@
 }
 
 .edit-pin {
-  background-color: rgb(206, 185, 185);
+  background-color: rgb(255, 255, 255);
   position: relative;
   width: 100%;
   height: 100%;
@@ -305,8 +305,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 50%; /* Set the width to 50% to make the image occupy the left side */
+  height: cover;
+  width: 100%; /* Set the width to 50% to make the image occupy the left side */
   border-right: 1px solid rgb(229, 216, 216);
 }
 
@@ -371,11 +371,13 @@
 }
 
 .my-div-edit {
-  position: absolute;
-  background-color: rgb(206, 185, 185);
+  position: relative;
+  background-color: rgb(255, 255, 255);
   width: 100%;
-  height: 85%;
+  height: 100%;
   border-radius: 15px;
+  margin-top: 40px;
+
 }
 
 .gray-btn {
@@ -492,3 +494,4 @@
 .b{
   margin: 0;
 }
+

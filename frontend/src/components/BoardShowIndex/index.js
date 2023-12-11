@@ -89,14 +89,12 @@ function BoardShowIndex() {
   };
 
   const handleEditClick = (pin) => {
-    setShowModal(false);
     setSelectedPin(pin);
     setEditModal(true);
-    
   };
 
   const handleDeleteBoard = () => {
-    setShowModal(false); 
+    setShowModal(false);
     const confirmation = window.confirm(
       "Are you sure you want to delete this board and its pins?"
     );
@@ -186,7 +184,7 @@ function BoardShowIndex() {
               </div>
             );
           })}
-          {showModal && selectedPin && (
+          {showModal && selectedPin && !editModal && (
             <Modal onClose={handleModalClose}>
               <ShowPinItem pin={selectedPin} />
             </Modal>
