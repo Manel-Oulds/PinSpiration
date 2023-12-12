@@ -114,104 +114,162 @@ function Pin() {
     return (
       <div className="pin-div">
         <Navigation />
-        <div className="create-pin">
-          <form onSubmit={handleCreate}>
-            <ul className="errors">
-              {errors.map((error) => (
-                <li key={error}>{error}</li>
-              ))}
-            </ul>
-
-            <div className="information">
-              <div className="image-pin">
-                <div className="div-image" onClick={handleDivClick}>
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    style={{ display: "none" }}
-                    onChange={handleFile}
-                  />
-                  {image ? (
-                    <img
-                      src={imageUrl}
-                      alt="Selected"
-                      style={{ width: "100%", height: "100%" }}
-                    />
-                  ) : (
-                    <p className="image-text">Click here to upload an image</p>
-                  )}
-                </div>
-              </div>
-              <div className="info-pin">
-                <div className="btn-div">
-                  <select
-                    value={selectedBoard}
-                    onChange={handleSelectChange}
-                    className="custom-select"
-                    style={{margin:"20px",  border:"none", color:"black", fontSize:"15px"}}
-                  >
-                    <option value={allPinsBoardId}>All Pins</option>
-                    {userBoards?.map((boardId) => {
-                      const board = boards[boardId];
-                      if (board && boardId !== allPinsBoardId) {
-                        return (
-                          <option key={boardId} value={boardId}>
-                            {board.title}
-                          </option>
-                        );
-                      }
-                    })}
-                  </select>
-                  <button className="edit" style={{ backgroundColor: "red" }}>
-                    Create Pin
-                  </button>
-                </div>
-
-                <input
-                  className="my-input pintitle"
-                  type="text"
-                  value={title}
-                  placeholder="Add your title"
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-                {title.length === 0 && (err = true) && (
-                  <p>
-                    <i className="fa-solid fa-triangle-exclamation"></i>
-                    Hmm...title can't be empty.
-                  </p>
-                )}
-                <div className="profile-infos">
-                  <input
-                    type="text"
-                    className="input-username"
-                    value={`${sessionUser.username[0]}`}
-                    disabled
-                  />
-                  <div className="use">
-                    <NavLink
-                      className="nav-prof"
-                      to={`/${sessionUser.username}`}
-                    >
-                      {sessionUser.username}
-                    </NavLink>
-                    <NavLink
-                      className="nav-prof"
-                      to={`/${sessionUser.username}`}
-                    >
-                      {sessionUser.email}
-                    </NavLink>
-                  </div>
-                </div>
-                <input
-                  className="my-input pindescription"
-                  type="text"
-                  placeholder="Tell everyone what your pin is about"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
+        <div className="create-pin" style={{ height: "100vh" }}>
+          <div className="div-create-title" style={{ display: "flex" }}>
+            <div
+              className="div-left"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <i
+                class="fa-solid fa-angles-right fa-xl"
+                style={{ margin: "auto" }}
+              ></i>
+            </div>
+            <div className="div-right">
+              <div
+                style={{
+                  color: "black",
+                  fontSize: "25px",
+                  fontFamily: "sans-serif",
+                  margin: "25px",
+                }}
+              >
+                {" "}
+                Create a pin
               </div>
             </div>
-          </form>
+          </div>
+          <div
+            className="div-create-form"
+            style={{ display: "flex", height: "100%" }}
+          >
+            <div className="div-left-bottom">
+              <div
+                className="sub-div-left-bottom"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <i
+                  class="fa-solid fa-plus fa-xl"
+                  style={{ margin: "auto" }}
+                ></i>
+              </div>
+            </div>
+            <div className="div-right-bottom"></div>
+              <form onSubmit={handleCreate}>
+                <ul className="errors">
+                  {errors.map((error) => (
+                    <li key={error}>{error}</li>
+                  ))}
+                </ul>
+                <div className="information">
+                  <div className="image-pin">
+                    <div className="div-image" onClick={handleDivClick}>
+                      <input
+                        type="file"
+                        ref={fileInputRef}
+                        style={{ display: "none" }}
+                        onChange={handleFile}
+                      />
+                      {image ? (
+                        <img
+                          src={imageUrl}
+                          alt="Selected"
+                          style={{ width: "100%", height: "100%" }}
+                        />
+                      ) : (
+                        <p className="image-text">
+                          Click here to upload an image
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="info-pin">
+                    <div className="btn-div">
+                      <select
+                        value={selectedBoard}
+                        onChange={handleSelectChange}
+                        className="custom-select"
+                        style={{
+                          margin: "20px",
+                          border: "none",
+                          color: "black",
+                          fontSize: "15px",
+                        }}
+                      >
+                        <option value={allPinsBoardId}>All Pins</option>
+                        {userBoards?.map((boardId) => {
+                          const board = boards[boardId];
+                          if (board && boardId !== allPinsBoardId) {
+                            return (
+                              <option key={boardId} value={boardId}>
+                                {board.title}
+                              </option>
+                            );
+                          }
+                        })}
+                      </select>
+                      <button
+                        className="edit"
+                        style={{ backgroundColor: "red" }}
+                      >
+                        Create Pin
+                      </button>
+                    </div>
+
+                    <input
+                      className="my-input pintitle"
+                      type="text"
+                      value={title}
+                      placeholder="Add your title"
+                      onChange={(e) => setTitle(e.target.value)}
+                    />
+                    {title.length === 0 && (err = true) && (
+                      <p>
+                        <i className="fa-solid fa-triangle-exclamation"></i>
+                        Hmm...title can't be empty.
+                      </p>
+                    )}
+                    <div className="profile-infos">
+                      <input
+                        type="text"
+                        className="input-username"
+                        value={`${sessionUser.username[0]}`}
+                        disabled
+                      />
+                      <div className="use">
+                        <NavLink
+                          className="nav-prof"
+                          to={`/${sessionUser.username}`}
+                        >
+                          {sessionUser.username}
+                        </NavLink>
+                        <NavLink
+                          className="nav-prof"
+                          to={`/${sessionUser.username}`}
+                        >
+                          {sessionUser.email}
+                        </NavLink>
+                      </div>
+                    </div>
+                    <input
+                      className="my-input pindescription"
+                      type="text"
+                      placeholder="Tell everyone what your pin is about"
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                    />
+                  </div>
+                </div>
+              </form>
+          </div>
         </div>
       </div>
     );

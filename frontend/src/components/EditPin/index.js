@@ -149,6 +149,7 @@ function EditPin({ pin, onCloseModal }) {
               <textarea
                 name="input-description"
                 className="input-description"
+                style={{letterSpacing:"-1.5px"}}
                 cols="30"
                 rows="30"
                 onChange={(e) => setDescription(e.target.value)}
