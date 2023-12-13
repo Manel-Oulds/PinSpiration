@@ -171,13 +171,14 @@ function Pin() {
                 </ul>
                 <div className="information">
                   <div className="div-upload-save">
-                  <div className="image-pin-upload">
-                    <div className="div-image" onClick={handleDivClick}>
+                    <div className="image-pin-upload" onClick={handleDivClick} style={{ display: "flex", alignItems: "center", justifyContent: "center"}}>
                       <input
+                        className="input-file"
                         type="file"
                         ref={fileInputRef}
                         style={{ display: "none" }}
                         onChange={handleFile}
+                        placeholder="Choose a file"
                       />
                       {image ? (
                         <img
@@ -186,62 +187,25 @@ function Pin() {
                           style={{ width: "100%", height: "100%" }}
                         />
                       ) : (
-                        <p className="image-text">
-                          Click here to upload an image
-                        </p>
+                        <div style={{display:"flex", flexDirection:"column"}}>
+                         <p><i class="fa-solid fa-upload fa-2xl" style={{color: "#000000"}}></i></p>
+
+                          <p className="image-text"> Click here to upload an image </p>       
+                        </div>
+                       
                       )}
                     </div>
-                    <div style={{borderBottom:"1px solid lightgray"}}></div>
+                    <div style={{borderBottom:"1px solid lightgray", marginTop:"5px"}}></div>
                     <button
                         className="edit"
-                        style={{ backgroundColor: "red" }}
+                        style={{ backgroundColor: "rgb(234, 233, 233)", color:"black" }}
                       >
                         Save Pin
                       </button>
                   </div>
-                  </div>
+                  
                   <div className="info-pin">
-                    <div className="btn-div">
-                      <select
-                        value={selectedBoard}
-                        onChange={handleSelectChange}
-                        className="custom-select"
-                        style={{
-                          margin: "20px",
-                          border: "none",
-                          color: "black",
-                          fontSize: "15px",
-                        }}
-                      >
-                        <option value={allPinsBoardId}>All Pins</option>
-                        {userBoards?.map((boardId) => {
-                          const board = boards[boardId];
-                          if (board && boardId !== allPinsBoardId) {
-                            return (
-                              <option key={boardId} value={boardId}>
-                                {board.title}
-                              </option>
-                            );
-                          }
-                        })}
-                      </select>
-                      
-                    </div>
-
-                    <input
-                      className="my-input pintitle"
-                      type="text"
-                      value={title}
-                      placeholder="Add your title"
-                      onChange={(e) => setTitle(e.target.value)}
-                    />
-                    {title.length === 0 && (err = true) && (
-                      <p>
-                        <i className="fa-solid fa-triangle-exclamation"></i>
-                        Hmm...title can't be empty.
-                      </p>
-                    )}
-                    <div className="profile-infos">
+                  {/* <div className="profile-infos">
                       <input
                         type="text"
                         className="input-username"
@@ -262,14 +226,53 @@ function Pin() {
                           {sessionUser.email}
                         </NavLink>
                       </div>
-                    </div>
+                    </div> */}
+                    
+                    <label>Title</label>
+                    <input
+                      className="my-input pintitle"
+                      type="text"
+                      value={title}
+                      placeholder="Add your title"
+                      onChange={(e) => setTitle(e.target.value)}
+                    />
+                    {title.length === 0 && (err = true) && (
+                      <p>
+                        <i className="fa-solid fa-triangle-exclamation"></i>
+                        Hmm...title can't be empty.
+                      </p>
+                    )}
+                    <label>Description</label>
                     <input
                       className="my-input pindescription"
                       type="text"
-                      placeholder="Tell everyone what your pin is about"
+                      placeholder="Add a detailed description"
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                     />
+                    <div style={{borderBottom: "1px solid lightgray", marginTop: "5px", margin:"15px"}}></div>
+                    <label>Board</label>
+                    
+                      
+                      <select
+                        value={selectedBoard}
+                        onChange={handleSelectChange}
+                        className="my-input"
+                      >
+                        <option value={allPinsBoardId}>All Pins</option>
+                        {userBoards?.map((boardId) => {
+                          const board = boards[boardId];
+                          if (board && boardId !== allPinsBoardId) {
+                            return (
+                              <option key={boardId} value={boardId}>
+                                {board.title}
+                              </option>
+                            );
+                          }
+                        })}
+                      </select>
+                      
+                   
                   </div>
                 </div>
               </form> 

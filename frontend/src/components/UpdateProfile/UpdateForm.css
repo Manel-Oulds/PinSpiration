@@ -5,10 +5,9 @@
   align-items: center;
   max-height: 600px;
   width: fit-content;
-  border: 3px solid salmon;
+  border: 3px solid rgb(234,233,233);
   border-radius: 20px;
   padding: 30px 30px;
-  box-shadow: red;
   position: absolute;
   top: 13%;
   left: 35vw;

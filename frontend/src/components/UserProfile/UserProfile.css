@@ -133,3 +133,21 @@
   background-color: blue;
   color: white;
 }
+
+.image-pin-upload {
+  cursor: pointer;
+  height: 50vh;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  font-size: 0px;
+  background: rgb(234, 233, 233);
+  border-radius: 30px;
+}
+
+.div-upload-save {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  width: 30%;
+}

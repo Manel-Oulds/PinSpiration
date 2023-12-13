@@ -58,7 +58,7 @@ function SignupFormPage() {
         </ul>
         <div className="email">
           <label>
-            <div style={{ padding: "6px" }}>Email</div>
+            <div style={{ padding: "3px" }}>Email</div>
             <div>
               <input
                 type="text"
@@ -78,7 +78,7 @@ function SignupFormPage() {
         )}
         <div className="username" >
           <label>
-            <div style={{ padding: "6px" }}>Username</div>
+            <div style={{ padding: "3px" }}>Username</div>
             <div>
               <input
                 type="text"
@@ -98,7 +98,7 @@ function SignupFormPage() {
         )}
         <div className="birthdate">
           <label>
-            <div style={{ padding: "6px" }}>Birthdate</div>
+            <div style={{ padding: "3px" }}>Birthdate</div>
             <div>
               <input
                 type="date"
@@ -115,7 +115,7 @@ function SignupFormPage() {
 
         <div className="password">
           <label>
-            <div style={{ padding: "6px" }}>Password</div>
+            <div style={{ padding: "3px" }}>Password</div>
             <div>
               <input
                 type="password"
