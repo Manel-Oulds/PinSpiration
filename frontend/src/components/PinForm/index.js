@@ -139,7 +139,7 @@ function Pin() {
                 }}
               >
                 {" "}
-                Create a pin
+                Create pin
               </div>
             </div>
           </div>
@@ -162,15 +162,16 @@ function Pin() {
                 ></i>
               </div>
             </div>
-            <div className="div-right-bottom"></div>
-              <form onSubmit={handleCreate}>
-                <ul className="errors">
+            <div className="div-right-bottom">
+               <form onSubmit={handleCreate}>
+               <ul className="errors">
                   {errors.map((error) => (
                     <li key={error}>{error}</li>
                   ))}
                 </ul>
                 <div className="information">
-                  <div className="image-pin">
+                  <div className="div-upload-save">
+                  <div className="image-pin-upload">
                     <div className="div-image" onClick={handleDivClick}>
                       <input
                         type="file"
@@ -190,6 +191,14 @@ function Pin() {
                         </p>
                       )}
                     </div>
+                    <div style={{borderBottom:"1px solid lightgray"}}></div>
+                    <button
+                        className="edit"
+                        style={{ backgroundColor: "red" }}
+                      >
+                        Save Pin
+                      </button>
+                  </div>
                   </div>
                   <div className="info-pin">
                     <div className="btn-div">
@@ -216,12 +225,7 @@ function Pin() {
                           }
                         })}
                       </select>
-                      <button
-                        className="edit"
-                        style={{ backgroundColor: "red" }}
-                      >
-                        Create Pin
-                      </button>
+                      
                     </div>
 
                     <input
@@ -268,7 +272,8 @@ function Pin() {
                     />
                   </div>
                 </div>
-              </form>
+              </form> 
+              </div>
           </div>
         </div>
       </div>

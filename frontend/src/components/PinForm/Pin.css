@@ -13,7 +13,6 @@
 
 .information {
   position: relative;
-  background-color: lightgray;
   display: flex;
   flex-direction: row;
   border-radius: 25px;
