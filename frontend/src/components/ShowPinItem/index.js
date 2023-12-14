@@ -150,7 +150,7 @@ export function ShowPinItem({ pin }) {
               <h1 className="user-username">{user.username}</h1>
             </div>
           </NavLink>
-          <div className="second">
+          {/* <div className="second">
             {currentUser.id !== user.id && (
               <button
                 className={`edit ${isFollowing ? "following" : "follow"}`}
@@ -161,7 +161,7 @@ export function ShowPinItem({ pin }) {
                   : "Follow"}
               </button>
             )}
-          </div>
+          </div> */}
         </div>
 
         <div className="comments">
