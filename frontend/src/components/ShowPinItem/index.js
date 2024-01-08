@@ -88,39 +88,6 @@ export function ShowPinItem({ pin }) {
       <div className="pin-informations">
         <div className="title-save">
           <h2 className="title-pin">{pin.title}</h2>
-          {!isPinSaved && (
-            <div className="custom-select">
-              {/* <select
-                // id="dropdown"
-                value={selectedBoards[pin.id] || ""}
-                onChange={(e) =>
-                  setSelectedBoards((prevSelectedBoards) => ({
-                    ...prevSelectedBoards,
-                    [pin.id]: e.target.value,
-                  }))
-                }
-                className="select-board"
-              >
-                <option value={allPinId} className="option-allpins">
-                  All Pins
-                </option>
-                {userBoardIds.map((boardId) => {
-                  const board = allBoards[boardId];
-                  if (board && boardId !== allPinId) {
-                    return (
-                      <option key={boardId} value={boardId}>
-                        {board.title}
-                      </option>
-                    );
-                  }
-                  return null;
-                })}
-              </select>
-              <button className="save-pin-btn" onClick={() => handleSavePin(pin, selectedBoards)}>
-                Save
-              </button> */}
-            </div>
-          )}
           {isPinSaved && (
             <div className="saved-div">
               <div style={{ margin: "15px", color: "black" }}>
@@ -150,18 +117,6 @@ export function ShowPinItem({ pin }) {
               <h1 className="user-username">{user.username}</h1>
             </div>
           </NavLink>
-          {/* <div className="second">
-            {currentUser.id !== user.id && (
-              <button
-                className={`edit ${isFollowing ? "following" : "follow"}`}
-                onClick={() => handleFollow(user)}
-              >
-                {followees.some((followee) => followee.id === user.id)
-                  ? "Following"
-                  : "Follow"}
-              </button>
-            )}
-          </div> */}
         </div>
 
         <div className="comments">
